@@ -15,11 +15,11 @@ namespace MovieTime2
         {
             List<movie> allMovies = db.Movie.Select(k => new movie()
             {
-                id = k.id,
-                title = k.title,
-                summary = k.summary,
-                price = k.price,
-                imageURL = k.imageURL,
+                id = k.Id,
+                title = k.Title,
+                summary = k.Summary,
+                price = k.Price,
+                imageURL = k.ImageURL,
             }).ToList();
             return allMovies;
         }
@@ -28,8 +28,8 @@ namespace MovieTime2
         {
             List<genre> allGenres = db.Genre.Select(k => new genre()
             {
-                id = k.id,
-                title = k.title,
+                id = k.Id,
+                title = k.Title,
             }).ToList();
             return allGenres;
         }
@@ -38,11 +38,11 @@ namespace MovieTime2
         {
             var newMovie = new Movie
             {
-                id = 1,
-                title = "Lord",
-                summary = "Lord of the rings summary",
-                price = 150,
-                imageURL = ""
+                Id = 1,
+                Title = "Lord",
+                Summary = "Lord of the rings summary",
+                Price = 150,
+                ImageURL = ""
             };
 
             try
@@ -56,32 +56,32 @@ namespace MovieTime2
             }
             return true;
         }
-        public movie getAMovie(int id)
+        public movie getAMovie(int Id)
         {
-            Movie aDBMovie = db.Movie.Find(id);
+            Movie aDBMovie = db.Movie.Find(Id);
 
             var aMovie = new movie()
             {
-                id = aDBMovie.id,
-                title = aDBMovie.title,
-                summary = aDBMovie.summary,
-                price = aDBMovie.price,
-                imageURL = aDBMovie.imageURL,
+                id = aDBMovie.Id,
+                title = aDBMovie.Title,
+                summary = aDBMovie.Summary,
+                price = aDBMovie.Price,
+                imageURL = aDBMovie.ImageURL,
             };
             return aMovie;
         }
 
-        public List<imageMovie> getMoviesFromGenre(int id)
+        public List<imageMovie> getMoviesFromGenre(int Id)
         {
-            var allMovies = db.Genre.Where(c => c.id == id).SelectMany(c => c.movies).ToList();
+            var allMovies = db.Genre.Where(c => c.Id == Id).SelectMany(c => c.Movie).ToList();
             List<imageMovie> allmovies = new List<imageMovie>();
 
             foreach (Movie i in allMovies)
             {
                 var movie = new imageMovie()
                 {
-                    id = i.id,
-                    imageURL = i.imageURL
+                    id = i.Id,
+                    imageURL = i.ImageURL
                 };
                 allmovies.Add(movie);
             }

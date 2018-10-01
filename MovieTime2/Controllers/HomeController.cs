@@ -33,7 +33,7 @@ namespace MovieTime2.Controllers
             return json;
 
         }
-        public string getAllMovieURLs()
+        /*public string getAllMovieURLs()
         {
             var db = new MovieDatabaseDB();
             List<movie> allMovies = db.getAllMovies();
@@ -48,12 +48,12 @@ namespace MovieTime2.Controllers
             var jsonSerializer = new JavaScriptSerializer();
             string json = jsonSerializer.Serialize(allURLs);
             return json;
-        }
-        public string getMovieInfo(int id)
+        }*/
+        public string getMovieInfo(int Id)
         {
             //System.Diagnostics.Debug.WriteLine(id.ToString());
             var db = new MovieDatabaseDB();
-            movie aMovie = db.getAMovie(id);
+            movie aMovie = db.getAMovie(Id);
             var jsonSerializer = new JavaScriptSerializer();
             string json = jsonSerializer.Serialize(aMovie);
             return json;

@@ -32,7 +32,7 @@ namespace MovieTime2.Controllers
                         newUser.FirstName = inCustomer.FirstName;
                         newUser.LastName = inCustomer.LastName;
                         newUser.Address = inCustomer.Address;
-                        newUser.PostalCode = inCustomer.PostalCode;
+                        newUser.ZipCode = inCustomer.ZipCode;
                         newUser.PhoneNumber = inCustomer.PhoneNumber;
                         newUser.Username = inCustomer.Username;
                         newUser.Email = inCustomer.Email;
@@ -42,7 +42,7 @@ namespace MovieTime2.Controllers
                     }
                     catch (Exception ex)
                     {
-                        //Must add something here
+                        System.Diagnostics.Debug.Write("Mistake!" + ex);
                     }
                 }
                 return RedirectToAction("Index", "Home");

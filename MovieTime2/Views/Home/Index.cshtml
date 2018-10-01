@@ -9,6 +9,10 @@
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     <script type="text/javascript">
         $(function () {
+            $("#MovieList").click(function () {
+                document.getElementById("overlay").style.display = "block";
+            });
+
             $.ajax({
                 url: '/Home/getAllGenresController',
                 type: 'GET',
@@ -20,20 +24,8 @@
                     alert(x + '\n' + y + '\n' + z);
                 }
             });
-
-            /*$.ajax({
-                url: '/Home/getAllMovieURLs',
-                type: 'GET',
-                dataType: 'json',
-                success: function (imageMovie) {
-                    ListMovies(imageMovie);
-                },
-                error: function (x, y, z) {
-                    alert(x + '\n' + y + '\n' + z);
-                }
-            });*/
-
-            $("#drop").change(function () {
+        
+           $("#drop").change(function () {
                 var id = $(this).val();
                 $.ajax({
                     url: '/Home/getMoviesFromGenre/' + id,
@@ -47,6 +39,7 @@
                     }
                 });
             });
+            
         })
         function ShowDropdown(genre) {
             var utStreng = "";
@@ -58,14 +51,10 @@
         function ListMovies(imageMovie) {
             var utStreng = "";
             for (var i in imageMovie) {
-                utStreng += "<li><img data-input="+i+" class='listImage' onclick='on()' src='" + imageMovie[i].imageURL + "' alt='image'/></li>"
+                utStreng += "<li><img class='listImage' src='" + imageMovie[i].imageURL + "' alt='image'/></li>"
             }
             $("#MovieList").html(utStreng);
 
-        }
-        function ShowInfo(movie) {
-            var utStreng = movie.title + " " + kunde.summary + " " + kunde.price + " ";
-            $("#MovieList").html(utStreng);
         }
 
         function on() {

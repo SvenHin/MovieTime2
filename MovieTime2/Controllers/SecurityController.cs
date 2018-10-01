@@ -19,25 +19,41 @@ namespace MovieTime2.Controllers
         [HttpPost]
         public ActionResult Register(Customer inCustomer)
         {
-            if (ModelState.IsValid)
+			System.Diagnostics.Debug.WriteLine("In Register!");
+
+			if (ModelState.IsValid)
             {
                 using (var db = new DatabaseContext())
                 {
-                    try
-                    {
-                        var newUser = new DBCustomer();
-                        byte[] salt = createSalt();
-                        byte[] hash = createHash(inCustomer.Password, salt);
-                        newUser.Password = hash;
-                        newUser.FirstName = inCustomer.FirstName;
-                        newUser.LastName = inCustomer.LastName;
-                        newUser.Address = inCustomer.Address;
-                        newUser.ZipCode = inCustomer.ZipCode;
-                        newUser.PhoneNumber = inCustomer.PhoneNumber;
-                        newUser.Username = inCustomer.Username;
-                        newUser.Email = inCustomer.Email;
-                        newUser.Salt = salt;
-                        db.DBCustomer.Add(newUser);
+                    
+					var newUser = new DBCustomer();
+                    byte[] salt = createSalt();
+                    byte[] hash = createHash(inCustomer.Password, salt);
+                    newUser.Password = hash;
+                    newUser.FirstName = inCustomer.FirstName;
+                    newUser.LastName = inCustomer.LastName;
+                    newUser.Address = inCustomer.Address;
+                    newUser.PhoneNumber = inCustomer.PhoneNumber;
+                    newUser.Username = inCustomer.Username;
+                    newUser.Email = inCustomer.Email;
+                    newUser.Salt = salt;
+
+					PostalCode foundPost = db.PostalCodes.Find(inCustomer.ZipCode);
+					if (foundPost == null)
+					{
+						// lag poststedet
+						var newPost = new PostalCode
+						{
+							ZipCode = inCustomer.ZipCode,
+							Location = "Oslo"
+						};
+						newUser.PostalCode = newPost;
+
+					}
+					try
+					{
+						// legg det inn i den nye kunden
+						db.DBCustomer.Add(newUser);
                         db.SaveChanges();
                     }
                     catch (Exception ex)

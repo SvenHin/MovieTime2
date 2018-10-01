@@ -36,7 +36,7 @@ namespace MovieTime2
 
         public bool saveMovie()
         {
-            var newMovie = new Movie
+            var newMovie = new Movie()
             {
                 Id = 1,
                 Title = "Lord",

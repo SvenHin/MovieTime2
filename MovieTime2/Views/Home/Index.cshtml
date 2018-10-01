@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="~/Scripts/jquery-3.3.1.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript">
         $(function () {
             $("#MovieList").click(function () {
@@ -51,7 +54,7 @@
         function ListMovies(imageMovie) {
             var utStreng = "";
             for (var i in imageMovie) {
-                utStreng += "<li><img class='listImage' src='" + imageMovie[i].imageURL + "' alt='image'/></li>"
+                utStreng += "<div class='card cardPadding'><img src='" + imageMovie[i].imageURL + "' alt='image'/></div>"
             }
             $("#MovieList").html(utStreng);
 
@@ -67,20 +70,19 @@
     </script>
 </head>
 <style>
-    #overlay {
-    position: fixed;
-    display: none;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0,0,0,0.5);
-    z-index: 2;
-    cursor: pointer;
-    }
-
+        #overlay {
+        position: fixed;
+        display: none;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0,0,0,0.5);
+        z-index: 2;
+        cursor: pointer;
+        }
     #overlayBox{
     position: absolute;
     top: 50%;
@@ -90,26 +92,51 @@
     transform: translate(-50%,-50%);
     -ms-transform: translate(-50%,-50%);
     }
+    <div id="overlay" onclick="off()">
+        <div id="overlayText">
 
-    .listImage{
-        cursor: pointer;
-    }
-</style>
-<div id="overlay" onclick="off()">
-    <div id="overlayText">
-
-    </div>
-</div>
-<body class="container">
-    
-
-    <div>
-        <button onclick="on()">Turn on overlay effect</button>
+        </div>
     </div>
 
+    <div class="row height100">
 
-    <div id="dropDown">
-        <select id="drop"></select>
+        <div class="col-md-2 padding-0 primaryDark height100">
+            <nav class="navbar sticky">
+                <ul class="navbar-nav">
+                    <li class="nav-item text-center">
+                        <a class="nav-link" href="#">Action</a>
+                    </li>
+                    <li class="nav-item text-center">
+                        <a class="nav-link" href="#">Comedy</a>
+                    </li>
+                    <li class="nav-item text-center">
+                        <a class="nav-link" href="#">Documentary</a>
+                    </li>
+                    <li class="nav-item text-center">
+                        <a class="nav-link" href="#">Drama</a>
+                    </li>
+                    <li class="nav-item text-center">
+                        <a class="nav-link" href="#">Horror</a>
+                    </li>
+                    <li class="nav-item text-center">
+                        <a class="nav-link" href="#">Romance</a>
+                    </li>
+                    <li class="nav-item text-center">
+                        <a class="nav-link" href="#">Sci-Fi</a>
+                    </li>
+                    <li class="nav-item text-center">
+                        <a class="nav-link" href="#">Western</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-md-10 padding-0 primaryDark height100">
+
+            <div id="dropDown">
+                <select id="drop"></select>
+            </div>
+            <div id="MovieList" class="scrolling-wrapper"></div>
+
+        </div>
+
     </div>
-    <ul id="MovieList" class="list-inline"></ul>
-</body>

@@ -13,18 +13,18 @@
     <script type="text/javascript">
         $(function () {
             $.ajax({
-                url: '/Home/getAllMovieNames',
+                url: '/Home/getAllGenresController',
                 type: 'GET',
                 dataType: 'json',
-                success: function (jsMovie) {
-                    ShowDropdown(jsMovie);
+                success: function (genre) {
+                    ShowDropdown(genre);
                 },
                 error: function (x, y, z) {
                     alert(x + '\n' + y + '\n' + z);
                 }
             });
 
-            $.ajax({
+            /*$.ajax({
                 url: '/Home/getAllMovieURLs',
                 type: 'GET',
                 dataType: 'json',
@@ -34,16 +34,16 @@
                 error: function (x, y, z) {
                     alert(x + '\n' + y + '\n' + z);
                 }
-            });
+            });*/
 
             $("#drop").change(function () {
                 var id = $(this).val();
                 $.ajax({
-                    url: '/Home/getMovieInfo/' + id,
+                    url: '/Home/getMoviesFromGenre/' + id,
                     type: 'GET',
                     dataType: 'json',
-                    success: function (movie) {
-                        VisInfo(movie);
+                    success: function (imageMovies) {
+                        ListMovies(imageMovies);
                     },
                     error: function (x, y, z) {
                         alert(x + '\n' + y + '\n' + z);
@@ -51,10 +51,10 @@
                 });
             });
         })
-        function ShowDropdown(jsMovie) {
+        function ShowDropdown(genre) {
             var utStreng = "";
-            for (var i in jsMovie) {
-                utStreng += "<option value='" + jsMovie[i].id + "'>" + jsMovie[i].title + "</option>";
+            for (var i in genre) {
+                utStreng += "<option value='" + genre[i].id + "'>" + genre[i].title + "</option>";
             }
             $("#drop").append(utStreng);
         }
@@ -69,6 +69,14 @@
         function ShowInfo(movie) {
             var utStreng = movie.title + " " + kunde.summary + " " + kunde.price + " ";
             $("#MovieList").html(utStreng);
+        }
+
+        function on() {
+            document.getElementById("overlay").style.display = "block";
+        }
+
+        function off() {
+            document.getElementById("overlay").style.display = "none";
         }
     </script>
 </head>

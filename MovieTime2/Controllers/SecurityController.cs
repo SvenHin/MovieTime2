@@ -19,31 +19,35 @@ namespace MovieTime2.Controllers
         [HttpPost]
         public ActionResult Register(Customer inCustomer)
         {
-            using (var db = new DatabaseContext())
+            if (ModelState.IsValid)
             {
-                try
+                using (var db = new DatabaseContext())
                 {
-                    var newUser = new DBCustomer();
-                    byte[] salt = createSalt();
-                    byte[] hash = createHash(inCustomer.Password, salt);
-                    newUser.Password = hash;
-                    newUser.FirstName = inCustomer.FirstName;
-                    newUser.LastName = inCustomer.LastName;
-                    newUser.Address = inCustomer.Address;
-                    newUser.PostalCode = inCustomer.PostalCode;
-                    newUser.PhoneNumber = inCustomer.PhoneNumber;
-                    newUser.Username = inCustomer.Username;
-                    newUser.Email = inCustomer.Email;
-                    newUser.Salt = salt;
-                    db.DBCustomer.Add(newUser);
-                    db.SaveChanges();
+                    try
+                    {
+                        var newUser = new DBCustomer();
+                        byte[] salt = createSalt();
+                        byte[] hash = createHash(inCustomer.Password, salt);
+                        newUser.Password = hash;
+                        newUser.FirstName = inCustomer.FirstName;
+                        newUser.LastName = inCustomer.LastName;
+                        newUser.Address = inCustomer.Address;
+                        newUser.PostalCode = inCustomer.PostalCode;
+                        newUser.PhoneNumber = inCustomer.PhoneNumber;
+                        newUser.Username = inCustomer.Username;
+                        newUser.Email = inCustomer.Email;
+                        newUser.Salt = salt;
+                        db.DBCustomer.Add(newUser);
+                        db.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        //Must add something here
+                    }
                 }
-                catch (Exception ex)
-                {
-                    //Must add something here
-                }
+                return RedirectToAction("Index", "Home");
             }
-            return RedirectToAction("Index", "Home");
+            return View();
         }
 
         private static byte[] createSalt()
@@ -103,21 +107,25 @@ namespace MovieTime2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginCustomer LoggedIn)
         {
+            if (ModelState.IsValid)
+            {
+                if (user_in_DB(LoggedIn))
+                {
+                    // Username && Password correct
+                    Session["LoggedIn"] = true;
+                    //  ViewBag.InLogged = true;
+                    return View("UserProfile"); //This will take the logged in user to their profile page
+                }
+                else
+                {
+                    // Username && Password wrong
+                    Session["LoggedIn"] = false;
+                    // ViewBag.InLogged = false;
+                    return View("LoginFailed");
+                }
+            }
             // Check to see if Login Credentials are OK
-            if (user_in_DB(LoggedIn))
-            {
-                // Username && Password correct
-                Session["LoggedIn"] = true;
-                //  ViewBag.InLogged = true;
-                return View("UserProfile"); //This will take the logged in user to their profile page
-            }
-            else
-            {
-                // Username && Password wrong
-                Session["LoggedIn"] = false;
-                // ViewBag.InLogged = false;
-                return View("LoginFailed");
-            }
+            return View();
         }
 
 
@@ -138,6 +146,13 @@ namespace MovieTime2.Controllers
                     return false;
                 }
             }
+        }
+
+        //Logout
+        public ActionResult LogOut()
+        {
+            Session["LoggedIn"] = false;
+            return View("Login");
         }
 
     }

@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $.ajax({
+                url: '/Home/getAllMovieNames',
+                type: 'GET',
+                dataType: 'json',
+                success: function (jsMovie) {
+                    ShowDropdown(jsMovie);
+                },
+                error: function (x, y, z) {
+                    alert(x + '\n' + y + '\n' + z);
+                }
+            });
+
+            $.ajax({
+                url: '/Home/getAllMovieURLs',
+                type: 'GET',
+                dataType: 'json',
+                success: function (imageMovie) {
+                    ListMovies(imageMovie);
+                },
+                error: function (x, y, z) {
+                    alert(x + '\n' + y + '\n' + z);
+                }
+            });
+
+            $("#drop").change(function () {
+                var id = $(this).val();
+                $.ajax({
+                    url: '/Home/getMovieInfo/' + id,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (movie) {
+                        VisInfo(movie);
+                    },
+                    error: function (x, y, z) {
+                        alert(x + '\n' + y + '\n' + z);
+                    }
+                });
+            });
+        })
+        function ShowDropdown(jsMovie) {
+            var utStreng = "";
+            for (var i in jsMovie) {
+                utStreng += "<option value='" + jsMovie[i].id + "'>" + jsMovie[i].title + "</option>";
+            }
+            $("#drop").append(utStreng);
+        }
+        function ListMovies(imageMovie) {
+            var utStreng = "";
+            for (var i in imageMovie) {
+                utStreng += "<li><img src='" + imageMovie[i].imageURL + "' alt='image'/></li>"
+            }
+            $("#MovieList").append(utStreng);
+
+        }
+        function ShowInfo(movie) {
+            var utStreng = movie.title + " " + kunde.summary + " " + kunde.price + " ";
+            $("#MovieList").html(utStreng);
+        }
+    </script>
+</head>
+<body class="container">
+    <div id="dropDown">
+        <select id="drop"></select>
+    </div>
+    <ul id="MovieList" class="list-inline">
+
+    </ul>
+</body>

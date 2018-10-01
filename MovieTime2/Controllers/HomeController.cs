@@ -15,21 +15,23 @@ namespace MovieTime2.Controllers
             return View();
         }
 
-        public string getAllMovieNames()
+        public string getAllGenresController()
         {
             var db = new MovieDatabaseDB();
-            List<movie> allMovies = db.getAllMovies();
-            var allNames = new List<jsMovie>();
-            foreach (movie k in allMovies)
-            {
-                var ettNavn = new jsMovie();
-                ettNavn.id = k.id;
-                ettNavn.title = k.title;
-                allNames.Add(ettNavn);
-            }
+            List<genre> allGenres = db.getAllGenres();
             var jsonSerializer = new JavaScriptSerializer();
-            string json = jsonSerializer.Serialize(allNames);
+            string json = jsonSerializer.Serialize(allGenres);
             return json;
+        }
+
+        public string getMoviesFromGenre(int id)
+        {
+            var db = new MovieDatabaseDB();
+            List<imageMovie> allMovies = db.getMoviesFromGenre(id);
+            var jsonSerializer = new JavaScriptSerializer();
+            string json = jsonSerializer.Serialize(allMovies);
+            return json;
+
         }
         public string getAllMovieURLs()
         {

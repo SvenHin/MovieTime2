@@ -24,6 +24,16 @@ namespace MovieTime2
             return allMovies;
         }
 
+        public List<genre> getAllGenres()
+        {
+            List<genre> allGenres = db.Genre.Select(k => new genre()
+            {
+                id = k.id,
+                title = k.title,
+            }).ToList();
+            return allGenres;
+        }
+
         public bool saveMovie()
         {
             var newMovie = new Movie
@@ -59,6 +69,23 @@ namespace MovieTime2
                 imageURL = aDBMovie.imageURL,
             };
             return aMovie;
+        }
+
+        public List<imageMovie> getMoviesFromGenre(int id)
+        {
+            var allMovies = db.Genre.Where(c => c.id == id).SelectMany(c => c.movies).ToList();
+            List<imageMovie> allmovies = new List<imageMovie>();
+
+            foreach (Movie i in allMovies)
+            {
+                var movie = new imageMovie()
+                {
+                    id = i.id,
+                    imageURL = i.imageURL
+                };
+                allmovies.Add(movie);
+            }
+            return allmovies;
         }
     }
 }

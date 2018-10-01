@@ -8,19 +8,40 @@ namespace MovieTime2.Models
 {
     public class Customer
     {
+        [Display(Name ="First Name")]
+        [Required(ErrorMessage ="First Name is required")]
         public string FirstName { get; set; }
+        [Display(Name = "Last Name")]
+        [Required(ErrorMessage = "Last Name is required")]
         public string LastName { get; set; }
+        [Display(Name = "Address")]
+        [Required(ErrorMessage = "Address is required")]
         public string Address { get; set; }
+        [Display(Name = "Postal Code")]
+        [Required(ErrorMessage = "Postal Code is required")]
         public string PostalCode { get; set; }
+        [Display(Name = "Phone Number")]
+        [Required(ErrorMessage = "Phone Number is required")]
         public string PhoneNumber { get; set; }
+        [Display(Name = "Email")]
+        [Required(ErrorMessage = "Email is required")]
         public string Email { get; set; }
+        [Display(Name = "Username")]
+        [Required(ErrorMessage = "Username is required")]
         public string Username { get; set; }
+        [Display(Name = "Password")]
+        [Required(ErrorMessage = "Password is required")]
         public string Password { get; set; }
+        
     }
 
     public class LoginCustomer
     {
+        [Display(Name = "Username")]
+        [Required(ErrorMessage = "Username is required")]
         public string Username { get; set; }
+        [Display(Name = "Password")]
+        [Required(ErrorMessage = "Password is required")]
         public string Password { get; set; }
 
     }

@@ -24,6 +24,16 @@ namespace MovieTime2.Controllers
             return json;
         }
 
+        public string displayMovieInfo(int Id)
+        {
+            System.Diagnostics.Debug.WriteLine("In movieinfo");
+            var db = new MovieDatabaseDB();
+            var movie = db.getAMovie(Id);
+            var jsonSerializer = new JavaScriptSerializer();
+            string json = jsonSerializer.Serialize(movie);
+            return json;
+        }
+
         public string getMoviesFromGenre(int id)
         {
             var db = new MovieDatabaseDB();
@@ -51,7 +61,6 @@ namespace MovieTime2.Controllers
         }*/
         public string getMovieInfo(int Id)
         {
-            //System.Diagnostics.Debug.WriteLine(id.ToString());
             var db = new MovieDatabaseDB();
             movie aMovie = db.getAMovie(Id);
             var jsonSerializer = new JavaScriptSerializer();

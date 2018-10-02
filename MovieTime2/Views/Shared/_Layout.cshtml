@@ -7,6 +7,9 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 </head>
 
 <body>
@@ -26,11 +29,11 @@
                 </form>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                    @Html.ActionLink("Register", "Register", "Security", new { area = "" }, new { @class = "navbar-brand elementYellow" })
-                     </li>
+                        @Html.ActionLink("Register", "Register", "Security", new { area = "" }, new { @class = "navbar-brand elementYellow" })
+                    </li>
                     <li class="nav-item">
-                    @Html.ActionLink("Login", "Login", "Security", new { area = "" }, new { @class = "navbar-brand elementYellow" })
-                     </li>
+                        @Html.ActionLink("Login", "Login", "Security", new { area = "" }, new { @class = "navbar-brand elementYellow" })
+                    </li>
                 </ul>
             </div>
         </div>
@@ -40,7 +43,9 @@
 
 
 
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
+    
+
+
+   
 </body>
 </html>

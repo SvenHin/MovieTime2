@@ -12,53 +12,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript">
         $(function () {
-            
-
-            $.ajax({
-                url: '/Home/getAllGenresController',
-                type: 'GET',
-                dataType: 'json',
-                success: function (genre) {
-                    ShowDropdown(genre);
-                },
-                error: function (x, y, z) {
-                    alert(x + '\n' + y + '\n' + z);
-                }
-            });
-        
-           $("#drop").change(function () {
-                var id = $(this).val();
-                $.ajax({
-                    url: '/Home/getMoviesFromGenre/' + id,
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function (imageMovies) {
-                        ListMovies(imageMovies);
-                    },
-                    error: function (x, y, z) {
-                        alert(x + '\n' + y + '\n' + z);
-                    }
-                });
-            });
-            
+            getAllGenres();
         })
-        function ShowDropdown(genre) {
-            var utStreng = "";
-            for (var i in genre) {
-                utStreng += "<option value='" + genre[i].id + "'>" + genre[i].title + "</option>";
-            }
-            $("#drop").append(utStreng);
+        function getAllGenres() {
+            $.getJSON("/Home/getAllGenresController",
+                function (genres) {
+                    BuildGenres(genres);
+                }
+            );
         }
-        function ListMovies(imageMovie) {
-            var utStreng = "";
-            for (var i in imageMovie) {
-                utStreng += "<div class='card cardPadding' > <img id='" + imageMovie[i].id + "'src='" + imageMovie[i].imageURL + "' alt='image' /></div > "
+
+
+        function BuildGenres(genre) {
+            for (var i in genre) {
+                var genreBuilder = "<div><h2>" + genre[i].title + "</h2></div><br><div id='Genre" + genre[i].id + "' class='scrolling-wrapper'></div>"
+                $("#MovieContainer").append(genreBuilder);
+                BuildMovies(i);
             }
-            $("#MovieList").html(utStreng);
-            $("#MovieList div > img").click(function () {
+
+        }
+
+        function BuildMovies(i) {
+            $.getJSON("/Home/GetMoviesFromGenre", { id: i },
+                function (imageMovie) {
+                    SetMovie(imageMovie, i)
+                }
+            );
+        }
+        
+        function SetMovie(imageMovie, counter) {
+            var targetDiv = "Genre" + counter;
+            var row = $('#' + targetDiv);
+            var string = "";
+            for (var m in imageMovie) {
+                string += "<div class='card cardPadding' > <img id='" + imageMovie[m].id + "'src='" + imageMovie[m].imageURL + "' alt='image' /></div>"
+            }
+            $(row).append(string);
+            $("#MovieContainer div > img").click(function () {
                 DisplayMovieInfo($(this).attr("id"));
             });
-            
         }
 
         function DisplayMovieInfo(id) {
@@ -68,15 +60,31 @@
                 dataType: 'json',
                 success: function (movie) {
                     var utStreng = "";
-                    utStreng += "<div class='card cardPadding' > <img src='" + movie.imageURL + "' alt='image' /> <h2>" + movie.title + "</h2> <p>" + movie.summary + "</p><br><p>" + movie.price + "</p><button type='submit' class='btn btn -default'>Buy</button></div>"
+                    utStreng += "<div class='card cardPadding' > <img src='" + movie.imageURL + "' alt='image' /> <h2>" + movie.title + "</h2> <p>" + movie.summary + "</p><br><p>" + movie.price + "</p><button id='buy' type='submit' class='btn btn -default'>Buy</button></div>"
                     $("#overlayBox").html(utStreng);
                     document.getElementById("overlay").style.display = "block";
+                    $("#buy").click(function () {
+                        addToCart(movie.id);
+                    });
                 },
                 error: function (x, y, z) {
                     alert(x + '\n' + y + '\n' + z);
                 }
             });
-            
+        }
+        function addToCart(id) {
+            $.ajax({
+                url: '/AddToCart/Add/' + id,
+                type: 'GET',
+                dataType: 'json',
+                success: function (string) {
+                    alert(string);
+                },
+                error: function (x, y, z) {
+                    alert(x + '\n' + y + '\n' + z);
+                }
+            });
+
         }
 
         function off() {
@@ -147,12 +155,12 @@
                 </ul>
             </nav>
         </div>
-        <div class="col-md-10 padding-0 primaryDark height100">
+        <div id="MovieContainer" class="col-md-10 padding-0 primaryDark height100">
 
-            <div id="dropDown">
+            <!--<div id="dropDown">
                 <select id="drop"></select>
             </div>
-            <div id="MovieList" class="scrolling-wrapper"></div>
+            <div id="MovieList" class="scrolling-wrapper"></div>-->
 
         </div>
 

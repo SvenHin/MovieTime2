@@ -38,11 +38,10 @@ namespace MovieTime2
         {
             var newMovie = new Movie()
             {
-                Id = 1,
                 Title = "Lord",
                 Summary = "Lord of the rings summary",
                 Price = 150,
-                ImageURL = ""
+                ImageURL = "/Images/lotr.jpg"
             };
 
             try

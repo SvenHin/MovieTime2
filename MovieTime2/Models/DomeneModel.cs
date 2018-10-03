@@ -10,27 +10,28 @@ namespace MovieTime2.Models
     {
         [Display(Name ="First Name")]
         [Required(ErrorMessage ="First Name is required")]
-        [RegularExpression(@"[A-Z][a-zA-Z][^#&<>\~;$^%{}?]{2,20}$", ErrorMessage = "Invalid First Name. No special characters allowed")]
+        [RegularExpression(@"[A-Z][a-zA-Z][^#&<>\~;$^%{}?]{0,20}$", ErrorMessage = "Invalid First Name. No special characters allowed")]
         public string FirstName { get; set; }
 
         [Display(Name = "Last Name")]
         [Required(ErrorMessage = "Last Name is required")]
-        [RegularExpression(@"[A-Z][a-zA-Z][^#&<>\~;$^%{}?]{2,20}$", ErrorMessage = "Invalid Last Name. No special characters allowed")]
+        [RegularExpression(@"[A-Z][a-zA-Z][^#&<>\~;$^%{}?]{0,20}$", ErrorMessage = "Invalid Last Name. No special characters allowed")]
         public string LastName { get; set; }
 
-        [Display(Name = "Street Address")]
-        [Required(ErrorMessage = "Street and Home Address is required")]
+        [Display(Name = "Address")]
+        [Required(ErrorMessage = "Address is required")]
         [RegularExpression(@"^[A-Za-z0-9]+(?:\s[A-Za-z0-9'_-]+)+$", ErrorMessage = "Invalid Address. No special characters allowed")]
         public string Address { get; set; }
 
-        
+        [Display(Name = "City")]
+        [Required(ErrorMessage = "City is required")]
+        [RegularExpression(@"^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$", ErrorMessage = "Invalid City name")]
+        public string Location { get; set; }
 
         [Display(Name = "Zip Code")]
         [Required(ErrorMessage = "Zip Code is required")]
         [RegularExpression(@"[0-9]{4}", ErrorMessage = "ZipCode must be 4 numbers in length")]
         public string ZipCode { get; set; }
-
-        
 
         [Display(Name = "Phone Number")]
         [Required(ErrorMessage = "Phone Number is required")]
@@ -40,18 +41,18 @@ namespace MovieTime2.Models
 
         [Display(Name = "Email")]
         [Required(ErrorMessage = "Email is required")]
-        [RegularExpression(@"[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}", ErrorMessage ="Invalid Email")]
+        [RegularExpression(@"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}", ErrorMessage ="Invalid Email")]
         public string Email { get; set; }
 
         [Display(Name = "Username")]
         [Required(ErrorMessage = "Username is required")]
-        [RegularExpression(@"^[a-zA-Z][a-zA-Z0-9]{3,9}$", ErrorMessage = "Invalid Username. No special characters allowed. Length must be between 3-10 characters")]
+        [RegularExpression(@"^[a-zA-Z][a-zA-Z0-9]{2,9}$", ErrorMessage = "Invalid Username. No special characters allowed. Length must be between 3-10 characters")]
 
         public string Username { get; set; }
 
         [Display(Name = "Password")]
         [Required(ErrorMessage = "Password is required")]
-        [RegularExpression(@"[A-Z][a-zA-Z][^#&<>\~;$^%{}?]{2,20}$", ErrorMessage = "Invalid Password.")]
+        [RegularExpression(@"[A-Z][a-zA-Z][^#&<>\~;$^%{}?]{2,20}$", ErrorMessage = "Invalid Password. No special characters allowed")]
 
         public string Password { get; set; }
         
@@ -61,9 +62,7 @@ namespace MovieTime2.Models
     {
         [Display(Name = "Username")]
         [Required(ErrorMessage = "Username is required")]
-        [RegularExpression(@"^[a-zA-Z][a-zA-Z0-9]{3,9}$", ErrorMessage = "Invalid Username. No special characters allowed. Length must be between 3-10 characters")]
         public string Username { get; set; }
-
         [Display(Name = "Password")]
         [Required(ErrorMessage = "Password is required")]
         public string Password { get; set; }

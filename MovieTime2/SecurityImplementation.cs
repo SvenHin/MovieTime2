@@ -32,9 +32,13 @@ namespace MovieTime2
                 var newPost = new PostalCode
                 {
                     ZipCode = inCustomer.ZipCode,
-                    Location = "Oslo"
+                    Location = inCustomer.Location
                 };
                 newUser.PostalCode = newPost;
+            }
+            else
+            {
+                newUser.PostalCode = foundPost;
             }
             try
             {

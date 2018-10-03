@@ -1,6 +1,4 @@
-﻿ a {
-    color: #FFFFFF;
-}
+﻿
 body {
     padding-top: 50px;
     padding-bottom: 20px;
@@ -57,7 +55,7 @@ html, body {
     background-color: #858383;
 }
 .darkerPrimary {
-    background-color: #3e3e3e;
+    background-color: #232323;
 }
 .elementYellow {
     color: #eeeeee;
@@ -104,10 +102,11 @@ html, body {
 .sticky {
     position: -webkit-sticky;
     position: sticky;
-    top: 55px;
+    top: 0px;
 }
+
 .nav-link {
-font-size:x-large;
+font-size: 1em;
 }
 .social-card-header {
     position: relative;
@@ -162,20 +161,52 @@ font-size:x-large;
     opacity: 0.8;
 }
 
-.fontSizeLarge {
-    font-size: 200%;
-}
 .bgblack {
-    background-color: black;
+    background-color: #191919;
+}
+#sideNav {
+    border-right: 2px solid;
+    border-color: #0c0c0c;
+}
+
+.navbar-nav li a {
+    color: #e2e2e2;
+}
+
+.maxSize {
+    max-width: 100%;
+}
+
+#MovieContainer {
+    padding-left: 10px;
+    padding-right: 30px;
+}
+
+.genreHeaders {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    padding-left: 5px;
+    font-size: 2em;
+    color: #e2e2e2;
+}
+
+.imageBorderTopBottom {
+    border-top: 2px solid;
+    border-color: #0c0c0c;
+    border-bottom: 2px solid;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-color: #0c0c0c;
+    margin-bottom: 30px;
 }
  h2 {
     color: white;
    
 }
 
- .textColor-White {
-     color: white;
- }
+.textColor-White {
+    color: white;
+}
  .overflow {
      overflow: auto;
  }

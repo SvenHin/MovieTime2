@@ -52,9 +52,18 @@ namespace MovieTime2.Controllers
         }
 
         [HttpPost]
-        public ActionResult Buy()
+        public ActionResult Cart(bankinfo info)
         {
-
+            if (Session["cart"] != null)
+            {
+                var db = new MovieDatabaseDB();
+                List<movie> movies = (List<movie>)Session["cart"];
+                List<Movie> Movies = db.convertMovies(movies);
+                var Username = (string)Session["username"];
+                db.newOrder(Movies, Username);
+                return RedirectToAction("Index", "Home");
+            }
+            return View();
         }
 
     }

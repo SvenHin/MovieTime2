@@ -70,6 +70,68 @@ namespace MovieTime2
             return aMovie;
         }
 
+        public void newOrder(List<Movie> shoppedMovies, string Username)
+        {
+            var newLineItems = new List<LineItem>();
+
+            foreach (Movie i in shoppedMovies)
+            {
+                var dbMovie = db.Movie.Find(i.Id);
+                var lineItem = new LineItem()
+                {
+                    Movie = dbMovie
+                };
+                newLineItems.Add(lineItem);
+            }
+
+            var newOrder = new Order()
+            {
+                Dato = "Today",
+                LineItem = newLineItems,
+            };
+            
+            //TODO: Create If test to check if customer already has a list of Orders, currently something is wrong
+            var newOrderList = new List<Order>();
+            newOrderList.Add(newOrder);
+
+
+            DBCustomer Customer = db.DBCustomer.Find(7);
+            Customer.Order.Add(newOrder);
+            db.SaveChanges();
+        }
+
+        public void getOrders(int Id)
+        {
+            DBCustomer customer = db.DBCustomer.Find(Id);
+            var orders = customer.Order;
+            foreach(var i in orders)
+            {
+                System.Diagnostics.Debug.Write(Id + " OrderIDs: "+ i.Id);
+                foreach (var e in i.LineItem)
+                {
+                    System.Diagnostics.Debug.Write(" Ordre nr " + i.Id + " LineItem " + e.Id + " inneholder dienne filmen " + e.Movie.Id);
+                }
+            }
+        }
+
+        public List<Movie> convertMovies(List<movie> movies)
+        {
+            var Movies = new List<Movie>();
+            foreach(movie i in movies)
+            {
+                var Movie = new Movie()
+                {
+                    Id = i.id,
+                    Title = i.title,
+                    Summary = i.summary,
+                    Price = i.price,
+                    ImageURL = i.imageURL,
+                };
+                Movies.Add(Movie);
+            }
+            return Movies;
+        }
+
         public List<imageMovie> getMoviesFromGenre(int Id)
         {
             var allMovies = db.Genre.Where(c => c.Id == Id).SelectMany(c => c.Movie).ToList();

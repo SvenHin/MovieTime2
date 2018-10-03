@@ -19,9 +19,6 @@ namespace MovieTime2.Controllers
         {
             var db = new MovieDatabaseDB();
             List<genre> allGenres = db.getAllGenres();
-            //var jsonSerializer = new JavaScriptSerializer();
-            //string json = jsonSerializer.Serialize(allGenres);
-            //return json;
             JsonResult ut = Json(allGenres, JsonRequestBehavior.AllowGet);
             return ut;
         }
@@ -40,9 +37,6 @@ namespace MovieTime2.Controllers
         {
             var db = new MovieDatabaseDB();
             List<imageMovie> allMovies = db.getMoviesFromGenre(id);
-            //var jsonSerializer = new JavaScriptSerializer();
-            //string json = jsonSerializer.Serialize(allMovies);
-            //return json;
             JsonResult ut = Json(allMovies, JsonRequestBehavior.AllowGet);
             return ut;
 

@@ -23,6 +23,11 @@ namespace MovieTime2.Models
         [RegularExpression(@"^[A-Za-z0-9]+(?:\s[A-Za-z0-9'_-]+)+$", ErrorMessage = "Invalid Address. No special characters allowed")]
         public string Address { get; set; }
 
+        [Display(Name = "City")]
+        [Required(ErrorMessage = "City is required")]
+        [RegularExpression(@"^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$", ErrorMessage = "Invalid City name")]
+        public string Location { get; set; }
+
         [Display(Name = "Zip Code")]
         [Required(ErrorMessage = "Zip Code is required")]
         [RegularExpression(@"[0-9]{4}", ErrorMessage = "ZipCode must be 4 numbers in length")]

@@ -13,6 +13,7 @@
     <script type="text/javascript">
         $(function () {
             getAllGenres();
+
         })
         function getAllGenres() {
             $.getJSON("/Home/getAllGenresController",
@@ -60,8 +61,13 @@
                 dataType: 'json',
                 success: function (movie) {
                     var utStreng = "";
-                    utStreng += "<div class='card cardPadding' > <img src='" + movie.imageURL + "' alt='image' /> <h2>" + movie.title + "</h2> <p>" + movie.summary + "</p><br><p>" + movie.price + "</p><button id='buy' type='submit' class='btn btn -default'>Buy</button></div>"
-                    $("#overlayBox").html(utStreng);
+                    $("#movieTitle").html(movie.title);
+                    $("#moviePrice").html(movie.price);
+                    $("#movieSummary").html(movie.summary);
+                    utStreng += "<img class='card align-content-md-start - img - left flex - auto d - none d - lg - block' alt='image' src='" + movie.imageURL + "' style='width: 200px; height: 400px;'>"
+                    //utStreng += "<div class='card cardPadding' > <img src='" + movie.imageURL + "' alt='image' /> <h2>" + movie.title + "</h2> <p>" + movie.summary + "</p><br><p>" + movie.price + "</p><button id='buy' type='submit' class='btn btn -default'>Buy</button></div>"
+                    //$("#overlayBox").html(utStreng);
+                    $("#movieImg").html(utStreng);
                     document.getElementById("overlay").style.display = "block";
                     $("#buy").click(function () {
                         addToCart(movie.id);
@@ -117,51 +123,80 @@
     -ms-transform: translate(-50%,-50%);
     }
 </style>
-    <div id="overlay" onclick="off()">
-        <div id="overlayBox">
+<div id="overlay" onclick="off()">
+    <!--
+    <div id="overlayBox" onclick="off()" class="card mb-4 text-white bg-dark">
+        <img class="card-img-top" src="//placeimg.com/290/180/any" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Movie Title</h5>
+            <p class="card-summary">Movie Summary, Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+
+        </div>
+    </div>
+        <div class='card cardPadding' > 
+        <img src='imgurl' alt='image' />
+        <h2>title</h2>
+        <p>summary</p>
+        <br><p>price</p>
+        <button id='buy' type='submit' class='btn btn -default'>Buy</button>
+        </div>
+        -->
+    <div id="overlayBox" onclick="off()" class="card text-white bg-dark flex-md-row mb-4 shadow-sm h-md-250">
+        <div class="card cardpadding card-body d-flex flex-column align-items-Start">
+            <div id="movieImg" class="float-left">
+                
+            </div>
+            <strong id="movieTitle" class="d-inline-block mb-2 text-white align-top"></strong>
+            <div id="moviePrice" class="mb-1 text-white-50 small">Nov 12</div>
+            <p id="movieSummary" class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+            <a id="buy" class="btn btn-outline-light btn-sm">Add to Cart</a>
+            <a href="" class="btn btn-outline-light btn-sm">Back</a>
+        </div>
 
         </div>
     </div>
 
-    <div class="row height100">
+    <div id="mainPage" class="row height100 bgblack overflow">
 
-        <div class="col-md-2 padding-0 primaryDark height100">
+        <div id="sideNav" class="col-md-2 padding-0 bgblack height100 overflow">
             <nav class="navbar sticky">
                 <ul class="navbar-nav">
-                    <li class="nav-item text-center">
+                    <li class="nav-item text-center fontSizeLarge textColor-White">
                         <a class="nav-link" href="#">Action</a>
                     </li>
-                    <li class="nav-item text-center">
+                    <li class="nav-item text-center fontSizeLarge">
                         <a class="nav-link" href="#">Comedy</a>
                     </li>
-                    <li class="nav-item text-center">
+                    <li class="nav-item text-center fontSizeLarge">
                         <a class="nav-link" href="#">Documentary</a>
                     </li>
-                    <li class="nav-item text-center">
+                    <li class="nav-item text-center fontSizeLarge">
                         <a class="nav-link" href="#">Drama</a>
                     </li>
-                    <li class="nav-item text-center">
+                    <li class="nav-item text-center fontSizeLarge">
                         <a class="nav-link" href="#">Horror</a>
                     </li>
-                    <li class="nav-item text-center">
+                    <li class="nav-item text-center fontSizeLarge">
                         <a class="nav-link" href="#">Romance</a>
                     </li>
-                    <li class="nav-item text-center">
+                    <li class="nav-item text-center fontSizeLarge">
                         <a class="nav-link" href="#">Sci-Fi</a>
                     </li>
-                    <li class="nav-item text-center">
+                    <li class="nav-item text-center fontSizeLarge">
                         <a class="nav-link" href="#">Western</a>
                     </li>
                 </ul>
             </nav>
         </div>
-        <div id="MovieContainer" class="col-md-10 padding-0 primaryDark height100">
+        <div id="MovieContainer" class="col-md-10 padding-0 bgblack height100 overflow">
 
             <!--<div id="dropDown">
-                <select id="drop"></select>
-            </div>
-            <div id="MovieList" class="scrolling-wrapper"></div>-->
+            <select id="drop"></select>
+        </div>
+        <div id="MovieList" class="scrolling-wrapper"></div>-->
 
         </div>
 
     </div>
+    

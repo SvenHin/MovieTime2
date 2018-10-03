@@ -73,7 +73,7 @@ html, body {
 }
 
 .marginLeft {
-    margin-left: 35px;
+    margin-left: 2.7%;
 }
 
 .scrolling-wrapper {
@@ -161,3 +161,24 @@ font-size:x-large;
     text-decoration: none;
     opacity: 0.8;
 }
+
+.fontSizeLarge {
+    font-size: 200%;
+}
+.bgblack {
+    background-color: black;
+}
+ h2 {
+    color: white;
+   
+}
+
+ .textColor-White {
+     color: white;
+ }
+ .overflow {
+     overflow: auto;
+ }
+ img {
+     background: transparent;
+ }

@@ -13,6 +13,7 @@
     <script type="text/javascript">
         $(function () {
             getAllGenres();
+
         })
         function getAllGenres() {
             $.getJSON("/Home/getAllGenresController",
@@ -153,45 +154,42 @@
             <a href="" class="btn btn-outline-light btn-sm">Back</a>
         </div>
 
+        </div>
     </div>
 
-</div>
-    
-    <div class="row height100">
+    <div id="mainPage" class="row height100 bgblack overflow">
 
-        <!--<div id="Navbar-vertical" class="col-md-2 padding-0 primaryDark height100 ">-->
-        <div id="Navbar-vertical" class="col-md-2 padding-0 navbar navbar-dark darkerPrimary">
-
+        <div id="sideNav" class="col-md-2 padding-0 bgblack height100 overflow">
             <nav class="navbar sticky">
                 <ul class="navbar-nav">
-                    <li class=" nav-item text-center">
+                    <li class="nav-item text-center fontSizeLarge textColor-White">
                         <a class="nav-link" href="#">Action</a>
                     </li>
-                    <li class="nav-item text-center">
+                    <li class="nav-item text-center fontSizeLarge">
                         <a class="nav-link" href="#">Comedy</a>
                     </li>
-                    <li class="nav-item text-center">
+                    <li class="nav-item text-center fontSizeLarge">
                         <a class="nav-link" href="#">Documentary</a>
                     </li>
-                    <li class="nav-item text-center">
+                    <li class="nav-item text-center fontSizeLarge">
                         <a class="nav-link" href="#">Drama</a>
                     </li>
-                    <li class="nav-item text-center">
+                    <li class="nav-item text-center fontSizeLarge">
                         <a class="nav-link" href="#">Horror</a>
                     </li>
-                    <li class="nav-item text-center">
+                    <li class="nav-item text-center fontSizeLarge">
                         <a class="nav-link" href="#">Romance</a>
                     </li>
-                    <li class="nav-item text-center">
+                    <li class="nav-item text-center fontSizeLarge">
                         <a class="nav-link" href="#">Sci-Fi</a>
                     </li>
-                    <li class="nav-item text-center">
+                    <li class="nav-item text-center fontSizeLarge">
                         <a class="nav-link" href="#">Western</a>
                     </li>
                 </ul>
             </nav>
         </div>
-        <div id="MovieContainer" class="col-md-10 padding-0 primaryDark height100">
+        <div id="MovieContainer" class="col-md-10 padding-0 bgblack height100 overflow">
 
             <!--<div id="dropDown">
             <select id="drop"></select>

@@ -51,5 +51,11 @@ namespace MovieTime2.Controllers
             return json;
         }
 
+        [HttpPost]
+         public ActionResult Buy()
+        {
+            return View();
+        }
+
     }
 }

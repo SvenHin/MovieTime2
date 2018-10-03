@@ -64,6 +64,8 @@ namespace MovieTime2.Controllers
                 {
                     // Username && Password correct
                     Session["LoggedIn"] = true;
+                    //Sesion to store username
+                    Session["Username"] = LoggedIn.Username;
                     //  ViewBag.InLogged = true;
                     return View("UserProfile"); //This will take the logged in user to their profile page
                 }

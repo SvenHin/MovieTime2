@@ -26,7 +26,7 @@
 
         function BuildGenres(genre) {
             for (var i in genre) {
-                var genreBuilder = "<div><h2>" + genre[i].title + "</h2></div><br><div id='Genre" + genre[i].id + "' class='scrolling-wrapper'></div>"
+                var genreBuilder = "<div><h2>" + genre[i].title + "</h2></div><br><div id='Genre" + genre[i].id + "' class='scrolling-wrapper imageBorderTopBottom'></div>"
                 $("#MovieContainer").append(genreBuilder);
                 BuildMovies(i);
             }

@@ -57,7 +57,7 @@ html, body {
     background-color: #858383;
 }
 .darkerPrimary {
-    background-color: #3e3e3e;
+    background-color: #232323;
 }
 .elementYellow {
     color: #eeeeee;
@@ -166,10 +166,27 @@ font-size:x-large;
     font-size: 200%;
 }
 .bgblack {
-    background-color: black;
-    
+    background-color: #191919;
+}
+#sideNav {
+    border-right: 2px solid;
+    border-color: #0c0c0c;
 }
 
+
+
+#MovieContainer {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.imageBorderTopBottom {
+    border-top: 2px solid;
+    border-color: #0c0c0c;
+    border-bottom: 2px solid;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-color: #0c0c0c;
+}
  h2 {
     color: white;
    
@@ -184,4 +201,3 @@ font-size:x-large;
  img {
      background: transparent;
  }
- 

@@ -4,36 +4,12 @@
     ViewBag.Title = "Cart";
 }
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="~/Scripts/jquery-3.3.1.js"></script>
-    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="~/Content/cart.css" />
+    @Scripts.Render("~/bundles/cartjquery")
     <script type="text/javascript">
         $(function () {
-            $.ajax({
-                url: '/AddToCart/getMoviesFromCart/',
-                type: 'GET',
-                dataType: 'json',
-                success: function (movie) {
-                    ListMovies(movie);
-                },
-                error: function (x, y, z) {
-                    alert(x + '\n' + y + '\n' + z);
-                }
-            });
-
-        }) 
-
-        function ListMovies(movie) {
-            var utStreng = "";
-            for (var i in movie) {
-                utStreng += "<tr><th scope='row'>" + i + "</th><td>" + movie[i].title + "</td><td>" + movie[i].price + "</td></tr>"
-            }
-            $("#cartTableInput").html(utStreng);
-        }
+            GetMovies();
+        })
     </script>
 
 </head>

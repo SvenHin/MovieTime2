@@ -252,3 +252,11 @@ font-weight:100;
     max-width: 50%;
     max-width: 50%;
 }
+
+#cartTable {
+    background-color: transparent;
+}
+
+#CartContent {
+    padding-top: 50px;
+}

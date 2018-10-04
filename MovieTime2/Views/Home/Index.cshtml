@@ -3,200 +3,72 @@
 }
 
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="~/Scripts/jquery-3.3.1.js"></script>
-    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="~/Content/index.css" />
+    @Scripts.Render("~/bundles/mainmoviejquery")
     <script type="text/javascript">
         $(function () {
             getAllGenres();
-
         })
-        function getAllGenres() {
-            $.getJSON("/Home/getAllGenresController",
-                function (genres) {
-                    BuildGenres(genres);
-                }
-            );
-        }
-
-
-        function BuildGenres(genre) {
-            for (var i in genre) {
-                var genreBuilder = "<div><h2>" + genre[i].title + "</h2></div><br><div id='Genre" + genre[i].id + "' class='scrolling-wrapper imageBorderTopBottom'></div>"
-                $("#MovieContainer").append(genreBuilder);
-                BuildMovies(i);
-            }
-
-        }
-
-        function BuildMovies(i) {
-            $.getJSON("/Home/GetMoviesFromGenre", { id: i },
-                function (imageMovie) {
-                    SetMovie(imageMovie, i)
-                }
-            );
-        }
-        
-        function SetMovie(imageMovie, counter) {
-            var targetDiv = "Genre" + counter;
-            var row = $('#' + targetDiv);
-            var string = "";
-            for (var m in imageMovie) {
-                string += "<div class='card cardPadding' > <img id='" + imageMovie[m].id + "'src='" + imageMovie[m].imageURL + "' alt='image' /></div>"
-            }
-            $(row).append(string);
-            $("#MovieContainer div > img").click(function () {
-                DisplayMovieInfo($(this).attr("id"));
-            });
-        }
-
-        function DisplayMovieInfo(id) {
-            $.ajax({
-                url: '/Home/displayMovieInfo/' + id,
-                type: 'GET',
-                dataType: 'json',
-                success: function (movie) {
-                    var utStreng = "";
-                    $("#movieTitle").html(movie.title);
-                    $("#moviePrice").html(movie.price);
-                    $("#movieSummary").html(movie.summary);
-                    utStreng += "<img class='card align-content-md-start - img - left flex - auto d - none d - lg - block' alt='image' src='" + movie.imageURL + "' style='width: 200px; height: 400px;'>"
-                    //utStreng += "<div class='card cardPadding' > <img src='" + movie.imageURL + "' alt='image' /> <h2>" + movie.title + "</h2> <p>" + movie.summary + "</p><br><p>" + movie.price + "</p><button id='buy' type='submit' class='btn btn -default'>Buy</button></div>"
-                    //$("#overlayBox").html(utStreng);
-                    $("#movieImg").html(utStreng);
-                    document.getElementById("overlay").style.display = "block";
-                    $("#buy").click(function () {
-                        addToCart(movie.id);
-                    });
-                },
-                error: function (x, y, z) {
-                    alert(x + '\n' + y + '\n' + z);
-                }
-            });
-        }
-        function addToCart(id) {
-            $.ajax({
-                url: '/AddToCart/Add/' + id,
-                type: 'GET',
-                dataType: 'json',
-                success: function (string) {
-                    alert(string);
-                },
-                error: function (x, y, z) {
-                    alert(x + '\n' + y + '\n' + z);
-                }
-            });
-
-        }
-
-        function off() {
-            document.getElementById("overlay").style.display = "none";
-        }
     </script>
 </head>
-<style>
-    #overlay {
-    position: fixed;
-    display: none;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0,0,0,0.5);
-    z-index: 1000000;
-    cursor: pointer;
-    }
 
-    #overlayBox{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    font-size: 50px;
-    color: white;
-    transform: translate(-50%,-50%);
-    -ms-transform: translate(-50%,-50%);
-    }
-</style>
 <div id="overlay" onclick="off()">
-    <!--
-    <div id="overlayBox" onclick="off()" class="card mb-4 text-white bg-dark">
-        <img class="card-img-top" src="//placeimg.com/290/180/any" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">Movie Title</h5>
-            <p class="card-summary">Movie Summary, Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-
-
-        </div>
-    </div>
-        <div class='card cardPadding' > 
-        <img src='imgurl' alt='image' />
-        <h2>title</h2>
-        <p>summary</p>
-        <br><p>price</p>
-        <button id='buy' type='submit' class='btn btn -default'>Buy</button>
-        </div>
-        -->
-    <div id="overlayBox" onclick="off()" class="card text-white bg-dark flex-md-row mb-4 shadow-sm h-md-250">
-        <div class="card cardpadding card-body d-flex flex-column align-items-Start">
-            <div id="movieImg" class="float-left">
-                
+    <div class="row">
+        <div class="col-md-8">
+            <div id="overlayBox" onclick="off()" class="card text-white flex-md-row shadow-sm ">
+                <div class="card cardpadding card-body d-flex flex-column align-items-Start">
+                    <div class="row">
+                        <div id="1movieImg" class="">
+                            <img class="card align-content-md-start - img - left flex - auto d - none d - lg - block" alt='image' src="http://static.rogerebert.com/uploads/movie/movie_poster/mi-5-2015/large_MI-5-2015.jpg">
+                        </div>
+                        <div class="col">
+                            <strong id="movieTitle" class=" h1 mb-2 text-white font-weight-bold align-top"></strong>
+                            <p id="1movieSummary" class="h2 card-text mb-auto text-white font-weight-light ">"re macat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                            <a class="align-content-lg-center">
+                                <div class="row3 align-bottom margin-b">
+                                <a id="buy" class="h3 btn card-text btn-outline-light btn-lg ">Add to cart</a>
+                                <a id="Back" class="h3 btn card-text btn-outline-light btn-lg ">Back</a>
+                                <a id="moviePrice" class="mb-1 h3 card-text text-white font-weight-light align-content-end"></a>
+                                </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <strong id="movieTitle" class="d-inline-block mb-2 text-white align-top"></strong>
-            <div id="moviePrice" class="mb-1 text-white-50 small">Nov 12</div>
-            <p id="movieSummary" class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-            <a id="buy" class="btn btn-outline-light btn-sm">Add to Cart</a>
-            <a href="" class="btn btn-outline-light btn-sm">Back</a>
-        </div>
-
         </div>
     </div>
-
-    <div id="mainPage" class="row height100 bgblack overflow">
-
-        <div id="sideNav" class="col-md-2 padding-0 bgblack height100 overflow">
-            <nav class="navbar sticky">
-                <ul class="navbar-nav">
-                    <li class="nav-item text-center fontSizeLarge textColor-White">
-                        <a class="nav-link" href="#">Action</a>
+</div>
+<div id="mainPage" class="row height100 bgblack overflow">
+    <div id="sideNav" class="col-xl-1 col-lg-2 padding-0 bgblack height100 overflow">
+         <nav class="navbar sticky">
+             <ul class="navbar-nav">
+                    <li class="nav-item text-left ">
+                        <a class="nav-link" href="#Genre1">Action</a>
                     </li>
-                    <li class="nav-item text-center fontSizeLarge">
-                        <a class="nav-link" href="#">Comedy</a>
+                    <li class="nav-item text-left">
+                        <a class="nav-link" href="#Genre2">Comedy</a>
                     </li>
-                    <li class="nav-item text-center fontSizeLarge">
-                        <a class="nav-link" href="#">Documentary</a>
+                    <li class="nav-item text-left">
+                        <a class="nav-link" href="#Genre3">Documentary</a>
                     </li>
-                    <li class="nav-item text-center fontSizeLarge">
-                        <a class="nav-link" href="#">Drama</a>
+                    <li class="nav-item text-left">
+                        <a class="nav-link" href="#Genre4">Drama</a>
                     </li>
-                    <li class="nav-item text-center fontSizeLarge">
-                        <a class="nav-link" href="#">Horror</a>
+                    <li class="nav-item text-left">
+                        <a class="nav-link" href="#Genre5">Horror</a>
                     </li>
-                    <li class="nav-item text-center fontSizeLarge">
-                        <a class="nav-link" href="#">Romance</a>
+                    <li class="nav-item text-left">
+                        <a class="nav-link" href="#Genre6">Romance</a>
                     </li>
-                    <li class="nav-item text-center fontSizeLarge">
-                        <a class="nav-link" href="#">Sci-Fi</a>
+                    <li class="nav-item text-left">
+                        <a class="nav-link" href="#Genre7">Sci-Fi</a>
                     </li>
-                    <li class="nav-item text-center fontSizeLarge">
-                        <a class="nav-link" href="#">Western</a>
+                    <li class="nav-item text-left">
+                        <a class="nav-link" href="#Genre8">Western</a>
                     </li>
-                </ul>
-            </nav>
-        </div>
-        <div id="MovieContainer" class="col-md-10 padding-0 bgblack height100 overflow gradient">
-
-            <!--<div id="dropDown">
-            <select id="drop"></select>
-        </div>
-        <div id="MovieList" class="scrolling-wrapper"></div>-->
-
-        </div>
-
+             </ul>
+         </nav>
     </div>
-    
+    <div id="MovieContainer" class="col-xl-11 col-lg-10 padding-0 bgblack height100 overflow">
+        
+    </div>
+</div>

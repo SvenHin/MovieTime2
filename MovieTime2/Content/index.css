@@ -1,1 +1,73 @@
-﻿
+﻿#overlay {
+    position: fixed;
+    display:none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 1000000;
+    cursor: pointer;
+}
+
+#overlayBox {
+    background-color: rgba(0,0,0,0.3);
+    position: fixed;
+    display: inline-flex;
+    border-radius: 1px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    max-height: 50%;
+    max-width: 50%;
+}
+.textColor-White {
+    color: white;
+}
+
+.overflow {
+    overflow: auto;
+}
+
+img {
+    background: transparent;
+    max-height: 600px;
+}
+
+.card-body {
+    padding-top: 0rem;
+    padding-right: 5rem;
+    padding-left: 0rem;
+    padding-bottom: 0rem;
+}
+
+#movieprice {
+    font-weight: 100;
+}
+
+#cartTable {
+    background-color: transparent;
+}
+
+#CartContent {
+    padding-top: 50px;
+}
+
+#1movieImg {
+}
+
+#2movieImg {
+}
+
+
+#1movieSummary {
+    flex: 0,0,50%;
+    text-align:justify;
+    max-height: 100%;
+    font-size: 2.5vw;
+    flex-grow:1;
+    
+}

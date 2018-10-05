@@ -12,6 +12,7 @@ namespace MovieTime2.Controllers
     {
         public ActionResult Index()
         {
+            
             return View();
         }
 
@@ -25,7 +26,6 @@ namespace MovieTime2.Controllers
 
         public string displayMovieInfo(int Id)
         {
-            System.Diagnostics.Debug.WriteLine("In movieinfo");
             var db = new MovieDatabaseDB();
             var movie = db.getAMovie(Id);
             var jsonSerializer = new JavaScriptSerializer();
@@ -67,6 +67,34 @@ namespace MovieTime2.Controllers
             var jsonSerializer = new JavaScriptSerializer();
             string json = jsonSerializer.Serialize(aMovie);
             return json;
+        }
+
+        public string getIfBought(int movieId)
+        {
+            var db = new MovieDatabaseDB();
+            if(Session["username"] != null)
+            {
+                var username = Session["username"].ToString();
+                string bought = "";
+                if (db.checkIfBought(movieId, username))
+                {
+                    bought = "YES";
+                }
+                else
+                {
+                    bought = "NO";
+                }
+                var jsonSerializer = new JavaScriptSerializer();
+                string json = jsonSerializer.Serialize(bought);
+                return json;
+            }
+            else
+            {
+                var jsonSerializer = new JavaScriptSerializer();
+                string json = jsonSerializer.Serialize("NO");
+                return json;
+            }
+            
         }
     }
 }

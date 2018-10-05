@@ -48,9 +48,9 @@ namespace MovieTime2.Controllers
             }
             else
             {
-                return View();
+                return View("Register");
             }
-            return View();
+            return View("Register");
         }
 
 
@@ -88,7 +88,7 @@ namespace MovieTime2.Controllers
         public ActionResult LogOut()
         {
             Session["LoggedIn"] = false;
-            return View("Login");
+            return View("Register");
         }
 
     }

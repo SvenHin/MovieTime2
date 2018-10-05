@@ -3,6 +3,7 @@ function getAllGenres() {
     $.getJSON("/Home/getAllGenresController",
         function (genres) {
             BuildGenres(genres);
+
         }
     );
 }
@@ -13,6 +14,7 @@ function BuildGenres(genre) {
         var genreBuilder = "<div><h2 class='display-4 genreHeaders'>" + genre[i].title + "</h2></div><div id='Genre" + genre[i].id + "' class='scrolling-wrapper imageBorderTopBottom maxSize'></div>"
         $("#MovieContainer").append(genreBuilder);
         BuildMovies(i);
+
     }
 
 }
@@ -27,16 +29,21 @@ function BuildMovies(i) {
 
 function SetMovie(imageMovie, counter) {
     var targetDiv = "Genre" + counter;
-    var row = $('#' + targetDiv);
+    var imageDiv = $('#' + targetDiv);
     var string = "";
     for (var m in imageMovie) {
-        string += "<div class='card cardPadding' > <img id='" + imageMovie[m].id + "'src='" + imageMovie[m].imageURL + "' alt='image' /></div>"
+        string += "<div class='card cardPadding' > <img class='imageRow' id='" + imageMovie[m].id + "'src='" + imageMovie[m].imageURL + "' alt='image' /></div>"
+        
     }
-    $(row).append(string);
-    $("#MovieContainer div > img").click(function () {
-        DisplayMovieInfo($(this).attr("id"));
-    });
+    $(imageDiv).append(string);
 }
+
+$(function () {
+    $(document).on("click", ".imageRow", function () {
+        DisplayMovieInfo($(this).attr('id'));
+    });
+});
+
 
 function DisplayMovieInfo(id) {
     $.ajax({

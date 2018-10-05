@@ -159,7 +159,7 @@ font-weight:100;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(0,0,0,0.9);
     z-index: 1000000;
     cursor: pointer;
 }
@@ -183,4 +183,40 @@ font-weight:100;
 
 #CartContent {
     padding-top: 50px;
+}
+
+
+.cont{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: white;
+}
+
+
+.height30 {
+    height: 30%;
+}
+
+.height10 {
+    height: 10%;
+}
+
+.height15 {
+    height: 15%;
+}
+
+.height50 {
+    height: 50%;
+}
+
+.height25 {
+    height: 25%;
+}
+
+.height-auto {
+    height: auto;
+    overflow: hidden;
 }

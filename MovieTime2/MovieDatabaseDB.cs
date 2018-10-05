@@ -34,27 +34,7 @@ namespace MovieTime2
             return allGenres;
         }
 
-        public bool saveMovie()
-        {
-            var newMovie = new Movie()
-            {
-                Title = "Lord",
-                Summary = "Lord of the rings summary",
-                Price = 150,
-                ImageURL = "/Images/lotr.jpg"
-            };
-
-            try
-            {
-                db.Movie.Add(newMovie);
-                db.SaveChanges();
-            }
-            catch (Exception error)
-            {
-                return false;
-            }
-            return true;
-        }
+       
         public movie getAMovie(int Id)
         {
             Movie aDBMovie = db.Movie.Find(Id);
@@ -84,20 +64,50 @@ namespace MovieTime2
                 newLineItems.Add(lineItem);
             }
 
+            DateTime currentDate = DateTime.Today;
+            var currentDateString = currentDate.ToShortDateString();
+
             var newOrder = new Order()
             {
-                Dato = "Today",
+                Dato = currentDateString,
                 LineItem = newLineItems,
             };
             
-            //TODO: Create If test to check if customer already has a list of Orders, currently something is wrong
-            var newOrderList = new List<Order>();
-            newOrderList.Add(newOrder);
+            DBCustomer Customer = db.DBCustomer.Where(k => k.Username == Username).FirstOrDefault();
 
-
-            DBCustomer Customer = db.DBCustomer.Find(7);
-            Customer.Order.Add(newOrder);
+            if (Customer.Order.Equals(null))
+            {
+                var newOrderList = new List<Order>();
+                newOrderList.Add(newOrder);
+                Customer.Order = newOrderList;
+            }
+            else
+            {
+                Customer.Order.Add(newOrder);
+            }
             db.SaveChanges();
+        }
+
+        public bool checkIfBought(int movieId, string username)
+        {
+            IQueryable<movieCustomer> aMovieCustomer = db.Order.Join(db.LineItem,
+                            o => o.Id,
+                            li => li.Id,
+                            (o, li) => new movieCustomer{
+                                CustomerId = o.Customer.Id,
+                                MovieId = li.Movie.Id })
+                            .Where(x => x.MovieId == movieId);
+
+            DBCustomer Customer = db.DBCustomer.Where(k => k.Username == username).FirstOrDefault();
+
+            foreach(var i in aMovieCustomer)
+            {
+                if (i.CustomerId.Equals(Customer.Id))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public void getOrders(int Id)
@@ -114,6 +124,8 @@ namespace MovieTime2
             }
         }
 
+
+        
         public List<Movie> convertMovies(List<movie> movies)
         {
             var Movies = new List<Movie>();

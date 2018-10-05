@@ -15,24 +15,24 @@
 </head>
 
 <div id="overlay" onclick="off()">
-    <div class="row">
-        <div class="col-md-8">
-            <div id="overlayBox" onclick="off()" class="card text-white flex-md-row shadow-sm ">
-                <div class="card cardpadding card-body d-flex flex-column align-items-Start">
-                    <div class="row">
-                        <div id="1movieImg" class="">
-                            <img class="card align-content-md-start - img - left flex - auto d - none d - lg - block" alt='image' src="http://static.rogerebert.com/uploads/movie/movie_poster/mi-5-2015/large_MI-5-2015.jpg">
-                        </div>
-                        <div class="col">
-                            <strong id="movieTitle" class=" h1 mb-2 text-white font-weight-bold align-top"></strong>
-                            <p id="1movieSummary" class="h2 card-text mb-auto text-white font-weight-light ">"re macat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-                            <a class="align-content-lg-center">
-                                <div class="row3 align-bottom margin-b">
-                                <a id="buy" class="h3 btn card-text btn-outline-light btn-lg ">Add to cart</a>
-                                <a id="Back" class="h3 btn card-text btn-outline-light btn-lg ">Back</a>
-                                <a id="moviePrice" class="mb-1 h3 card-text text-white font-weight-light align-content-end"></a>
-                                </div>
-                        </div>
+    <div class="cont">
+        <div class="col-lg-8 col-md-10 col-sm-10 height-auto">
+            <div class="row height-auto">
+                <div id="movieImg" class="col-xl-4 col-lg-5 col-md-4 col-sm-3 height100">
+                    <img src="/Images/lotr.jpg" />
+                </div>
+                <div class="col-xl-8 col-lg-7 col-md-8 col-sm-9 height-auto">
+                    <div class="d-flex flex-column height25">
+                        <h3 id="movieTitle"></h3>
+                    </div>
+                    <div class="d-flex flex-column height50">
+                        <p id="movieSummary"></p>
+                    </div>
+                    <div class="d-flex flex-column height10">
+                        <p id="moviePrice"></p>
+                    </div>
+                    <div class="d-flex flex-column height15">
+                        <button type="button" id="buy" class="btn btn-warning">Add to cart</button>
                     </div>
                 </div>
             </div>

@@ -44,14 +44,10 @@ function DisplayMovieInfo(id) {
         type: 'GET',
         dataType: 'json',
         success: function (movie) {
-            var utStreng = "";
             $("#movieTitle").html(movie.title);
-            $("#moviePrice").html(movie.price);
+            $("#moviePrice").html("Price: " + movie.price + " NOK");
             $("#movieSummary").html(movie.summary);
-            utStreng += "<img class='card align-content-md-start - img - left flex - auto d - none d - lg - block' alt='image' src='" + movie.imageURL + " ' >"
-            //utStreng += "<div class='card cardPadding' > <img src='" + movie.imageURL + "' alt='image' /> <h2>" + movie.title + "</h2> <p>" + movie.summary + "</p><br><p>" + movie.price + "</p><button id='buy' type='submit' class='btn btn -default'>Buy</button></div>"
-            //$("#overlayBox").html(utStreng);
-            $("#movieImg").html(utStreng);
+            $("#movieImg").html("<img alt='image' src='" + movie.imageURL + " ' />");
             document.getElementById("overlay").style.display = "block";
             $("#buy").click(function () {
                 addToCart(movie.id);

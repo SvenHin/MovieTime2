@@ -58,6 +58,12 @@ namespace MovieTime2.Models
         
     }
 
+    public class movieCustomer
+    {
+        public int CustomerId;
+        public int MovieId;
+    }
+
     public class LoginCustomer
     {
         [Display(Name = "Username")]

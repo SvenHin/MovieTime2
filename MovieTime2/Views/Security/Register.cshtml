@@ -33,7 +33,7 @@
         {
             @Html.AntiForgeryToken()
 
-            <form class="col-lg-6" method="post" action="<%: Url.Action("Register", "Security") %>">>
+            <form class="col-lg-6" method="post" action="@Url.Action("Register", "Security")">
                 <div class="form-row">
                     <h2 style="color:white">Register</h2>
                 </div>
@@ -109,7 +109,7 @@
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
-            <form class="col-lg-6" method="post" action="<%: Url.Action("Login", "Security") %>">>
+            <form class="col-lg-6" method="post" action="@Url.Action("Login", "Security")">
                 <div class="form-row">
                     <h2 style="color:white">Login</h2>
                 </div>

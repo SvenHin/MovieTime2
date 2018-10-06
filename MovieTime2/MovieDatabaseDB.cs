@@ -85,7 +85,13 @@ namespace MovieTime2
             {
                 Customer.Order.Add(newOrder);
             }
-            db.SaveChanges();
+            try {
+                db.SaveChanges();
+            }
+            catch ( Exception ex)
+            {
+                System.Diagnostics.Debug.Write("Exception!" + ex);
+            }
         }
 
         public bool checkIfBought(int movieId, string username)

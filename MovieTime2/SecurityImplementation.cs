@@ -48,7 +48,7 @@ namespace MovieTime2
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.Write("Mistake!" + ex);
+                System.Diagnostics.Debug.Write("Exception!" + ex);
             }
             return newUser;
         }

@@ -61,6 +61,7 @@ namespace MovieTime2.Controllers
                 List<Movie> Movies = db.convertMovies(movies);
                 var Username = (Session["username"]).ToString();
                 db.newOrder(Movies, Username);
+                Session["cart"] = null;
                 return RedirectToAction("Index", "Home");
             }
             return View();

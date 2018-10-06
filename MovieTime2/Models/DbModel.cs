@@ -81,7 +81,7 @@ namespace MovieTime2.Models
         {
             Database.CreateIfNotExists();
 
-            //Database.SetInitializer(new DBInit());
+            Database.SetInitializer(new DBInit());
         }
 
         public DbSet<DBCustomer> DBCustomer { get; set; }

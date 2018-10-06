@@ -40,7 +40,7 @@ function ListMovies(movie) {
     var counter = 0;
     for (var i in movie) {
         counter++;
-        utStreng += "<tr><th scope='row'>" + counter + "</th><td>" + movie[i].title + "</td><td>" + movie[i].price + "</td></tr>"
+        utStreng += "<tr><th scope='row'>" + counter + "</th><td>" + movie[i].title + "</td><td>" + movie[i].price + "</td><td><button type='button' class='btn btn-warning'>Remove</button></tr>"
     }
     $("#cartTableInput").html(utStreng);
 };

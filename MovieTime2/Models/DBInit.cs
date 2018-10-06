@@ -320,6 +320,189 @@ namespace MovieTime2.Models
             Mean.Genre = ComedyList9;
             context.Movie.Add(Mean);
 
+            var Intelligence = new Movie
+            {
+                Title = "Central Intelligence",
+                Summary = "After he reconnects with an awkward pal from high school through Facebook, a mild-mannered accountant is lured into the world of international espionage.",
+                Price = 45,
+                ImageURL = "/Content/Images/CentralIntelligence.jpg"
+
+            };
+            List<Genre> ActionList2 = new List<Genre>();
+            ActionList2.Add(Action);
+            Intelligence.Genre = ActionList2;
+            context.Movie.Add(Intelligence);
+
+            var Die = new Movie
+            {
+                Title = "Die Hard",
+                Summary = "John McClane, officer of the NYPD, tries to save his wife Holly Gennaro and several others that were taken hostage by German terrorist Hans Gruber during a Christmas party at the Nakatomi Plaza in Los Angeles.",
+                Price = 45,
+                ImageURL = "/Content/Images/DieHard.jpg"
+
+            };
+            List<Genre> ActionList3 = new List<Genre>();
+            ActionList3.Add(Action);
+            Die.Genre = ActionList3;
+            context.Movie.Add(Die);
+
+            var Fast = new Movie
+            {
+                Title = "Fast And Furious",
+                Summary = "Los Angeles police officer Brian O'Connor must decide where his loyalty really lies when he becomes enamored with the street racing world he has been sent undercover to destroy.",
+                Price = 45,
+                ImageURL = "/Content/Images/FastAndFurious.jpg"
+
+            };
+            List<Genre> ActionList4 = new List<Genre>();
+            ActionList4.Add(Action);
+            Fast.Genre = ActionList4;
+            context.Movie.Add(Fast);
+
+            var Fight = new Movie
+            {
+                Title = "Fight Club",
+                Summary = "An insomniac office worker and a devil-may-care soapmaker form an underground fight club that evolves into something much, much more.",
+                Price = 45,
+                ImageURL = "/Content/Images/FightClub.jpg"
+
+            };
+            List<Genre> ActionList5 = new List<Genre>();
+            ActionList5.Add(Action);
+            Fight.Genre = ActionList5;
+            context.Movie.Add(Fight);
+
+            var Edge = new Movie
+            {
+                Title = "Edge of Tomorrow",
+                Summary = "A soldier fighting aliens gets to relive the same day over and over again, the day restarting every time he dies.",
+                Price = 45,
+                ImageURL = "/Content/Images/EdgeofTomorrow.jpg"
+
+            };
+            List<Genre> ActionList6 = new List<Genre>();
+            ActionList6.Add(Action);
+            Edge.Genre = ActionList6;
+            context.Movie.Add(Edge);
+
+            var Taken = new Movie
+            {
+                Title = "Taken",
+                Summary = "A retired CIA agent travels across Europe and relies on his old skills to save his estranged daughter, who has been kidnapped while on a trip to Paris.",
+                Price = 45,
+                ImageURL = "/Content/Images/Taken.jpg"
+
+            };
+            List<Genre> ActionList7 = new List<Genre>();
+            ActionList7.Add(Action);
+            Taken.Genre = ActionList7;
+            context.Movie.Add(Taken);
+
+            var The = new Movie
+            {
+                Title = "The Terminator",
+                Summary = "A seemingly indestructible android is sent from 2029 to 1984 to assassinate a waitress, whose unborn son will lead humanity in a war against the machines, while a soldier from that war is sent to protect her at all costs.",
+                Price = 45,
+                ImageURL = "/Content/Images/TheTerminator.jpg"
+
+            };
+            List<Genre> ActionList8 = new List<Genre>();
+            ActionList8.Add(Action);
+            The.Genre = ActionList8;
+            context.Movie.Add(The);
+
+            var Slave = new Movie
+            {
+                Title = "12 Years Of Slave",
+                Summary = "In the antebellum United States, Solomon Northup, a free black man from upstate New York, is abducted and sold into slavery.",
+                Price = 45,
+                ImageURL = "/Content/Images/12YearsOfSlave.jpg"
+
+            };
+            List<Genre> DramaList2 = new List<Genre>();
+            DramaList2.Add(Drama);
+            Slave.Genre = DramaList2;
+            context.Movie.Add(Slave);
+
+            var Creed = new Movie
+            {
+                Title = "Creed",
+                Summary = "The former World Heavyweight Champion Rocky Balboa serves as a trainer and mentor to Adonis Johnson, the son of his late friend and former rival Apollo Creed.",
+                Price = 45,
+                ImageURL = "/Content/Images/Creed.jpg"
+
+            };
+            List<Genre> DramaList3 = new List<Genre>();
+            DramaList3.Add(Drama);
+            Creed.Genre = DramaList3;
+            context.Movie.Add(Creed);
+
+            var Good = new Movie
+            {
+                Title = "Good Will Hunting",
+                Summary = "Will Hunting, a janitor at M.I.T., has a gift for mathematics, but needs help from a psychologist to find direction in his life.",
+                Price = 45,
+                ImageURL = "/Content/Images/GoodWillHunting.jpg"
+
+            };
+            List<Genre> DramaList4 = new List<Genre>();
+            DramaList4.Add(Drama);
+            Good.Genre = DramaList4;
+            context.Movie.Add(Good);
+
+            var lala = new Movie
+            {
+                Title = "La La Land",
+                Summary = "While navigating their careers in Los Angeles, a pianist and an actress fall in love while attempting to reconcile their aspirations for the future.",
+                Price = 45,
+                ImageURL = "/Content/Images/lalaland.jpg"
+
+            };
+            List<Genre> DramaList5 = new List<Genre>();
+            DramaList5.Add(Drama);
+            lala.Genre = DramaList5;
+            context.Movie.Add(lala);
+
+            var Taxi = new Movie
+            {
+                Title = "Taxi Driver",
+                Summary = "A mentally unstable veteran works as a nighttime taxi driver in New York City, where the perceived decadence and sleaze fuels his urge for violent action, while attempting to liberate a twelve-year-old prostitute.",
+                Price = 45,
+                ImageURL = "/Content/Images/TaxiDriver.jpg"
+
+            };
+            List<Genre> DramaList6 = new List<Genre>();
+            DramaList6.Add(Drama);
+            Taxi.Genre = DramaList6;
+            context.Movie.Add(Taxi);
+
+            var Vert = new Movie
+            {
+                Title = "Vertigo",
+                Summary = "A former police detective juggles wrestling with his personal demons and becoming obsessed with a hauntingly beautiful woman.",
+                Price = 45,
+                ImageURL = "/Content/Images/Vertigo.jpg"
+
+            };
+            List<Genre> DramaList7 = new List<Genre>();
+            DramaList7.Add(Drama);
+            Vert.Genre = DramaList7;
+            context.Movie.Add(Vert);
+
+            var Dook = new Movie
+            {
+                Title = "The Babadook",
+                Summary = "A widowed mother, plagued by the violent death of her husband, battles with her son's fear of a monster lurking in the house, but soon discovers a sinister presence all around her.",
+                Price = 45,
+                ImageURL = "/Content/Images/TheBabadook.jpg"
+
+            };
+            List<Genre> DramaList8 = new List<Genre>();
+            DramaList8.Add(Drama);
+            Dook.Genre = DramaList8;
+            context.Movie.Add(Dook);
+
+
 
             base.Seed(context);
         }

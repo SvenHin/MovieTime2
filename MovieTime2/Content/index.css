@@ -1,1 +1,10 @@
-﻿
+﻿.hovereffect{
+    border: 1px solid transparent;
+    cursor: pointer;  
+    max-height: 300px;
+    width: auto;
+}
+
+.hovereffect:hover{
+    border: 1px solid white;
+}

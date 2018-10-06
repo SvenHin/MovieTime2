@@ -44,6 +44,13 @@ $(function () {
     });
 });
 
+$(function () {
+    $("document").ready(function () {
+        $("#buy").click(function () {
+            addToCart(movie.id);
+        });
+    });
+});
 
 function DisplayMovieInfo(id) {
     $.ajax({
@@ -56,9 +63,7 @@ function DisplayMovieInfo(id) {
             $("#movieSummary").html(movie.summary);
             $("#movieImg").html("<img alt='image' src='" + movie.imageURL + " ' />");
             document.getElementById("overlay").style.display = "block";
-            $("#buy").click(function () {
-                addToCart(movie.id);
-            });
+
         },
         error: function (x, y, z) {
             alert(x + '\n' + y + '\n' + z);

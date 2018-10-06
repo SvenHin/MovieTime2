@@ -7,11 +7,9 @@
     <link rel="stylesheet" type="text/css" href="~/Content/register.css" />
     @Scripts.Render("~/bundles/jqueryvalidation")
     <script>
-
         $("document").ready(function () {
             $("#registrationtable").hide();
         });
-
         $(function () {
             $('#registration-login').click(function () {
                 $('#registrationtable').show();
@@ -19,7 +17,6 @@
                 return false;
             });
         });
-
         $(function () {
             $('#login-registration').click(function () {
                 $('#registrationtable').hide();
@@ -27,8 +24,6 @@
                 return false;
             });
         });
-
-
     </script>
 </head>
             <div class="row p-lg-5" id="registrationtable">

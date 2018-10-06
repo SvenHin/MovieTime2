@@ -96,5 +96,20 @@ namespace MovieTime2.Controllers
             }
             return jsonSerializer.Serialize("NO");
         }
+
+        public string getCartCount()
+        {
+            var db = new MovieDatabaseDB();
+            var jsonSerializer = new JavaScriptSerializer();
+            if (Session["cartcount"] != null)
+            {
+                var cartcount = Convert.ToInt32(Session["cartcount"]);
+                return jsonSerializer.Serialize(cartcount);
+            }
+            else
+            {
+                return jsonSerializer.Serialize(0);
+            }
+        }
     }
 }

@@ -32,7 +32,7 @@ function SetMovie(imageMovie, counter) {
     var imageDiv = $('#' + targetDiv);
     var string = "";
     for (var m in imageMovie) {
-        string += "<div class='card cardPadding' > <img class='imageRow' id='" + imageMovie[m].id + "'src='" + imageMovie[m].imageURL + "' alt='image' /></div>"
+        string += "<div class='card cardPadding' > <img class='hovereffect imageRow' id='" + imageMovie[m].id + "'src='" + imageMovie[m].imageURL + "' alt='image' /></div>"
         
     }
     $(imageDiv).append(string);
@@ -105,7 +105,17 @@ function addToCart(id) {
             alert(x + '\n' + y + '\n' + z);
         }
     });
-
+    $.ajax({
+        url: '/AddToCart/getCartCount',
+        type: 'GET',
+        dataType: 'json',
+        success: function (number) {
+            $("#cartCounter").html(number);
+        },
+        error: function (x, y, z) {
+            alert(x + '\n' + y + '\n' + z);
+        }
+    });
 }
 
 function off() {

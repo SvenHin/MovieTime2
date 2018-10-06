@@ -3,9 +3,9 @@ function getAllGenres() {
     $.getJSON("/Home/getAllGenresController",
         function (genres) {
             BuildGenres(genres);
-
         }
     );
+    buyButtonNo();
 }
 
 
@@ -44,26 +44,50 @@ $(function () {
     });
 });
 
+function buyButton() {
+    $("#alreadyBought").hide();
+    $("#buy").show();
+}
+
+function buyButtonNo() {
+    $("#buy").hide();
+    $("#alreadyBought").show();
+}
+
 $(function () {
-    $("document").ready(function () {
-        $("#buy").click(function () {
-            addToCart(movie.id);
-        });
+    $("#buy").click(function () {
+        addToCart($("#movieTitle").data("movieid"));
     });
-});
+})
+
 
 function DisplayMovieInfo(id) {
+    $.ajax({
+        url: '/Home/getIfBought/' + id,
+        type: 'GET',
+        dataType: 'json',
+        success: function (string) {
+            if (string == "YES") {
+                buyButtonNo();
+            }
+            else buyButton();
+        },
+        error: function (x, y, z) {
+            alert(x + '\n' + y + '\n' + z);
+        }
+
+    });
     $.ajax({
         url: '/Home/displayMovieInfo/' + id,
         type: 'GET',
         dataType: 'json',
         success: function (movie) {
+            $("#movieTitle").data("movieid", movie.id);
             $("#movieTitle").html(movie.title);
             $("#moviePrice").html("Price: " + movie.price + " NOK");
             $("#movieSummary").html(movie.summary);
             $("#movieImg").html("<img alt='image' src='" + movie.imageURL + " ' />");
             document.getElementById("overlay").style.display = "block";
-
         },
         error: function (x, y, z) {
             alert(x + '\n' + y + '\n' + z);
@@ -76,7 +100,6 @@ function addToCart(id) {
         type: 'GET',
         dataType: 'json',
         success: function (string) {
-            alert(string);
         },
         error: function (x, y, z) {
             alert(x + '\n' + y + '\n' + z);

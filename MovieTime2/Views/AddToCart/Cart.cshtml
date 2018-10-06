@@ -1,6 +1,4 @@
-﻿@model MovieTime2.Models.bankinfo
-
-@{
+﻿@{
     ViewBag.Title = "Cart";
 }
 <head>
@@ -8,80 +6,40 @@
     @Scripts.Render("~/bundles/cartjquery")
     <script type="text/javascript">
         $(function () {
+            IsLoggedIn();
             GetMovies();
-        })
+        });
+        $(function () {
+             $("#confirmBuy").click(function () {
+                  document.location = '@Url.Action("Buy","AddToCart")';
+             });
+        });
     </script>
 
 </head>
 
 <div id="CartContent" class="row">
-    <div class="col-lg-3 offset-3">
-        <table id="cartTable" class="table table-dark">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Movie</th>
-                    <th scope="col">Price</th>
-                </tr>
-            </thead>
-            <tbody id="cartTableInput">
-                
-            </tbody>
-        </table>
-    </div>
-    <div class="col-lg-3">
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
+    <div class="col-lg-6 offset-3">
+        <div class="row">
+            <table id="cartTable" class="table table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Movie</th>
+                        <th scope="col">Price</th>
+                    </tr>
+                </thead>
+                <tbody id="cartTableInput"></tbody>
+            </table>
 
-            <div class="form-horizontal">
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                @Html.HiddenFor(model => model.id)
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.cardnumber, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.cardnumber, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.cardnumber, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.exdate, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.exdate, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.exdate, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.cvc, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.cvc, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.cvc, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.cardholdername, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.cardholdername, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.cardholdername, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Buy" class="btn btn-default" />
-                    </div>
-                </div>
+            <div class="d-flex flex-column height15">
+                <button type="button" id="confirmBuy" class="btn btn-warning">Buy</button>
+                <p id="pleaseLogInText">You must be logged in to buy movies!</p>
             </div>
-        }
+        </div>
+        
+
 
     </div>
-</div>
-
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
+    
 </div>

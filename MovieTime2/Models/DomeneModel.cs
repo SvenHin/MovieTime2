@@ -106,13 +106,4 @@ namespace MovieTime2.Models
         public int id { get; set; }
         public string title { get; set; }
     }
-
-    public class bankinfo
-    {
-        public int id { get; set; }
-        public string cardnumber { get; set; }
-        public string exdate { get; set; }
-        public string cvc { get; set; }
-        public string cardholdername { get; set; }
-    }
 }

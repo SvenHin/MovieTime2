@@ -173,5 +173,17 @@ namespace MovieTime2
             }
             return allmovies;
         }
+
+        public bool isLoggedInModel(string loggedin)
+        {
+            if (loggedin.Equals("true"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

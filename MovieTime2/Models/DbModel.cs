@@ -74,16 +74,6 @@ namespace MovieTime2.Models
         public virtual Order Order { get; set; }
     }
 
-    public class BankInfo
-    {
-        [Key]
-        public int Id { get; set; }
-        public string CardNumber { get; set; }
-        public string ExpirationDate { get; set; }
-        public string CVC { get; set; }
-        public string CardholderName { get; set; }
-    }
-
     public class DatabaseContext : DbContext
     {
         public DatabaseContext() 
@@ -91,14 +81,13 @@ namespace MovieTime2.Models
         {
             Database.CreateIfNotExists();
 
-            Database.SetInitializer(new DBInit());
+            //Database.SetInitializer(new DBInit());
         }
 
         public DbSet<DBCustomer> DBCustomer { get; set; }
         public DbSet<PostalCode> PostalCodes { get; set; }
         public DbSet<Movie> Movie { get; set; }
         public DbSet<Genre> Genre { get; set; }
-        public DbSet<BankInfo> BankInfo { get; set; }
         public DbSet<Order> Order { get; set; }
         public DbSet<LineItem> LineItem { get; set; }
 

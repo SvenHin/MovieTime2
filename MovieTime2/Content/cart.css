@@ -1,1 +1,8 @@
-﻿
+﻿#pleaseLogInText{
+    color: white;
+    display: none;
+}
+
+#confirmBuy{
+    display: none;
+}

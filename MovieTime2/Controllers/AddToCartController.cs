@@ -51,8 +51,7 @@ namespace MovieTime2.Controllers
             return json;
         }
 
-        [HttpPost]
-        public ActionResult Cart(bankinfo info)
+        public ActionResult Buy()
         {
             if (Session["cart"] != null && Session["LoggedIn"] != null)
             {
@@ -78,5 +77,24 @@ namespace MovieTime2.Controllers
             }
         }
 
+        public string isLoggedIn()
+        {
+            var db = new MovieDatabaseDB();
+            var jsonSerializer = new JavaScriptSerializer();
+            if(Session["LoggedIn"] != null)
+            {
+                var loggedin = Session["LoggedIn"].ToString();
+                if (db.isLoggedInModel(loggedin))
+                {
+                    return jsonSerializer.Serialize("YES");
+                }
+                else
+                {
+                    return jsonSerializer.Serialize("NO");
+
+                }
+            }
+            return jsonSerializer.Serialize("NO");
+        }
     }
 }

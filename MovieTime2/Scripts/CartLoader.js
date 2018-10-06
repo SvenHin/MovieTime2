@@ -1,4 +1,27 @@
-﻿function GetMovies() {
+﻿function IsLoggedIn() {
+    $.getJSON("/AddToCart/isLoggedIn",
+        function (string) {
+            if (string == "YES") {
+                buyButton();
+            }
+            else {
+                buyButtonNo();
+            }
+        }
+    );
+}
+
+function buyButton() {
+    $("#pleaseLogInText").hide();
+    $("#confirmBuy").show();
+}
+
+function buyButtonNo() {
+    $("#confirmBuy").hide();
+    $("#pleaseLogInText").show();
+}
+
+function GetMovies() {
     $.ajax({
         url: '/AddToCart/getMoviesFromCart/',
         type: 'GET',
@@ -10,7 +33,7 @@
             alert(x + '\n' + y + '\n' + z);
         }
     });
-}
+};
 
 function ListMovies(movie) {
     var utStreng = "";
@@ -20,4 +43,4 @@ function ListMovies(movie) {
         utStreng += "<tr><th scope='row'>" + counter + "</th><td>" + movie[i].title + "</td><td>" + movie[i].price + "</td></tr>"
     }
     $("#cartTableInput").html(utStreng);
-}
+};

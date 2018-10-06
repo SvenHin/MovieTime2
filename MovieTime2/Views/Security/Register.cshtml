@@ -28,12 +28,10 @@
 </head>
 <body>
     <div class="row p-lg-5" id="registrationtable">
-
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("Register", "Security", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
-
-            <form class="col-lg-6" method="post" action="@Url.Action("Register", "Security")">
+            <form class="col-lg-6">
                 <div class="form-row">
                     <h2 style="color:white">Register</h2>
                 </div>
@@ -103,10 +101,8 @@
             </form>
         }
     </div>
-
-
     <div class="row p-lg-5" id="logintable">
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("Login", "Security", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
             <form class="col-lg-6" method="post" action="@Url.Action("Login", "Security")">

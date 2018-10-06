@@ -220,6 +220,6 @@ font-weight:100;
     height: auto;
     overflow: hidden;
 }
-card img {
+.card img {
     max-width: 200px;
 }

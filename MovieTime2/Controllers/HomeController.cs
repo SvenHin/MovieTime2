@@ -69,14 +69,14 @@ namespace MovieTime2.Controllers
             return json;
         }
 
-        public string getIfBought(int movieId)
+        public string getIfBought(int Id)
         {
             var db = new MovieDatabaseDB();
             if(Session["username"] != null)
             {
                 var username = Session["username"].ToString();
                 string bought = "";
-                if (db.checkIfBought(movieId, username))
+                if (db.checkIfBought(Id, username))
                 {
                     bought = "YES";
                 }

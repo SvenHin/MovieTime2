@@ -38,10 +38,10 @@ namespace MovieTime2.Controllers
         {
             if (Session["LoggedIn"] == null)
             {
-                Session["LoggedIn"] = false;
+                Session["LoggedIn"] = "false";
                 // ViewBag.InLogged = false;
             }
-            else if (Session["LoggedIn"].Equals(true))
+            else if (Session["LoggedIn"].ToString().Equals("true"))
             {
                 // ViewBag.InLogged = (bool)Session["LoggedIn"];
                 return View("UserProfile"); //This will take the logged in user to their profile page
@@ -63,7 +63,7 @@ namespace MovieTime2.Controllers
                 if (SecurityImplementation.User_in_DB(LoggedIn))
                 {
                     // Username && Password correct
-                    Session["LoggedIn"] = true;
+                    Session["LoggedIn"] = "true";
                     //Sesion to store username
                     Session["Username"] = LoggedIn.Username;
                     //  ViewBag.InLogged = true;
@@ -72,7 +72,7 @@ namespace MovieTime2.Controllers
                 else
                 {
                     // Username && Password wrong
-                    Session["LoggedIn"] = false;
+                    Session["LoggedIn"] = "false";
                     // ViewBag.InLogged = false;
                     return View("LoginFailed");
                 }
@@ -87,7 +87,7 @@ namespace MovieTime2.Controllers
         //Logout
         public ActionResult LogOut()
         {
-            Session["LoggedIn"] = false;
+            Session["LoggedIn"] = "false";
             return View("Register");
         }
 

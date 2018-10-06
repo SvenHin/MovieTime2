@@ -98,16 +98,23 @@ namespace MovieTime2
         {
             IQueryable<movieCustomer> aMovieCustomer = db.Order.Join(db.LineItem,
                             o => o.Id,
-                            li => li.Id,
-                            (o, li) => new movieCustomer{
+                            li => li.Order.Id,
+                            (o, li) => new movieCustomer
+                            {
                                 CustomerId = o.Customer.Id,
-                                MovieId = li.Movie.Id })
+                                MovieId = li.Movie.Id
+                            })
                             .Where(x => x.MovieId == movieId);
+
+  
+
 
             DBCustomer Customer = db.DBCustomer.Where(k => k.Username == username).FirstOrDefault();
 
             foreach(var i in aMovieCustomer)
             {
+                //System.Diagnostics.Debug.Write(" CustomerID: " + i.CustomerId + " MovieID: " + i.MovieId);
+
                 if (i.CustomerId.Equals(Customer.Id))
                 {
                     return true;

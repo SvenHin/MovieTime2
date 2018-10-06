@@ -54,17 +54,28 @@ namespace MovieTime2.Controllers
         [HttpPost]
         public ActionResult Cart(bankinfo info)
         {
-            if (Session["cart"] != null)
+            if (Session["cart"] != null && Session["LoggedIn"] != null)
             {
-                var db = new MovieDatabaseDB();
-                List<movie> movies = (List<movie>)Session["cart"];
-                List<Movie> Movies = db.convertMovies(movies);
-                var Username = (Session["username"]).ToString();
-                db.newOrder(Movies, Username);
-                Session["cart"] = null;
-                return RedirectToAction("Index", "Home");
+                if (Session["LoggedIn"].ToString().Equals("true"))
+                {
+                    var db = new MovieDatabaseDB();
+                    List<movie> movies = (List<movie>)Session["cart"];
+                    List<Movie> Movies = db.convertMovies(movies);
+                    var Username = (Session["username"]).ToString();
+                    db.newOrder(Movies, Username);
+                    Session["cart"] = null;
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Security");
+
+                }
             }
-            return View();
+            else
+            {
+                return RedirectToAction("Login", "Security");
+            }
         }
 
     }

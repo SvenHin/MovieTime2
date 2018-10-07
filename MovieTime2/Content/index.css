@@ -8,3 +8,121 @@
 .hovereffect:hover{
     border: 1px solid #ffc107;
 }
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+.scrolling-wrapper::-webkit-scrollbar:horizontal {
+    height: 4px;
+}
+
+.scrolling-wrapper::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background-color: #ffc107;
+}
+
+.scrolling-wrapper::-webkit-scrollbar-track {
+    background-color: #191919;
+    border-radius: 8px;
+}
+
+.cardPadding {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+
+.scrolling-wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+.card {
+    display: inline-block;
+    background: transparent;
+    border: 0;
+}
+
+#sideNav {
+    border-right: 2px solid;
+    border-color: #0c0c0c;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.list-group-mine .list-group-item {
+    background-color: #191919;
+    color: #e2e2e2;
+}
+
+    .list-group-mine .list-group-item:hover {
+        background-color: #232323;
+    }
+
+    .list-group-mine .list-group-item.active {
+        background-color: #232323;
+        border-color: #232323;
+    }
+
+.navbar-nav li a {
+    color: #e2e2e2;
+}
+
+#mainPage {
+    border-top: 1px solid;
+    border-color: #0c0c0c;
+}
+
+#MovieContainer {
+    padding-left: 10px;
+    padding-right: 30px;
+}
+
+.genreHeaders {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    padding-left: 5px;
+    font-size: 2em;
+    color: #e2e2e2;
+}
+
+.imageBorderTopBottom {
+    border-top: 2px solid;
+    border-color: #0c0c0c;
+    border-bottom: 2px solid;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-color: #0c0c0c;
+    margin-bottom: 30px;
+}
+
+img {
+    background: transparent;
+    width: 100%;
+    height: auto;
+}
+#overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.9);
+    z-index: 1000000;
+    cursor: pointer;
+}
+
+
+.cont {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: white;
+}

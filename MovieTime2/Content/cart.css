@@ -6,3 +6,12 @@
 #confirmBuy{
     display: none;
 }
+
+#cartTable {
+    background-color: transparent;
+}
+
+
+#CartContent {
+    padding-top: 50px;
+}

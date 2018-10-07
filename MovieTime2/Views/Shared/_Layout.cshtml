@@ -6,7 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/jqueryandajax")
-
+    <script type="text/javascript">
+        updateCart();
+        function updateCart() {
+            $.ajax({
+                url: '/AddToCart/getCartCount',
+                type: 'GET',
+                dataType: 'json',
+                success: function (number) {
+                    $("#cartCounter").show();
+                    $("#cartCounter").html(number);
+                },
+                error: function (x, y, z) {
+                    alert(x + '\n' + y + '\n' + z);
+                }
+            });
+        }
+    </script>
 </head>
 
 <body class="bgblack">

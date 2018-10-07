@@ -26,7 +26,7 @@ namespace MovieTime2.Controllers
                 {
                     SecurityImplementation.RegisterImplementation(inCustomer);
                 }
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Security");
             }
             return View();
         }
@@ -44,7 +44,7 @@ namespace MovieTime2.Controllers
             else if (Session["LoggedIn"].ToString().Equals("true"))
             {
                 // ViewBag.InLogged = (bool)Session["LoggedIn"];
-                return View("UserProfile"); //This will take the logged in user to their profile page
+                return RedirectToAction("Index", "Home"); 
             }
             else
             {
@@ -67,7 +67,7 @@ namespace MovieTime2.Controllers
                     //Sesion to store username
                     Session["Username"] = LoggedIn.Username;
                     //  ViewBag.InLogged = true;
-                    return View("UserProfile"); //This will take the logged in user to their profile page
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {

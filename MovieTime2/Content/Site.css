@@ -48,7 +48,19 @@ html, body {
     }
 
 ::-webkit-scrollbar {
-    display: none;
+    -webkit-appearance: none;
+}
+.scrolling-wrapper::-webkit-scrollbar:horizontal {
+    height: 4px;
+}
+.scrolling-wrapper::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background-color: #ffc107;
+}
+
+.scrolling-wrapper::-webkit-scrollbar-track {
+    background-color: #191919;
+    border-radius: 8px;
 }
 
 .cardPadding {

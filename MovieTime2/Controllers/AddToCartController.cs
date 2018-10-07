@@ -63,6 +63,7 @@ namespace MovieTime2.Controllers
                     var Username = (Session["username"]).ToString();
                     db.newOrder(Movies, Username);
                     Session["cart"] = null;
+                    Session["cartcount"] = null;
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -111,5 +112,28 @@ namespace MovieTime2.Controllers
                 return jsonSerializer.Serialize(0);
             }
         }
+
+        public string RemoveFromCart(int id)
+        {
+            var jsonSerializer = new JavaScriptSerializer();
+            if (Session["cart"] != null)
+            {
+                List<movie> movies = (List<movie>)Session["cart"];
+                movies.RemoveAt(id);
+                Session["cartcount"] = Convert.ToInt32(Session["cartcount"]) - 1;
+                if (movies.Count() == 0)
+                {
+                    Session["cart"] = null;
+                }
+                else
+                {
+                    Session["cart"] = movies;
+                }
+                return jsonSerializer.Serialize("OK");
+
+            }
+            return jsonSerializer.Serialize("SessionNull");
+        }
+
     }
 }

@@ -100,23 +100,15 @@ function addToCart(id) {
         type: 'GET',
         dataType: 'json',
         success: function (string) {
-        },
-        error: function (x, y, z) {
-            alert(x + '\n' + y + '\n' + z);
-        }
-    });
-    $.ajax({
-        url: '/AddToCart/getCartCount',
-        type: 'GET',
-        dataType: 'json',
-        success: function (number) {
-            $("#cartCounter").html(number);
+            updateCart();
         },
         error: function (x, y, z) {
             alert(x + '\n' + y + '\n' + z);
         }
     });
 }
+
+
 
 function off() {
     document.getElementById("overlay").style.display = "none";

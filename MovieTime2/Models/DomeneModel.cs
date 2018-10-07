@@ -20,7 +20,7 @@ namespace MovieTime2.Models
 
         [Display(Name = "Address")]
         [Required(ErrorMessage = "Address is required")]
-        [RegularExpression(@"^[A-Za-z0-9]+(?:\s[A-Za-z0-9'_-]+)+$", ErrorMessage = "Invalid Address. No special characters allowed")]
+        [RegularExpression(@"^[A-Za-z0-9]+(?:\s[A-Za-z0-9'_-]+)+$", ErrorMessage = "Invalid Address. Address must have 1 word and 2 numbers")]
         public string Address { get; set; }
 
         [Display(Name = "City")]
@@ -41,7 +41,7 @@ namespace MovieTime2.Models
 
         [Display(Name = "Email")]
         [Required(ErrorMessage = "Email is required")]
-        [RegularExpression(@"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}", ErrorMessage ="Invalid Email")]
+        [RegularExpression(@"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}", ErrorMessage ="Invalid Email. Follow Email format")]
         public string Email { get; set; }
 
         [Display(Name = "Username")]
@@ -52,7 +52,7 @@ namespace MovieTime2.Models
 
         [Display(Name = "Password")]
         [Required(ErrorMessage = "Password is required")]
-        [RegularExpression(@"[A-Z][a-zA-Z][^#&<>\~;$^%{}?]{2,20}$", ErrorMessage = "Invalid Password. No special characters allowed")]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$", ErrorMessage = "Invalid Password. No special characters. 1 capital letter, 1 small letter and 1 number is a must")]
 
         public string Password { get; set; }
         

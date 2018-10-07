@@ -222,3 +222,7 @@ font-weight:100;
     height: auto;
     overflow: hidden;
 }
+
+#cartCounter {
+    display: none;
+}

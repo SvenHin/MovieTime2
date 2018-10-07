@@ -52,7 +52,7 @@ namespace MovieTime2.Models
 
         [Display(Name = "Password")]
         [Required(ErrorMessage = "Password is required")]
-        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$", ErrorMessage = "Invalid Password. No special characters. 1 capital letter, 1 small letter and 1 number is a must")]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$", ErrorMessage = "Invalid Password. Minumum 8 length. No special characters. 1 Capital letter, 1 small letter and 1 number is a must")]
 
         public string Password { get; set; }
         

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
+using MovieTime2.BLL;
 
 namespace MovieTime2.Controllers
 {
@@ -22,10 +23,9 @@ namespace MovieTime2.Controllers
         {
             if (ModelState.IsValid)
             {
-                using (var db = new DatabaseContext())
-                {
-                    SecurityImplementation.RegisterImplementation(inCustomer);
-                }
+                var db = new SecurityBLL();
+                db.RegisterImplementation(inCustomer);
+                
                 return RedirectToAction("Login", "Security");
             }
             return View();
@@ -58,9 +58,11 @@ namespace MovieTime2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginCustomer LoggedIn)
         {
+            var db = new SecurityBLL();
+
             if (ModelState.IsValid)
             {
-                if (SecurityImplementation.User_in_DB(LoggedIn))
+                if (db.User_in_DB(LoggedIn))
                 {
                     // Username && Password correct
                     Session["LoggedIn"] = "true";

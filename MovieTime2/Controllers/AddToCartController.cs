@@ -5,6 +5,7 @@ using System.Web;
 using MovieTime2.Models;
 using System.Web.Script.Serialization;
 using System.Web.Mvc;
+using MovieTime2.BLL;
 
 namespace MovieTime2.Controllers
 {
@@ -16,7 +17,7 @@ namespace MovieTime2.Controllers
         }
         public string Add(int Id)
         {
-            var db = new MovieDatabaseDB();
+            var db = new MovieTimeBLL();
             movie movie = db.getAMovie(Id);
             if (Session["cart"] == null)
             {
@@ -57,7 +58,7 @@ namespace MovieTime2.Controllers
             {
                 if (Session["LoggedIn"].ToString().Equals("true"))
                 {
-                    var db = new MovieDatabaseDB();
+                    var db = new MovieTimeBLL();
                     List<movie> movies = (List<movie>)Session["cart"];
                     List<Movie> Movies = db.convertMovies(movies);
                     var Username = (Session["username"]).ToString();
@@ -80,7 +81,7 @@ namespace MovieTime2.Controllers
 
         public string isLoggedIn()
         {
-            var db = new MovieDatabaseDB();
+            var db = new MovieTimeBLL();
             var jsonSerializer = new JavaScriptSerializer();
             if(Session["LoggedIn"] != null)
             {
@@ -100,7 +101,7 @@ namespace MovieTime2.Controllers
 
         public string getCartCount()
         {
-            var db = new MovieDatabaseDB();
+            var db = new MovieTimeBLL();
             var jsonSerializer = new JavaScriptSerializer();
             if (Session["cartcount"] != null)
             {

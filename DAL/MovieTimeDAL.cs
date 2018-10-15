@@ -50,7 +50,7 @@ namespace MovieTime2.DAL
             return aMovie;
         }
 
-        public void newOrder(List<Movie> shoppedMovies, string Username)
+        public bool newOrder(List<Movie> shoppedMovies, string Username)
         {
             var newLineItems = new List<LineItem>();
 
@@ -92,6 +92,7 @@ namespace MovieTime2.DAL
             {
                 System.Diagnostics.Debug.Write("Exception!" + ex);
             }
+            return true;
         }
 
         public bool checkIfBought(int movieId, string username)

@@ -27,7 +27,7 @@ namespace MovieTime2.Controllers
 
         public string displayMovieInfo(int Id)
         {
-            var db = new MovieDatabaseDB();
+            var db = new MovieTimeBLL();
             var movie = db.getAMovie(Id);
             var jsonSerializer = new JavaScriptSerializer();
             string json = jsonSerializer.Serialize(movie);
@@ -36,7 +36,7 @@ namespace MovieTime2.Controllers
 
         public JsonResult getMoviesFromGenre(int id)
         {
-            var db = new MovieDatabaseDB();
+            var db = new MovieTimeBLL();
             List<imageMovie> allMovies = db.getMoviesFromGenre(id);
             JsonResult ut = Json(allMovies, JsonRequestBehavior.AllowGet);
             return ut;
@@ -63,7 +63,7 @@ namespace MovieTime2.Controllers
         }*/
         public string getMovieInfo(int Id)
         {
-            var db = new MovieDatabaseDB();
+            var db = new MovieTimeBLL();
             movie aMovie = db.getAMovie(Id);
             var jsonSerializer = new JavaScriptSerializer();
             string json = jsonSerializer.Serialize(aMovie);
@@ -72,7 +72,7 @@ namespace MovieTime2.Controllers
 
         public string getIfBought(int Id)
         {
-            var db = new MovieDatabaseDB();
+            var db = new MovieTimeBLL();
             if(Session["username"] != null)
             {
                 var username = Session["username"].ToString();

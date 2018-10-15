@@ -10,7 +10,7 @@ namespace MovieTime2.DAL
     public class SecurityDAL
     {
         
-        public static DBCustomer RegisterImplementation(Customer inCustomer)
+        public bool RegisterImplementation(Customer inCustomer)
         {
             DatabaseContext db = new DatabaseContext();
             var newUser = new DBCustomer();
@@ -50,11 +50,11 @@ namespace MovieTime2.DAL
             {
                 System.Diagnostics.Debug.Write("Exception!" + ex);
             }
-            return newUser;
+            return true;
         }
 
         //To check whether the user exists, and if so, if the credentials are correct
-        public static bool User_in_DB(LoginCustomer User)
+        public bool User_in_DB(LoginCustomer User)
         {
             using (var db = new DatabaseContext())
             {
@@ -72,7 +72,7 @@ namespace MovieTime2.DAL
             }
         }
 
-        private static byte[] CreateSalt()
+        public static byte[] CreateSalt()
         {
             var csprng = new RNGCryptoServiceProvider();
             var salt = new byte[24];
@@ -80,7 +80,7 @@ namespace MovieTime2.DAL
             return salt;
         }
 
-        private static byte[] CreateHash(string inPassword, byte[] inSalt)
+        public static byte[] CreateHash(string inPassword, byte[] inSalt)
         {
             const int keyLength = 24;
             var pbkdf2 = new Rfc2898DeriveBytes(inPassword, inSalt, 1000);

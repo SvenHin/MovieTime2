@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MovieTime2.Models;
+using MovieTime2.BLL;
 using System.Web.Script.Serialization;
 
 namespace MovieTime2.Controllers
@@ -18,7 +19,7 @@ namespace MovieTime2.Controllers
 
         public JsonResult getAllGenresController()
         {
-            var db = new MovieDatabaseDB();
+            var db = new MovieTimeBLL();
             List<genre> allGenres = db.getAllGenres();
             JsonResult ut = Json(allGenres, JsonRequestBehavior.AllowGet);
             return ut;

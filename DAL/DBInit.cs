@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 
-namespace MovieTime2.Models
+namespace MovieTime2.DAL
 {
     public class DBInit : DropCreateDatabaseAlways<DatabaseContext>
     {

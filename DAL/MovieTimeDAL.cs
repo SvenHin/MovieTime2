@@ -5,9 +5,9 @@ using System.Linq;
 using System.Web;
 using MovieTime2.Models;
 
-namespace MovieTime2
+namespace MovieTime2.DAL
 {
-    public class MovieDatabaseDB
+    public class MovieTimeDAL
     {
         DatabaseContext db = new DatabaseContext();
 

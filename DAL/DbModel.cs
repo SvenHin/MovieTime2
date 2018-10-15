@@ -8,7 +8,7 @@ using System.Web;
 using System.Data.Entity.Core.EntityClient;
 using System.Data.Common;
 
-namespace MovieTime2.Models
+namespace MovieTime2.DAL
 {
     public class DBCustomer
     {

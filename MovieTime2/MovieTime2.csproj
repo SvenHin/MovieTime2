@@ -161,10 +161,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\DBInit.cs" />
-    <Compile Include="Models\DbModel.cs" />
-    <Compile Include="Models\DomeneModel.cs" />
-    <Compile Include="MovieDatabaseDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SecurityImplementation.cs" />
   </ItemGroup>
@@ -312,7 +308,19 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{71bf7348-ed7d-4493-8fda-2822ab9ac8b6}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{edff48b4-f603-4f0a-a3dc-ea9e273e14a0}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

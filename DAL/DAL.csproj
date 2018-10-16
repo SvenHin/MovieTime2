@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="adminDALStub.cs" />
+	<Compile Include="AdminDAL.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="DBInit.cs" />
     <Compile Include="DbModel.cs" />

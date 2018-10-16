@@ -37,12 +37,15 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <p id="cartCounter" class="text-warning">0</p>
-                </li>                
+                </li>
                 <li class="nav-item">
                     @Html.ActionLink("Cart", "Cart", "AddToCart", new { area = "" }, new { @class = "nav-link" })
                 </li>
                 <li class="nav-item">
                     @Html.ActionLink("Login", "Login", "Security", new { area = "" }, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Admin", "Index", "Admin", new { area = "" }, new { @class = "nav-link" })
                 </li>
             </ul>
         </div>

@@ -28,6 +28,16 @@ namespace MovieTime2.DAL
 
     }
 
+    public class DBAdmin
+    {
+        [Key]
+        public int Id { get; set; }
+        public string Username { get; set; }
+        public byte[] Password { get; set; }
+        public byte[] Salt { get; set; }
+
+    }
+
     public class PostalCode
     {
         [Key]
@@ -90,6 +100,7 @@ namespace MovieTime2.DAL
         public DbSet<Genre> Genre { get; set; }
         public DbSet<Order> Order { get; set; }
         public DbSet<LineItem> LineItem { get; set; }
+        public DbSet<DBAdmin> DBAdmin { get; set; }
 
     }
 

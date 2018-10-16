@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
+using System.Data;
+
 namespace MovieTime2.DAL
 {
     public class AdminDAL
@@ -42,6 +44,21 @@ namespace MovieTime2.DAL
                 imageURL = k.ImageURL,
             }).ToList();
             return allMovies;
+        }
+
+        public List<string> getAllMovieHeaders()
+        {
+            DatabaseContext db = new DatabaseContext();
+            /*List<string> columnNames = db.Movie.Cast<DataColumn>()
+                                 .Select(x => x.ColumnName)
+                                 .ToList();*/
+            List<string> columns = new List<string>();
+            columns.Add("Id");
+            columns.Add("Title");
+            columns.Add("Summary");
+            columns.Add("Price");
+            columns.Add("ImageURL");
+            return columns;
         }
     }
 

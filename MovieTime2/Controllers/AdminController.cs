@@ -55,6 +55,14 @@ namespace MovieTime2.Controllers
             string json = jsonSerializer.Serialize(movieList);
             return json;
         }
+        public string getAllMovieHeaders()
+        {
+            var db = new AdminBLL();
+            List<string> headerList = db.getAllMovieHeaders();
+            var jsonSerializer = new JavaScriptSerializer();
+            string json = jsonSerializer.Serialize(headerList);
+            return json;
+        }
 
     }
 }

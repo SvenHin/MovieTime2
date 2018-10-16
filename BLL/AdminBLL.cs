@@ -18,6 +18,12 @@ namespace MovieTime2.BLL
             List<movie> allMovies = AdminDAL.getAllMovies();
             return allMovies;
         }
+        public List<string> getAllMovieHeaders()
+        {
+            var AdminDAL = new AdminDAL();
+            List<string> columnNames = AdminDAL.getAllMovieHeaders();
+            return columnNames;
+        }
         public bool Admin_in_DB(Admin admin)
         {
             var AdminDAL = new AdminDAL();

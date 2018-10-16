@@ -8,6 +8,7 @@
     @Scripts.Render("~/bundles/adminjquery")
     <script type="text/javascript">
         $(function () {
+            getMovieHeaderList();
             getMovieList();
         })
     </script>
@@ -24,15 +25,7 @@
     <div id="MainContent" class="col-xl-11 col-lg-10 col-md-10 col-sm-10 padding-0 bgblack height100 overflow ">
 
         <table id="contentTable" class="table table-dark">
-            <thead id="contentHead">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Summary</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">ImageURL</th>
-                </tr>
-            </thead>
+            <thead id="contentHead"></thead>
             <tbody id="contentBody"></tbody>
         </table>
 

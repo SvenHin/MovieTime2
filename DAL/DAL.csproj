@@ -48,11 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="adminDALStub.cs" />
-	<Compile Include="AdminDAL.cs" />
+    <Compile Include="AdminDALStub.cs" />
+    <Compile Include="AdminDAL.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="DBInit.cs" />
     <Compile Include="DbModel.cs" />
+    <Compile Include="IAdminDAL.cs" />
     <Compile Include="MovieTimeDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SecurityDAL.cs" />

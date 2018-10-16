@@ -9,7 +9,7 @@ using System.Data;
 
 namespace MovieTime2.DAL
 {
-    public class AdminDAL
+    public class AdminDAL : DAL.IAdminDAL 
     {
         //To check whether the admin exists, and if so, if the credentials are correct
         public bool Admin_in_DB(Admin admin)

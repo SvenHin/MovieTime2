@@ -13,6 +13,19 @@ namespace MovieTime2.Controllers
     public class AdminController : Controller
     {
         // GET: Admin
+
+        private IAdminLogic _AdminBLL;
+
+        public AdminController()
+        {
+            _AdminBLL = new AdminLogic();
+        }
+        public AdminController(IAdminLogic stub)
+        {
+            _AdminBLL = stub;
+        }
+
+
         public ActionResult Index()
         {
             return View("Admin");

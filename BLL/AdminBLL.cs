@@ -10,13 +10,16 @@ using MovieTime2.Models;
 
 namespace MovieTime2.BLL
 {
-    public class AdminBLL
+    public class AdminLogic : BLL.IAdminLogic 
     {
-        public List<movie> getAllMovies()
+        private IAdminDAL _adminDAL;
+        public AdminLogic()
         {
-            var AdminDAL = new AdminDAL();
-            List<movie> allMovies = AdminDAL.getAllMovies();
-            return allMovies;
+            _adminDAL = new AdminDAL();
+        }
+        public AdminLogic(IAdminDAL stub)
+        {
+            _adminDAL = stub;
         }
         public List<string> getAllMovieHeaders()
         {
@@ -28,6 +31,12 @@ namespace MovieTime2.BLL
         {
             var AdminDAL = new AdminDAL();
             return AdminDAL.Admin_in_DB(admin);
+        }
+        public List<movie> getAllMovies()
+        {
+            var AdminDAL = new AdminDAL();
+            List<movie> allMovies = AdminDAL.getAllMovies();
+            return allMovies;
         }
     }
 }

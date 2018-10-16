@@ -28,5 +28,11 @@ namespace MovieTime2.BLL
             var AdminDAL = new AdminDAL();
             return AdminDAL.Admin_in_DB(admin);
         }
+        public List<movie> getAllMovies()
+        {
+            var AdminDAL = new AdminDAL();
+            List<movie> allMovies = AdminDAL.getAllMovies();
+            return allMovies;
+        }
     }
 }

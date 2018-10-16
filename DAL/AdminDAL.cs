@@ -29,6 +29,20 @@ namespace MovieTime2.DAL
                 }
             }
         }
+
+        public List<movie> getAllMovies()
+        {
+            DatabaseContext db = new DatabaseContext();
+            List<movie> allMovies = db.Movie.Select(k => new movie()
+            {
+                id = k.Id,
+                title = k.Title,
+                summary = k.Summary,
+                price = k.Price,
+                imageURL = k.ImageURL,
+            }).ToList();
+            return allMovies;
+        }
     }
 
 }

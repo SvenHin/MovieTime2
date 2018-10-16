@@ -3,5 +3,39 @@
     ViewBag.Title = "AdminInterface";
 }
 
-<h2>AdminInterface</h2>
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/admininterface.css" />
+    @Scripts.Render("~/bundles/adminjquery")
+    <script type="text/javascript">
+        $(function () {
+            getMovieList();
+        })
+    </script>
+</head>
 
+<div id="mainPage" class="row height100 bgblack overflow">
+    <div id="sideNav" class="col-xl-1 col-lg-2 col-md-2 col-sm-2">
+        <div id="genre-list" class="list-group-mine list-group ">
+            <a class="list-group-item list-group-item-action active" href="#Genre1">Movie</a>
+            <a class="list-group-item list-group-item-action" href="#Genre2">Customer</a>
+            <a class="list-group-item list-group-item-action" href="#Genre3">Order</a>
+        </div>
+    </div>
+    <div id="MainContent" class="col-xl-11 col-lg-10 col-md-10 col-sm-10 padding-0 bgblack height100 overflow ">
+
+        <table id="contentTable" class="table table-dark">
+            <thead id="contentHead">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Summary</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">ImageURL</th>
+                </tr>
+            </thead>
+            <tbody id="contentBody"></tbody>
+        </table>
+
+
+    </div>
+</div>

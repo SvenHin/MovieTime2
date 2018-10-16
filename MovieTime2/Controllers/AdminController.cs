@@ -35,11 +35,10 @@ namespace MovieTime2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(Admin admin)
         {
-            var db = new AdminBLL();
 
             if (ModelState.IsValid)
             {
-                if (db.Admin_in_DB(admin))
+                if (_AdminBLL.Admin_in_DB(admin))
                 {
                     // Username && Password correct
                     Session["LoggedIn"] = "true";
@@ -62,16 +61,14 @@ namespace MovieTime2.Controllers
 
         public string getAllMovies()
         {
-            var db = new AdminBLL();
-            List<movie> movieList = db.getAllMovies();
+            List<movie> movieList = _AdminBLL.getAllMovies();
             var jsonSerializer = new JavaScriptSerializer();
             string json = jsonSerializer.Serialize(movieList);
             return json;
         }
         public string getAllMovieHeaders()
         {
-            var db = new AdminBLL();
-            List<string> headerList = db.getAllMovieHeaders();
+            List<string> headerList = _AdminBLL.getAllMovieHeaders();
             var jsonSerializer = new JavaScriptSerializer();
             string json = jsonSerializer.Serialize(headerList);
             return json;

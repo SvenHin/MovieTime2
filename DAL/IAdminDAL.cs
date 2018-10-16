@@ -10,5 +10,7 @@ namespace MovieTime2.DAL
     public interface IAdminDAL
     {
         bool Admin_in_DB(Admin admin);
+        List<movie> getAllMovies();
+        List<string> getAllMovieHeaders();
     }
 }

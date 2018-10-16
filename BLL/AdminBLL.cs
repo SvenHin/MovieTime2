@@ -10,8 +10,19 @@ using MovieTime2.Models;
 
 namespace MovieTime2.BLL
 {
-    public class AdminBLL
+    public class AdminLogic : BLL.IAdminLogic 
     {
+        private IAdminDAL _adminDAL;
+        public AdminLogic()
+        {
+            _adminDAL = new AdminDAL();
+        }
+        public AdminLogic(IAdminDAL stub)
+        {
+            _adminDAL = stub;
+        }
+
+
         public bool Admin_in_DB(Admin admin)
         {
             var AdminDAL = new AdminDAL();

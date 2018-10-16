@@ -11,18 +11,7 @@ namespace MovieTime2.DAL
     {
         DatabaseContext db = new DatabaseContext();
 
-        public List<movie> getAllMovies()
-        {
-            List<movie> allMovies = db.Movie.Select(k => new movie()
-            {
-                id = k.Id,
-                title = k.Title,
-                summary = k.Summary,
-                price = k.Price,
-                imageURL = k.ImageURL,
-            }).ToList();
-            return allMovies;
-        }
+        
 
         public List<genre> getAllGenres()
         {

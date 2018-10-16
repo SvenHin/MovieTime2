@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MovieTime2.BLL;
+using System.Web.Script.Serialization;
+
 
 namespace MovieTime2.Controllers
 {
@@ -43,6 +45,15 @@ namespace MovieTime2.Controllers
             }
             // Check to see if Login Credentials are OK
             return View();
+        }
+
+        public string getAllMovies()
+        {
+            var db = new AdminBLL();
+            List<movie> movieList = db.getAllMovies();
+            var jsonSerializer = new JavaScriptSerializer();
+            string json = jsonSerializer.Serialize(movieList);
+            return json;
         }
 
     }

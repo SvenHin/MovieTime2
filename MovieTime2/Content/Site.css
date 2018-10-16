@@ -85,3 +85,33 @@ html, body {
 #cartCounter {
     display: none;
 }
+
+#sideNav {
+    border-right: 2px solid;
+    border-color: #0c0c0c;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.list-group-mine .list-group-item {
+    background-color: #191919;
+    color: #e2e2e2;
+}
+
+    .list-group-mine .list-group-item:hover {
+        background-color: #232323;
+    }
+
+    .list-group-mine .list-group-item.active {
+        background-color: #232323;
+        border-color: #232323;
+    }
+
+.navbar-nav li a {
+    color: #e2e2e2;
+}
+
+#mainPage {
+    border-top: 1px solid;
+    border-color: #0c0c0c;
+}

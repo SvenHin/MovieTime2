@@ -12,6 +12,12 @@ namespace MovieTime2.BLL
 {
     public class AdminBLL
     {
+        public List<movie> getAllMovies()
+        {
+            var AdminDAL = new AdminDAL();
+            List<movie> allMovies = AdminDAL.getAllMovies();
+            return allMovies;
+        }
         public bool Admin_in_DB(Admin admin)
         {
             var AdminDAL = new AdminDAL();

@@ -30,7 +30,7 @@ namespace MovieTime2.BLL
             return MovieTimeDAL.getAMovie(Id);
         }
 
-        public bool newOrder(List<Movie> shoppedMovies, string Username)
+        public bool newOrder(List<movie> shoppedMovies, string Username)
         {
             var MovieTimeDAL = new MovieTimeDAL();
             return MovieTimeDAL.newOrder(shoppedMovies, Username);

@@ -57,6 +57,20 @@ namespace MovieTime2.DAL
              };
              context.Genre.Add(Western); */
 
+            var SecurityDAL = new SecurityDAL();
+            var Admin1Salt = SecurityDAL.CreateSalt();
+
+            var Admin1 = new DBAdmin
+            {
+                Username = "Admin",
+                Password = SecurityDAL.CreateHash("Admin123", Admin1Salt),
+                Salt = Admin1Salt
+
+            };
+            context.DBAdmin.Add(Admin1);
+
+
+
 
 
             var Bruce = new Movie

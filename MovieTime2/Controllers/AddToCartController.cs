@@ -58,14 +58,14 @@ namespace MovieTime2.Controllers
             {
                 if (Session["LoggedIn"].ToString().Equals("true"))
                 {
-                    var db = new MovieTimeBLL();
-                    List<movie> movies = (List<movie>)Session["cart"];
-                    List<Movie> Movies = db.convertMovies(movies);
-                    var Username = (Session["username"]).ToString();
-                    db.newOrder(Movies, Username);
-                    Session["cart"] = null;
-                    Session["cartcount"] = null;
-                    return RedirectToAction("Index", "Home");
+                   var db = new MovieTimeBLL();
+                   List<movie> movies = (List<movie>)Session["cart"];
+                   
+                   var Username = (Session["username"]).ToString();
+                   db.newOrder(movies, Username);
+                   Session["cart"] = null;
+                   Session["cartcount"] = null;
+                   return RedirectToAction("Index", "Home");
                 }
                 else
                 {

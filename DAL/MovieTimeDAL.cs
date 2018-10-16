@@ -50,11 +50,12 @@ namespace MovieTime2.DAL
             return aMovie;
         }
 
-        public bool newOrder(List<Movie> shoppedMovies, string Username)
+        public bool newOrder(List<movie> shoppedMovies, string Username)
         {
+            List<Movie> Movies = convertMovies(shoppedMovies);
             var newLineItems = new List<LineItem>();
 
-            foreach (Movie i in shoppedMovies)
+            foreach (Movie i in Movies)
             {
                 var dbMovie = db.Movie.Find(i.Id);
                 var lineItem = new LineItem()

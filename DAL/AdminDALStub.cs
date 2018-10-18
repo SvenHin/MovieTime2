@@ -56,5 +56,14 @@ namespace MovieTime2.DAL
                 return true;
             }
         }
+
+        public bool removeMovie(int id)
+        {
+            return true; //unfinished
+        }
+        public bool addMovie(movie movie)
+        {
+            return true; //unfinished
+        }
     }
 }

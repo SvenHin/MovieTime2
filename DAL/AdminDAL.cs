@@ -60,6 +60,44 @@ namespace MovieTime2.DAL
             columns.Add("ImageURL");
             return columns;
         }
+        public bool removeMovie(int id)
+        {
+            DatabaseContext db = new DatabaseContext();
+            try
+            {
+                Movie remove = db.Movie.Find(id);
+                db.Movie.Remove(remove);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception fail)
+            {
+                return false;
+            }
+        }
+
+        public bool addMovie(movie movie)
+        {
+            var newMovie = new Movie()
+            {
+                Title = movie.title,
+                Summary = movie.summary,
+                Price = movie.price,
+                ImageURL = movie.imageURL
+            };
+            DatabaseContext db = new DatabaseContext();
+            try
+            {
+                db.Movie.Add(newMovie);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception fail)
+            {
+                return false;
+            }
+        }
+
     }
 
 }

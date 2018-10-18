@@ -35,5 +35,15 @@ namespace MovieTime2.BLL
             List<movie> allMovies = _adminDAL.getAllMovies();
             return allMovies;
         }
+        public bool removeMovie(int id)
+        {
+            bool remove = _adminDAL.removeMovie(id);
+            return remove;
+        }
+        public bool addMovie(movie movie)
+        {
+            bool add = _adminDAL.addMovie(movie);
+            return add;
+        }
     }
 }

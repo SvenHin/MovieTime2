@@ -12,5 +12,8 @@ namespace MovieTime2.DAL
         bool Admin_in_DB(Admin admin);
         List<movie> getAllMovies();
         List<string> getAllMovieHeaders();
+        bool removeMovie(int id);
+        bool addMovie(movie movie);
+
     }
 }

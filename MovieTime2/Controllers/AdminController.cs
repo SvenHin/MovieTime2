@@ -73,6 +73,22 @@ namespace MovieTime2.Controllers
             string json = jsonSerializer.Serialize(headerList);
             return json;
         }
+        public string removeMovie(int id)
+        {
+            bool remove = _AdminBLL.removeMovie(id);
+            var jsonSerializer = new JavaScriptSerializer();
+            string json = jsonSerializer.Serialize(remove);
+            return json;
+        }
+
+        public string addMovie(movie movie)
+        {
+            bool add = _AdminBLL.addMovie(movie);
+            var jsonSerializer = new JavaScriptSerializer();
+            string json = jsonSerializer.Serialize(add);
+            return json;
+        }
+
 
     }
 }

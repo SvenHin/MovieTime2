@@ -115,3 +115,7 @@ html, body {
     border-top: 1px solid;
     border-color: #0c0c0c;
 }
+.borderStyle {
+    border-radius: 4px; 
+    border-color: transparent;
+}

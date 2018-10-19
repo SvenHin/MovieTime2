@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using MovieTime2.Models;
 
-namespace DAL
+namespace MovieTime2.DAL
 {
-    class adminDALStub
+    public class AdminDALStub : DAL.IAdminDAL
     {
         public List<Customer> getAllCustomers()
         {

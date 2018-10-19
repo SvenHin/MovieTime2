@@ -111,5 +111,9 @@ namespace MovieTime2.DAL
             }
             
         }
+        public bool editMovieName(int id, string changedDetail)
+        {
+            return true; //unfinished
+        }
     }
 }

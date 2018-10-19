@@ -59,6 +59,9 @@ $(function () {
             summary: $("#Summary").val(),
             price: $("#Price").val(),
             imageURL: $("#Url").val(),
+            genre: $("#Genre1").val(),
+            genre2: $("#Genre2").val(),
+
         }
 
         $.ajax({
@@ -68,8 +71,12 @@ $(function () {
             contentType: "application/json;charset=utf-8",
             success: function (ok) {
                 // kunne ha feilhåndtert evt. feil i registreringen her
-                //window.location.reload();
-                // reload av vinduet må sje her altså etter at kallet har returnert
+                if (ok == "false") {
+                    alert("Could not add movie, needs at least one genre");
+                }
+                else {
+                    window.location.reload();
+                }
             },
             error: function (x, y, z) {
                 alert(x + '\n' + y + '\n' + z);

@@ -99,6 +99,7 @@ namespace MovieTime2.Models
         public int price { get; set; }
         public string imageURL { get; set; }
         public string genre { get; set; }
+        public string genre2 { get; set; }
     }
 
     public class jsMovie

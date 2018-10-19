@@ -21,18 +21,29 @@ namespace MovieTime2.BLL
         {
             _adminDAL = stub;
         }
-
-
+        public List<string> getAllMovieHeaders()
+        {
+            List<string> columnNames = _adminDAL.getAllMovieHeaders();
+            return columnNames;
+        }
         public bool Admin_in_DB(Admin admin)
         {
-            var AdminDAL = new AdminDAL();
-            return AdminDAL.Admin_in_DB(admin);
+            return _adminDAL.Admin_in_DB(admin);
         }
         public List<movie> getAllMovies()
         {
-            var AdminDAL = new AdminDAL();
-            List<movie> allMovies = AdminDAL.getAllMovies();
+            List<movie> allMovies = _adminDAL.getAllMovies();
             return allMovies;
+        }
+        public bool removeMovie(int id)
+        {
+            bool remove = _adminDAL.removeMovie(id);
+            return remove;
+        }
+        public bool addMovie(movie movie)
+        {
+            bool add = _adminDAL.addMovie(movie);
+            return add;
         }
     }
 }

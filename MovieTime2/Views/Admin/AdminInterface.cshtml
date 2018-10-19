@@ -8,6 +8,7 @@
     @Scripts.Render("~/bundles/adminjquery")
     <script type="text/javascript">
         $(function () {
+            getMovieHeaderList();
             getMovieList();
         })
     </script>
@@ -22,17 +23,27 @@
         </div>
     </div>
     <div id="MainContent" class="col-xl-11 col-lg-10 col-md-10 col-sm-10 padding-0 bgblack height100 overflow ">
-
-        <table id="contentTable" class="table table-dark">
-            <thead id="contentHead">
+        <table id="addTable" class="table-dark" style="background-color: transparent">
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Summary</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">ImageURL</th>
+                    <td>Title</td>
+                    <td>Summary</td>
+                    <td>Price</td>
+                    <td>Url</td>
+                    <td>Genre 1</td>
+                    <td>Genre 2</td>
                 </tr>
-            </thead>
+                <tr>
+                    <td><input type="text" id="Title" class="borderStyle"/></td>
+                    <td><input type="text" id="Summary" class="borderStyle" /></td>
+                    <td><input type="text" id="Price" class="borderStyle"/></td>
+                    <td><input type="text" id="Url" class="borderStyle"/></td>
+                    <td><input type="text" id="Genre1" class="borderStyle"/></td>
+                    <td><input type="text" id="Genre2" class="borderStyle"/></td>
+                    <td><button id="Add" class="btn btn-outline-success">Add Movie</button></td>
+                </tr>
+        </table>
+        <table id="contentTable" class="table table-dark">
+            <thead id="contentHead"></thead>
             <tbody id="contentBody"></tbody>
         </table>
 

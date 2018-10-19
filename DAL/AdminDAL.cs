@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
+using System.Data;
+
 namespace MovieTime2.DAL
 {
     public class AdminDAL : DAL.IAdminDAL 
@@ -43,6 +45,59 @@ namespace MovieTime2.DAL
             }).ToList();
             return allMovies;
         }
+
+        public List<string> getAllMovieHeaders()
+        {
+            DatabaseContext db = new DatabaseContext();
+            /*List<string> columnNames = db.Movie.Cast<DataColumn>()
+                                 .Select(x => x.ColumnName)
+                                 .ToList();*/
+            List<string> columns = new List<string>();
+            columns.Add("Id");
+            columns.Add("Title");
+            columns.Add("Summary");
+            columns.Add("Price");
+            columns.Add("ImageURL");
+            return columns;
+        }
+        public bool removeMovie(int id)
+        {
+            DatabaseContext db = new DatabaseContext();
+            try
+            {
+                Movie remove = db.Movie.Find(id);
+                db.Movie.Remove(remove);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception fail)
+            {
+                return false;
+            }
+        }
+
+        public bool addMovie(movie movie)
+        {
+            var newMovie = new Movie()
+            {
+                Title = movie.title,
+                Summary = movie.summary,
+                Price = movie.price,
+                ImageURL = movie.imageURL
+            };
+            DatabaseContext db = new DatabaseContext();
+            try
+            {
+                db.Movie.Add(newMovie);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception fail)
+            {
+                return false;
+            }
+        }
+
     }
 
 }

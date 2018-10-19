@@ -8,10 +8,10 @@ using MovieTime2.DAL;
 using MovieTime2.Controllers;
 using MovieTime2.Models;
 
-namespace UnitTest
+namespace MovieTime2.UnitTest
 {
     [TestClass]
-    class AdminControllerTest
+    public class AdminControllerTest
     {
     }
 }

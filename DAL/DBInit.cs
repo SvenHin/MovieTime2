@@ -78,7 +78,7 @@ namespace MovieTime2.DAL
                 Title = "Bruce Almighty",
                 Summary = "A guy who complains about God too often is given almighty powers to teach him how difficult it is to run the world.",
                 Price =  45,
-                ImageURL= "/content/Images/BruceAllmighty.jpg"
+                ImageURL= "/Content/Images/BruceAllmighty.jpg"
 
             };
             List<Genre> ComedyList = new List<Genre>();
@@ -153,8 +153,8 @@ namespace MovieTime2.DAL
 
             var Totoro = new Movie
             {
-                Title = "My Neoghbor Totoro",
-                Summary = "",
+                Title = "My Neighbor Totoro",
+                Summary = "When two girls move to the country to be near their ailing mother, they have adventures with the wondrous forest spirits who live nearby.",
                 Price = 45,
                 ImageURL = "/Content/Images/MyNeighborTotoro.jpg"
 

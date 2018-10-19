@@ -30,6 +30,20 @@ namespace MovieTime2.DAL
             customerList.Add(customer);
             return customerList;
         }
+        public bool Admin_in_DB(Admin admin)
+        {
+            return true;
+        }
+
+        public List<movie> getAllMovies()
+        {
+            return new List<movie>();
+        }
+        public List<string> getAllMovieHeaders()
+        {
+            return new List<string>();
+        }
+
 
         public bool deleteCustomer (int id)
         {
@@ -41,6 +55,15 @@ namespace MovieTime2.DAL
             {
                 return true;
             }
+        }
+
+        public bool removeMovie(int id)
+        {
+            return true; //unfinished
+        }
+        public bool addMovie(movie movie)
+        {
+            return true; //unfinished
         }
     }
 }

@@ -86,13 +86,60 @@ namespace MovieTime2.DAL
                 ImageURL = movie.imageURL
             };
             DatabaseContext db = new DatabaseContext();
+            List<Genre> genreList = new List<Genre>();
+            Genre genre = db.Genre.Where(k => k.Title == movie.genre).FirstOrDefault();
+            Genre genre2 = db.Genre.Where(k => k.Title == movie.genre2).FirstOrDefault();
+            if (genre != null)genreList.Add(genre);
+            if (genre2 != null)genreList.Add(genre2);
+            if (genre != null || genre2 != null)
+            {
+                newMovie.Genre = genreList;
+                try
+                {
+                    db.Movie.Add(newMovie);
+                    db.SaveChanges();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            return false;
+            
+        }
+
+      /*  public bool editMovies(int id, movie newDetails)
+        {
+            DatabaseContext db = new DatabaseContext();
+            Movie changedMovie = db.Movie.Find(id);
+            changedMovie.Title = newDetails.title;
+            changedMovie.Summary = newDetails.summary;
+            changedMovie.Price = newDetails.price;
+            changedMovie.ImageURL = newDetails.imageURL;
+            List<Genre> genreList = new List<Genre>();
+            Genre genre = db.Genre.Where(k => k.Title == newDetails.genre).FirstOrDefault();
+            Genre genre2 = db.Genre.Where(k => k.Title == newDetails.genre2).FirstOrDefault();
+            if (genre != null) genreList.Add(genre);
+            if (genre2 != null) genreList.Add(genre2);
+            changedMovie.Genre = genreList;
+            
+   
+
+        }*/
+
+        public bool editMovieName(int id, string newDetail)
+        {
+            DatabaseContext db = new DatabaseContext();
+            Movie changedMovie = db.Movie.Find(id);
+            
             try
             {
-                db.Movie.Add(newMovie);
+                changedMovie.Title = newDetail;
                 db.SaveChanges();
                 return true;
             }
-            catch (Exception fail)
+            catch (Exception ex)
             {
                 return false;
             }

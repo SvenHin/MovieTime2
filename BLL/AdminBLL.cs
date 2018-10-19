@@ -45,5 +45,10 @@ namespace MovieTime2.BLL
             bool add = _adminDAL.addMovie(movie);
             return add;
         }
+        public bool editMovieName(int id, string changedDetail)
+        {
+            bool editName = _adminDAL.editMovieName(id, changedDetail);
+            return editName;
+        }
     }
 }

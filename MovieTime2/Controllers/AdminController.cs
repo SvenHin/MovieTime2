@@ -87,7 +87,12 @@ namespace MovieTime2.Controllers
             var jsonSerializer = new JavaScriptSerializer();
             string json = jsonSerializer.Serialize(add);
             return json;
-        }
+        } 
+
+     /*   public string editMovie(movie movie)
+        {
+            
+        }*/
 
 
     }

@@ -14,6 +14,8 @@ namespace MovieTime2.DAL
         List<string> getAllMovieHeaders();
         bool removeMovie(int id);
         bool addMovie(movie movie);
+        bool editMovieName(int id, string changedDetail);
+        
 
-    }
+        }
 }

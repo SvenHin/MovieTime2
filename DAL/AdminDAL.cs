@@ -144,6 +144,78 @@ namespace MovieTime2.DAL
                 return false;
             }
         }
+        public bool editMovieSummary(int id, string newDetail)
+        {
+            DatabaseContext db = new DatabaseContext();
+            Movie changedMovie = db.Movie.Find(id);
+
+            try
+            {
+                changedMovie.Summary = newDetail;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool editMoviePrice(int id, int newDetail)
+        {
+            DatabaseContext db = new DatabaseContext();
+            Movie changedMovie = db.Movie.Find(id);
+
+            try
+            {
+                changedMovie.Price = newDetail;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool editMovieImageUrl(int id, string newDetail)
+        {
+            DatabaseContext db = new DatabaseContext();
+            Movie changedMovie = db.Movie.Find(id);
+
+            try
+            {
+                changedMovie.ImageURL = newDetail;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public bool editMovieGenre(int id, string genre1, string genre2)
+        {
+            DatabaseContext db = new DatabaseContext();
+            Movie changedMovie = db.Movie.Find(id);
+            List<Genre> genreList = new List<Genre>();
+            Genre foundGenre1 = db.Genre.Where(k => k.Title == genre1).FirstOrDefault();
+            Genre foundGenre2 = db.Genre.Where(k => k.Title == genre2).FirstOrDefault();
+            if (foundGenre1 != null) genreList.Add(foundGenre1);
+            if (foundGenre2 != null) genreList.Add(foundGenre2);
+                changedMovie.Genre = genreList;
+                try
+                {
+                    db.Movie.Add(changedMovie);
+                    db.SaveChanges();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+        }
+
 
     }
 

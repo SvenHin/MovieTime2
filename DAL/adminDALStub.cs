@@ -32,16 +32,47 @@ namespace MovieTime2.DAL
         }
         public bool Admin_in_DB(Admin admin)
         {
-            return true;
+            if (admin.Username == "")
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+            
+           
         }
 
         public List<movie> getAllMovies()
         {
-            return new List<movie>();
+            var movieList = new List<movie>();
+            var movie = new movie()
+            {
+                title = "Django",
+                summary = "Once upon a time.",
+                price = 100,
+                imageURL = "whatever/whatever.jpg",
+                genre = "Action",
+
+
+            };
+            movieList.Add(movie);
+            movieList.Add(movie);
+            movieList.Add(movie);
+            return movieList;
         }
+
+
         public List<string> getAllMovieHeaders()
         {
-            return new List<string>();
+            var headerList = new List<string>();
+            headerList.Add("Id");
+            headerList.Add("Title");
+            headerList.Add("Summary");
+            headerList.Add("Price");
+            headerList.Add("ImageURL");
+            return headerList;
         }
 
 
@@ -59,11 +90,40 @@ namespace MovieTime2.DAL
 
         public bool removeMovie(int id)
         {
-            return true; //unfinished
+            if (id == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
         public bool addMovie(movie movie)
         {
-            return true; //unfinished
+            if(movie.title == "")
+            {
+                return false;
+            }
+            else
+            {
+                if (movie.genre != "" || movie.genre2 != "")
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+        public bool editMovieName(int id, string changedDetail)
+        {
+            if (id == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

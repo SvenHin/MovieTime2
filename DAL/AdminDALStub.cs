@@ -37,11 +37,11 @@ namespace MovieTime2.DAL
 
         public List<movie> getAllMovies()
         {
-            return new List<movie>();
+            return new List<movie>(); //unfinished
         }
         public List<string> getAllMovieHeaders()
         {
-            return new List<string>();
+            return new List<string>(); //unfinished
         }
 
 
@@ -59,16 +59,39 @@ namespace MovieTime2.DAL
 
         public bool removeMovie(int id)
         {
-            return true; //unfinished
+            if (id == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
         public bool addMovie(movie movie)
         {
-            return true; //unfinished
+            if (movie.title == "")
+            {
+                return false;
+            }
+            else
+            {
+                if (movie.genre != "" || movie.genre2 != "")
+                {
+                    return true;
+                }
+                return false;
+            }
         }
         public bool editMovieName(int id, string changedDetail)
         {
             return true; //unfinished
         }
+        public bool editMovieGenre(int id, string genre1, string genre2)
+        {
+            return true; //unfinished
+        }
+
         public bool editMovieSummary(int id, string changedDetail)
         {
             return true; //unfinished
@@ -81,13 +104,10 @@ namespace MovieTime2.DAL
         {
             return true; //unfinished
         }
-        public bool editMovieGenre(int id, string genre1, string genre2)
-        {
-            return true; //unfinished
-        }
         public List<movie> searchMovie(string title)
         {
             return new List<movie>(); //unfinished
         }
     }
+    
 }

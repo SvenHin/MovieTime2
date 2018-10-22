@@ -131,6 +131,13 @@ namespace MovieTime2.Controllers
             string json = jsonSerializer.Serialize("true");
             return json;
         }
+        public string searchMovie(string title)
+        {
+            List<movie> foundMovies = _AdminBLL.searchMovie(title);
+            var jsonSerializer = new JavaScriptSerializer();
+            string json = jsonSerializer.Serialize(foundMovies);
+            return json;
+        }
 
 
     }

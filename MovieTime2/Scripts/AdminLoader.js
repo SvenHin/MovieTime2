@@ -38,6 +38,29 @@ function getMovieList() {
 
     });
 }
+function searchMovie(title) {
+
+    $.ajax({
+        url: '/Admin/searchMovie',
+        type: 'GET',
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: { 'title': title },
+        success: function (movies) {
+            var utStreng = "";
+            var counter = 0;
+            for (var i in movies) {
+                counter++;
+                utStreng += "<tr id='" + movies[i].id + "'><th scope='row'>" + movies[i].id + "</th><td>" + movies[i].title + "</td><td>" + movies[i].summary + "</td><td>" + movies[i].price + "</td><td>" + movies[i].imageURL + "</td><td><button data-type='" + counter + "' type='button' class='editBtn btn btn-warning'>Edit</button></td><td><button data-type='" + counter + "' type='button' class='removeBtn btn btn-danger'>Remove</button></td></tr>"
+            }
+            $("#contentBody").html(utStreng);
+        },
+        error: function (x, y, z) {
+            alert(x + '\n' + y + '\n' + z);
+        }
+
+    });
+}
 $(function () {
     $(document).on("click", ".removeBtn", function () {
         var id = $(this).attr('data-type');
@@ -58,15 +81,25 @@ $(function () {
 });
 $(function () {
     $(document).on("click", ".searchBtn", function () {
-        var movie = $("#searchMovieField").val();
-        searchMovie(movie);
+        var title = $("#SearchMovieField").val();
+        searchMovie(title);
+    });
+});
+$(function () {
+    $('#SearchMovieField').keypress(function (e) {
+        var key = e.which;
+        if (key == 13)  // the enter key code
+        {
+            $('.searchBtn').click();
+            return false;
+        }
     });
 });
 $(function () {
     $("#Add").click(function () {
 
         // bygg et js objekt fra input feltene
-        var jsInn = {
+        var jsIn = {
             title: $("#Title").val(),
             summary: $("#Summary").val(),
             price: $("#Price").val(),
@@ -79,7 +112,7 @@ $(function () {
         $.ajax({
             url: '/Admin/addMovie',
             type: 'POST',
-            data: JSON.stringify(jsInn),
+            data: JSON.stringify(jsIn),
             contentType: "application/json;charset=utf-8",
             success: function (ok) {
                 // kunne ha feilhåndtert evt. feil i registreringen her

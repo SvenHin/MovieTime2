@@ -184,16 +184,47 @@ namespace MovieTime2.DAL
             Genre foundGenre2 = db.Genre.Where(k => k.Title == genre2).FirstOrDefault();
             if (foundGenre1 != null) genreList.Add(foundGenre1);
             if (foundGenre2 != null) genreList.Add(foundGenre2);
-                try
+            try
+            {
+                changedMovie.Genre = genreList;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public List<movie> searchMovie(string title)
+        {
+            DatabaseContext db = new DatabaseContext();
+            Movie foundMovie = db.Movie.Where(k => k.Title == title).FirstOrDefault();
+            List<movie> foundMovies = new List<movie>();
+
+            try
+            {
+                if (foundMovie != null)
                 {
-                    changedMovie.Genre = genreList;
-                    db.SaveChanges();
-                    return true;
+                    movie returnMovie = new movie()
+                    {
+                        id = foundMovie.Id,
+                        title = foundMovie.Title,
+                        summary = foundMovie.Summary,
+                        price = foundMovie.Price,
+                        imageURL = foundMovie.ImageURL,
+                    };
+                    foundMovies.Add(returnMovie);
+
                 }
-                catch (Exception ex)
-                {
-                    return false;
-                }
+
+            }
+            catch(Exception ex)
+            {
+
+            }
+            return foundMovies;
+            
         }
 
 

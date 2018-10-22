@@ -85,5 +85,9 @@ namespace MovieTime2.DAL
         {
             return true; //unfinished
         }
+        public List<movie> searchMovie(string title)
+        {
+            return new List<movie>(); //unfinished
+        }
     }
 }

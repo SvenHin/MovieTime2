@@ -32,47 +32,16 @@ namespace MovieTime2.DAL
         }
         public bool Admin_in_DB(Admin admin)
         {
-            if (admin.Username == "")
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-            
-           
+            return true;
         }
 
         public List<movie> getAllMovies()
         {
-            var movieList = new List<movie>();
-            var movie = new movie()
-            {
-                title = "Django",
-                summary = "Once upon a time.",
-                price = 100,
-                imageURL = "whatever/whatever.jpg",
-                genre = "Action",
-
-
-            };
-            movieList.Add(movie);
-            movieList.Add(movie);
-            movieList.Add(movie);
-            return movieList;
+            return new List<movie>();
         }
-
-
         public List<string> getAllMovieHeaders()
         {
-            var headerList = new List<string>();
-            headerList.Add("Id");
-            headerList.Add("Title");
-            headerList.Add("Summary");
-            headerList.Add("Price");
-            headerList.Add("ImageURL");
-            return headerList;
+            return new List<string>();
         }
 
 
@@ -90,48 +59,11 @@ namespace MovieTime2.DAL
 
         public bool removeMovie(int id)
         {
-            if (id == 0)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            return true; //unfinished
         }
         public bool addMovie(movie movie)
         {
-            if(movie.title == "")
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-            
-        }
-        public bool editMovieName(int id, string changedDetail)
-        {
             return true; //unfinished
         }
-        public bool editMovieSummary(int id, string changedDetail)
-        {
-            return true; //unfinished
-        }
-        public bool editMoviePrice(int id, int changedDetail)
-        {
-            return true; //unfinished
-        }
-        public bool editMovieImageUrl(int id, string changedDetail)
-        {
-            return true; //unfinished
-        }
-        public bool editMovieGenre(int id, string genre1, string genre2)
-        {
-            return true; //unfinished
-        }
-
-
     }
 }

@@ -89,7 +89,7 @@ namespace MovieTime2.DAL
         public DatabaseContext() 
             : base("name=MovieDatabase")
         {
-            Database.CreateIfNotExists();
+          //  Database.CreateIfNotExists();
 
             Database.SetInitializer(new DBInit());
         }

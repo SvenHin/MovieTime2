@@ -147,3 +147,6 @@ function editMovieRow(id) {
     $(editRow).html(dynamicRow);
 }
 
+
+
+

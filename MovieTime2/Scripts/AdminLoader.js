@@ -49,10 +49,8 @@ function getMovieList() {
         dataType: 'json',
         success: function (movies) {
             var utStreng = "";
-            var counter = 0;
             for (var i in movies) {
-                counter++;
-                utStreng += "<tr id='" + movies[i].id + "'><th scope='row'>" + movies[i].id + "</th><td>" + movies[i].title + "</td><td>" + movies[i].summary + "</td><td>" + movies[i].price + "</td><td>" + movies[i].imageURL + "</td><td><button data-type='" + counter + "' type='button' class='editBtn btn btn-warning'>Edit</button></td><td><button data-type='" + counter + "' type='button' class='removeBtn btn btn-danger'>Remove</button></td></tr>"
+                utStreng += "<tr id='" + movies[i].id + "'><th scope='row'>" + movies[i].id + "</th><td>" + movies[i].title + "</td><td>" + movies[i].summary + "</td><td>" + movies[i].price + "</td><td>" + movies[i].imageURL + "</td><td><button data-type='" + movies[i].id + "' type='button' class='editBtn btn btn-warning'>Edit</button></td><td><button data-type='" + movies[i].id + "' type='button' class='removeBtn btn btn-danger'>Remove</button></td></tr>"
             }
             $("#contentBody").html(utStreng);
         },
@@ -72,10 +70,8 @@ function searchMovie(title) {
         data: { 'title': title },
         success: function (movies) {
             var utStreng = "";
-            var counter = 0;
             for (var i in movies) {
-                counter++;
-                utStreng += "<tr id='" + movies[i].id + "'><th scope='row'>" + movies[i].id + "</th><td>" + movies[i].title + "</td><td>" + movies[i].summary + "</td><td>" + movies[i].price + "</td><td>" + movies[i].imageURL + "</td><td><button data-type='" + counter + "' type='button' class='editBtn btn btn-warning'>Edit</button></td><td><button data-type='" + counter + "' type='button' class='removeBtn btn btn-danger'>Remove</button></td></tr>"
+                utStreng += "<tr id='" + movies[i].id + "'><th scope='row'>" + movies[i].id + "</th><td>" + movies[i].title + "</td><td>" + movies[i].summary + "</td><td>" + movies[i].price + "</td><td>" + movies[i].imageURL + "</td><td><button data-type='" + movies[i].id + "' type='button' class='editBtn btn btn-warning'>Edit</button></td><td><button data-type='" + movies[i].id + "' type='button' class='removeBtn btn btn-danger'>Remove</button></td></tr>"
             }
             $("#contentBody").html(utStreng);
         },
@@ -105,16 +101,16 @@ $(function () {
 });
 $(function () {
     $(document).on("click", ".movieSearchBtn", function () {
-        var title = $("#SearchField").val();
+        var title = $("#searchField").val();
         searchMovie(title);
     });
 });
 $(function () {
-    $('#SearchMovieField').keypress(function (e) {
+    $('#searchField').keypress(function (e) {
         var key = e.which;
         if (key == 13)
         {
-            $('.searchBtn').click();
+            $('.movieSearchBtn').click();
             return false;
         }
     });

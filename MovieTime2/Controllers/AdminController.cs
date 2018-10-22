@@ -15,15 +15,19 @@ namespace MovieTime2.Controllers
         // GET: Admin
 
         private IAdminLogic _AdminBLL;
+        private ICustomerLogic _CustomerBLL;
 
         public AdminController()
         {
             _AdminBLL = new AdminLogic();
+            _CustomerBLL = new CustomerLogic();
         }
         public AdminController(IAdminLogic stub)
         {
             _AdminBLL = stub;
         }
+
+     
 
         public ActionResult Login()
         {
@@ -69,7 +73,7 @@ namespace MovieTime2.Controllers
             // Check to see if Login Credentials are OK
             return View("Admin");
         }
-
+        // Movie methods under
         public string getAllMovies()
         {
             List<movie> movieList = _AdminBLL.getAllMovies();
@@ -142,11 +146,27 @@ namespace MovieTime2.Controllers
             string json = jsonSerializer.Serialize(result);
             return json;
         }
+        //Customer methods under
+        public string getAllCustomers()
+        {
+            List<ListCustomer> customerList = _CustomerBLL.getAllCustomers();
+            var jsonSerializer = new JavaScriptSerializer();
+            string json = jsonSerializer.Serialize(customerList);
+            return json;
+        }
         public string searchMovie(string title)
         {
             List<movie> foundMovies = _AdminBLL.searchMovie(title);
             var jsonSerializer = new JavaScriptSerializer();
             string json = jsonSerializer.Serialize(foundMovies);
+            return json;
+        }
+
+        public string removeCustomer(int id)
+        {
+            bool remove = _CustomerBLL.removeCustomer(id);
+            var jsonSerializer = new JavaScriptSerializer();
+            string json = jsonSerializer.Serialize(remove);
             return json;
         }
 

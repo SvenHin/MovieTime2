@@ -42,7 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminBLL.cs" />
+    <Compile Include="CustomerBLL.cs" />
     <Compile Include="IAdminLogic.cs" />
+    <Compile Include="ICustomerLogic.cs" />
     <Compile Include="MovieTimeBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SecurityBLL.cs" />

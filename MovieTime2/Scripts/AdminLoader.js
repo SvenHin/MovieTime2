@@ -1,4 +1,37 @@
-﻿function getMovieHeaderList() {
+﻿function buildMoviePage() {
+    getMovieHeaderList();
+    getMovieList();
+    getMovieAddHeaders();
+    getMovieAddBody();
+    $("#addTable").show();
+    addMovieSearchClass();
+    addMoviePlaceHolder();
+    addMovieActive();
+}
+function addMovieActive() {
+    $("#customerPage").removeClass("active");
+    $("#orderPage").removeClass("active");
+    $("#moviePage").addClass("active");
+}
+
+function getMovieAddHeaders() {
+    var print = "<tr><td>Title</td><td>Summary</td><td>Price</td><td>Url</td><td>Genre 1</td><td>Genre 2</td></tr>";
+    $("#addHead").html(print);
+}
+
+function getMovieAddBody() {
+    var print = "<tr><td><input type='text' id='Title' class='borderStyle' /></td><td><input type='text' id='Summary' class='borderStyle' /></td><td><input type='text' id='Price' class='borderStyle' /></td><td><input type='text' id='Url' class='borderStyle' /></td><td><input type='text' id='Genre1' class='borderStyle' /></td><td><input type='text' id='Genre2' class='borderStyle' /></td><td><button id='Add' class='btn btn-outline-success'>Add Movie</button></td></tr>";
+    $("#addBody").html(print);
+}
+function addMovieSearchClass() {
+    $("#searchBtn").removeClass("customerSearchBtn");
+    $("#searchBtn").addClass("movieSearchBtn");
+}
+function addMoviePlaceHolder() {
+    $("#searchField").attr("placeholder", "Movie title");
+}
+
+function getMovieHeaderList() {
     $.ajax({
         url: '/Admin/getAllMovieHeaders',
         type: 'GET',
@@ -25,10 +58,8 @@ function getMovieList() {
         dataType: 'json',
         success: function (movies) {
             var utStreng = "";
-            var counter = 0;
             for (var i in movies) {
-                counter++;
-                utStreng += "<tr id='" + movies[i].id + "'><th scope='row'>" + movies[i].id + "</th><td>" + movies[i].title + "</td><td>" + movies[i].summary + "</td><td>" + movies[i].price + "</td><td>" + movies[i].imageURL + "</td><td><button data-type='" + counter + "' type='button' class='editBtn btn btn-warning'>Edit</button></td><td><button data-type='" + counter + "' type='button' class='removeBtn btn btn-danger'>Remove</button></td></tr>"
+                utStreng += "<tr id='" + movies[i].id + "'><th scope='row'>" + movies[i].id + "</th><td>" + movies[i].title + "</td><td>" + movies[i].summary + "</td><td>" + movies[i].price + "</td><td>" + movies[i].imageURL + "</td><td><button data-type='" + movies[i].id + "' type='button' class='editBtn btn btn-warning'>Edit</button></td><td><button data-type='" + movies[i].id + "' type='button' class='removeBtn btn btn-danger'>Remove</button></td></tr>"
             }
             $("#contentBody").html(utStreng);
         },
@@ -48,10 +79,8 @@ function searchMovie(title) {
         data: { 'title': title },
         success: function (movies) {
             var utStreng = "";
-            var counter = 0;
             for (var i in movies) {
-                counter++;
-                utStreng += "<tr id='" + movies[i].id + "'><th scope='row'>" + movies[i].id + "</th><td>" + movies[i].title + "</td><td>" + movies[i].summary + "</td><td>" + movies[i].price + "</td><td>" + movies[i].imageURL + "</td><td><button data-type='" + counter + "' type='button' class='editBtn btn btn-warning'>Edit</button></td><td><button data-type='" + counter + "' type='button' class='removeBtn btn btn-danger'>Remove</button></td></tr>"
+                utStreng += "<tr id='" + movies[i].id + "'><th scope='row'>" + movies[i].id + "</th><td>" + movies[i].title + "</td><td>" + movies[i].summary + "</td><td>" + movies[i].price + "</td><td>" + movies[i].imageURL + "</td><td><button data-type='" + movies[i].id + "' type='button' class='editBtn btn btn-warning'>Edit</button></td><td><button data-type='" + movies[i].id + "' type='button' class='removeBtn btn btn-danger'>Remove</button></td></tr>"
             }
             $("#contentBody").html(utStreng);
         },
@@ -80,25 +109,23 @@ $(function () {
     });
 });
 $(function () {
-    $(document).on("click", ".searchBtn", function () {
-        var title = $("#SearchMovieField").val();
+    $(document).on("click", ".movieSearchBtn", function () {
+        var title = $("#searchField").val();
         searchMovie(title);
     });
 });
 $(function () {
-    $('#SearchMovieField').keypress(function (e) {
+    $('#searchField').keypress(function (e) {
         var key = e.which;
-        if (key == 13)  // the enter key code
+        if (key == 13)
         {
-            $('.searchBtn').click();
+            $('.movieSearchBtn').click();
             return false;
         }
     });
 });
 $(function () {
     $("#Add").click(function () {
-
-        // bygg et js objekt fra input feltene
         var jsIn = {
             title: $("#Title").val(),
             summary: $("#Summary").val(),
@@ -106,7 +133,6 @@ $(function () {
             imageURL: $("#Url").val(),
             genre: $("#Genre1").val(),
             genre2: $("#Genre2").val(),
-
         }
 
         $.ajax({
@@ -115,7 +141,6 @@ $(function () {
             data: JSON.stringify(jsIn),
             contentType: "application/json;charset=utf-8",
             success: function (ok) {
-                // kunne ha feilhåndtert evt. feil i registreringen her
                 if (ok == "false") {
                     alert("Could not add movie, needs at least one genre");
                 }
@@ -141,7 +166,6 @@ function removeMovie(id) {
 
 function saveEditedMovie(id) {
 
-        // bygg et js objekt fra input feltene
     var jsIn = {
             id : id,
             title: $("#editTitle").val(),
@@ -159,7 +183,6 @@ function saveEditedMovie(id) {
             data: JSON.stringify(jsIn),
             contentType: "application/json;charset=utf-8",
             success: function (ok) {
-                // kunne ha feilhåndtert evt. feil i registreringen her
                 if (ok == "false") {
                     alert("Could not save edited movie");
                 }
@@ -179,4 +202,6 @@ function editMovieRow(id) {
     var dynamicRow = "<th scope='row'>" + id + "</th><td><input type='text' id='editTitle' style='width: 100%;' class='borderStyle' /></td><td><input type='text' id='editSummary' style='width: 100%;' class='borderStyle' /></td><td><input type='text' id='editPrice' style='width: 100%;' class='borderStyle' /></td><td><input type='text' id='editUrl' style='width: 100%;' class='borderStyle' /></td><td><input type='text' id='editGenre1' style='width: 100%;' class='borderStyle' /><input type='text' id='editGenre2' style='width: 100%;' class='borderStyle'/></td><td><button data-type='" + id + "' type='button' class='saveBtn btn btn-success'>Save</button></td>";
     $(editRow).html(dynamicRow);
 }
+
+
 

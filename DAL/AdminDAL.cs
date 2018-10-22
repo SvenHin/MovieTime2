@@ -109,25 +109,6 @@ namespace MovieTime2.DAL
             
         }
 
-      /*  public bool editMovies(int id, movie newDetails)
-        {
-            DatabaseContext db = new DatabaseContext();
-            Movie changedMovie = db.Movie.Find(id);
-            changedMovie.Title = newDetails.title;
-            changedMovie.Summary = newDetails.summary;
-            changedMovie.Price = newDetails.price;
-            changedMovie.ImageURL = newDetails.imageURL;
-            List<Genre> genreList = new List<Genre>();
-            Genre genre = db.Genre.Where(k => k.Title == newDetails.genre).FirstOrDefault();
-            Genre genre2 = db.Genre.Where(k => k.Title == newDetails.genre2).FirstOrDefault();
-            if (genre != null) genreList.Add(genre);
-            if (genre2 != null) genreList.Add(genre2);
-            changedMovie.Genre = genreList;
-            
-   
-
-        }*/
-
         public bool editMovieName(int id, string newDetail)
         {
             DatabaseContext db = new DatabaseContext();
@@ -144,6 +125,77 @@ namespace MovieTime2.DAL
                 return false;
             }
         }
+        public bool editMovieSummary(int id, string newDetail)
+        {
+            DatabaseContext db = new DatabaseContext();
+            Movie changedMovie = db.Movie.Find(id);
+
+            try
+            {
+                changedMovie.Summary = newDetail;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool editMoviePrice(int id, int newDetail)
+        {
+            DatabaseContext db = new DatabaseContext();
+            Movie changedMovie = db.Movie.Find(id);
+
+            try
+            {
+                changedMovie.Price = newDetail;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool editMovieImageUrl(int id, string newDetail)
+        {
+            DatabaseContext db = new DatabaseContext();
+            Movie changedMovie = db.Movie.Find(id);
+
+            try
+            {
+                changedMovie.ImageURL = newDetail;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public bool editMovieGenre(int id, string genre1, string genre2)
+        {
+            DatabaseContext db = new DatabaseContext();
+            Movie changedMovie = db.Movie.Find(id);
+            List<Genre> genreList = new List<Genre>();
+            Genre foundGenre1 = db.Genre.Where(k => k.Title == genre1).FirstOrDefault();
+            Genre foundGenre2 = db.Genre.Where(k => k.Title == genre2).FirstOrDefault();
+            if (foundGenre1 != null) genreList.Add(foundGenre1);
+            if (foundGenre2 != null) genreList.Add(foundGenre2);
+                try
+                {
+                    changedMovie.Genre = genreList;
+                    db.SaveChanges();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+        }
+
 
     }
 

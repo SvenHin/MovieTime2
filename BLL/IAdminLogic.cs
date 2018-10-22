@@ -14,6 +14,11 @@ namespace MovieTime2.BLL
         List<string> getAllMovieHeaders();
         bool removeMovie(int id);
         bool addMovie(movie movie);
-        bool editMovieName(int id, string changedDetail); 
+        bool editMovieName(int id, string changedDetail);
+        bool editMovieSummary(int id, string changedDetail);
+        bool editMoviePrice(int id, int changedDetail);
+        bool editMovieImageUrl(int id, string changedDetail);
+        bool editMovieGenre(int id, string genre1, string genre2);
+
     }
 }

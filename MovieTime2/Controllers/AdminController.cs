@@ -25,9 +25,20 @@ namespace MovieTime2.Controllers
             _AdminBLL = stub;
         }
 
-
-        public ActionResult Index()
+        public ActionResult Login()
         {
+            if (Session["LoggedIn"] == null)
+            {
+                Session["LoggedIn"] = "false";
+            }
+            else if (Session["LoggedIn"].ToString().Equals("true"))
+            {
+                return View("AdminInterface");
+            }
+            else
+            {
+                return View("Admin");
+            }
             return View("Admin");
         }
 
@@ -56,7 +67,7 @@ namespace MovieTime2.Controllers
                 }
             }
             // Check to see if Login Credentials are OK
-            return View();
+            return View("Admin");
         }
 
         public string getAllMovies()
@@ -89,10 +100,37 @@ namespace MovieTime2.Controllers
             return json;
         } 
 
-     /*   public string editMovie(movie movie)
+       
+        public string editMovie(movie movie)
         {
-            
-        }*/
+            var jsonSerializer = new JavaScriptSerializer();
+
+            if (movie.title != null)
+            {
+                bool editName = _AdminBLL.editMovieName(movie.id, movie.title);
+            }
+            if (movie.summary != null)
+            {
+                bool editSummary = _AdminBLL.editMovieSummary(movie.id, movie.summary);
+
+            }
+            if (!movie.price.Equals(0))
+            {
+                bool editPrice = _AdminBLL.editMoviePrice(movie.id, movie.price);
+
+            }
+            if (movie.imageURL != null)
+            {
+                bool editImageUrl = _AdminBLL.editMovieImageUrl(movie.id, movie.imageURL);
+
+            }
+            if (movie.genre != "" || movie.genre2 !="")
+            {
+                bool editGenre = _AdminBLL.editMovieGenre(movie.id, movie.genre, movie.genre2);
+            }
+            string json = jsonSerializer.Serialize("true");
+            return json;
+        }
 
 
     }

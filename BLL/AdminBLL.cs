@@ -50,5 +50,26 @@ namespace MovieTime2.BLL
             bool editName = _adminDAL.editMovieName(id, changedDetail);
             return editName;
         }
+        public bool editMovieSummary(int id, string changedDetail)
+        {
+            bool editSummary = _adminDAL.editMovieSummary(id, changedDetail);
+            return editSummary;
+        }
+        public bool editMoviePrice(int id, int changedDetail)
+        {
+            bool editPrice = _adminDAL.editMoviePrice(id, changedDetail);
+            return editPrice;
+        }
+        public bool editMovieImageUrl(int id, string changedDetail)
+        {
+            bool editUrl = _adminDAL.editMovieImageUrl(id, changedDetail);
+            return editUrl;
+        }
+        public bool editMovieGenre(int id, string genre1, string genre2)
+        {
+            bool editGenre = _adminDAL.editMovieGenre(id, genre1, genre2);
+            return editGenre;
+        }
+
     }
 }

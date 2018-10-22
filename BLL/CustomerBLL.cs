@@ -27,5 +27,33 @@ namespace MovieTime2.BLL
             List<ListCustomer> allCustomers = _customerDAL.getAllCustomers();
             return allCustomers;
         }
+
+        public bool removeCustomer(int id)
+        {
+            bool remove = _customerDAL.removeCustomer(id);
+            return remove;
+        }
+        public bool editFirstName(int id, string newDetail)
+        {
+            bool editFirstName = _customerDAL.editFirstName(id, newDetail);
+            return editFirstName;
+        }
+
+        public bool editLastName(int id, string newDetail)
+        {
+            bool editLastName = _customerDAL.editLastName(id, newDetail);
+            return editLastName;
+        }
+        public bool editUsername(int id, string newDetail)
+        {
+            bool editUsername = _customerDAL.editUsername(id, newDetail);
+            return editUsername;
+        }
+        public bool editAddress(int id, string newDetail)
+        {
+            bool editAddress = _customerDAL.editAddress(id, newDetail);
+            return editAddress;
+        }
+
     }
 }

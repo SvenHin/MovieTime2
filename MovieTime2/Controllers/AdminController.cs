@@ -151,5 +151,14 @@ namespace MovieTime2.Controllers
             return json;
         }
 
+        public string removeCustomer(int id)
+        {
+            bool remove = _CustomerBLL.removeCustomer(id);
+            var jsonSerializer = new JavaScriptSerializer();
+            string json = jsonSerializer.Serialize(remove);
+            return json;
+        }
+
+
     }
 }

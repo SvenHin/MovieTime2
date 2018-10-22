@@ -37,11 +37,31 @@ namespace MovieTime2.DAL
 
         public List<movie> getAllMovies()
         {
-            return new List<movie>(); //unfinished
+            var movieList = new List<movie>();
+            var movie = new movie()
+            {
+                title = "Totoro",
+                summary = "A weird looking bear that lives in the woods",
+                price = 100,
+                imageURL = "place/place.jpg",
+                genre = "Action",
+                genre2 = "Comedy",
+
+            };
+            movieList.Add(movie);
+            movieList.Add(movie);
+            movieList.Add(movie);
+            return movieList;
         }
         public List<string> getAllMovieHeaders()
         {
-            return new List<string>(); //unfinished
+            List<string> columns = new List<string>();
+            columns.Add("Id");
+            columns.Add("Title");
+            columns.Add("Summary");
+            columns.Add("Price");
+            columns.Add("ImageURL");
+            return columns;
         }
 
 
@@ -85,24 +105,25 @@ namespace MovieTime2.DAL
         }
         public bool editMovieName(int id, string changedDetail)
         {
-            return true; //unfinished
+            return true;
         }
         public bool editMovieGenre(int id, string genre1, string genre2)
         {
-            return true; //unfinished
+
+            return true;
         }
 
         public bool editMovieSummary(int id, string changedDetail)
         {
-            return true; //unfinished
+            return true;
         }
         public bool editMoviePrice(int id, int changedDetail)
         {
-            return true; //unfinished
+            return true;
         }
         public bool editMovieImageUrl(int id, string changedDetail)
         {
-            return true; //unfinished
+            return true;
         }
         public List<movie> searchMovie(string title)
         {

@@ -1,4 +1,28 @@
-﻿function getMovieHeaderList() {
+﻿function buildMoviePage() {
+    getMovieHeaderList();
+    getMovieList();
+    getMovieAddHeaders();
+    getMovieAddBody();
+    addMovieSearchClass();
+    addMoviePlaceHolder();
+}
+function getMovieAddHeaders() {
+    var print = "<tr><td>Title</td><td>Summary</td><td>Price</td><td>Url</td><td>Genre 1</td><td>Genre 2</td></tr>";
+    $("#addHead").html(print);
+}
+
+function getMovieAddBody() {
+    var print = "<tr><td><input type='text' id='Title' class='borderStyle' /></td><td><input type='text' id='Summary' class='borderStyle' /></td><td><input type='text' id='Price' class='borderStyle' /></td><td><input type='text' id='Url' class='borderStyle' /></td><td><input type='text' id='Genre1' class='borderStyle' /></td><td><input type='text' id='Genre2' class='borderStyle' /></td><td><button id='Add' class='btn btn-outline-success'>Add Movie</button></td></tr>";
+    $("#addBody").html(print);
+}
+function addMovieSearchClass() {
+    $("#searchBtn").addClass("movieSearchBtn");
+}
+function addMoviePlaceHolder() {
+    $("#searchField").attr("placeholder", "Movie title");
+}
+
+function getMovieHeaderList() {
     $.ajax({
         url: '/Admin/getAllMovieHeaders',
         type: 'GET',
@@ -80,15 +104,15 @@ $(function () {
     });
 });
 $(function () {
-    $(document).on("click", ".searchBtn", function () {
-        var title = $("#SearchMovieField").val();
+    $(document).on("click", ".movieSearchBtn", function () {
+        var title = $("#SearchField").val();
         searchMovie(title);
     });
 });
 $(function () {
     $('#SearchMovieField').keypress(function (e) {
         var key = e.which;
-        if (key == 13)  // the enter key code
+        if (key == 13)
         {
             $('.searchBtn').click();
             return false;
@@ -97,8 +121,6 @@ $(function () {
 });
 $(function () {
     $("#Add").click(function () {
-
-        // bygg et js objekt fra input feltene
         var jsIn = {
             title: $("#Title").val(),
             summary: $("#Summary").val(),
@@ -106,7 +128,6 @@ $(function () {
             imageURL: $("#Url").val(),
             genre: $("#Genre1").val(),
             genre2: $("#Genre2").val(),
-
         }
 
         $.ajax({
@@ -115,7 +136,6 @@ $(function () {
             data: JSON.stringify(jsIn),
             contentType: "application/json;charset=utf-8",
             success: function (ok) {
-                // kunne ha feilhåndtert evt. feil i registreringen her
                 if (ok == "false") {
                     alert("Could not add movie, needs at least one genre");
                 }
@@ -141,7 +161,6 @@ function removeMovie(id) {
 
 function saveEditedMovie(id) {
 
-        // bygg et js objekt fra input feltene
     var jsIn = {
             id : id,
             title: $("#editTitle").val(),
@@ -159,7 +178,6 @@ function saveEditedMovie(id) {
             data: JSON.stringify(jsIn),
             contentType: "application/json;charset=utf-8",
             success: function (ok) {
-                // kunne ha feilhåndtert evt. feil i registreringen her
                 if (ok == "false") {
                     alert("Could not save edited movie");
                 }

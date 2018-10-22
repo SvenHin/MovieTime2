@@ -107,13 +107,23 @@ namespace MovieTime2.DAL
             }
             else
             {
-                return true;
+                if (movie.genre != "" || movie.genre2 != "")
+                {
+                    return true;
+                }
+                return false;
             }
-            
         }
         public bool editMovieName(int id, string changedDetail)
         {
-            return true; //unfinished
+            if (id == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

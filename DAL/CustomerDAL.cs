@@ -30,5 +30,91 @@ namespace MovieTime2.DAL
             }).ToList();
             return allCustomers;
         }
+
+        public bool removeCustomer(int id)
+        {
+            DatabaseContext db = new DatabaseContext();
+            try
+            {
+                DBCustomer remove = db.DBCustomer.Find(id);
+                db.DBCustomer.Remove(remove);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception fail)
+            {
+                return false;
+            }
+        }
+
+        public bool editFirstName(int id, string newDetail)
+        {
+            DatabaseContext db = new DatabaseContext();
+            DBCustomer changedCustomer = db.DBCustomer.Find(id);
+
+            try
+            {
+                changedCustomer.FirstName = newDetail;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool editLastName(int id, string newDetail)
+        {
+            DatabaseContext db = new DatabaseContext();
+            DBCustomer changedCustomer = db.DBCustomer.Find(id);
+
+            try
+            {
+                changedCustomer.LastName = newDetail;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool editUsername(int id, string newDetail)
+        {
+            DatabaseContext db = new DatabaseContext();
+            DBCustomer changedCustomer = db.DBCustomer.Find(id);
+
+            try
+            {
+                changedCustomer.Username = newDetail;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool editAddress(int id, string newDetail)
+        {
+            DatabaseContext db = new DatabaseContext();
+            DBCustomer changedCustomer = db.DBCustomer.Find(id);
+
+            try
+            {
+                changedCustomer.Address = newDetail;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+
     }
 }

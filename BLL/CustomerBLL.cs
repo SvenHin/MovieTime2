@@ -54,6 +54,16 @@ namespace MovieTime2.BLL
             bool editAddress = _customerDAL.editAddress(id, newDetail);
             return editAddress;
         }
+        public bool editEmail(int id, string newDetail)
+        {
+            bool editEmail = _customerDAL.editEmail(id, newDetail);
+            return editEmail;
+        }
+        public bool editPhoneNumber(int id, string newDetail)
+        {
+            bool editPhoneNumber = _customerDAL.editPhoneNumber(id, newDetail);
+            return editPhoneNumber;
+        }
 
     }
 }

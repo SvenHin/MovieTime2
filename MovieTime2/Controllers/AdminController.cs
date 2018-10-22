@@ -103,32 +103,43 @@ namespace MovieTime2.Controllers
        
         public string editMovie(movie movie)
         {
+            bool result;
             var jsonSerializer = new JavaScriptSerializer();
+            if (movie.id.Equals(0))
+            {
+                result = false;
+            }
+            else
+            {
 
-            if (movie.title != null)
-            {
-                bool editName = _AdminBLL.editMovieName(movie.id, movie.title);
-            }
-            if (movie.summary != null)
-            {
-                bool editSummary = _AdminBLL.editMovieSummary(movie.id, movie.summary);
 
-            }
-            if (!movie.price.Equals(0))
-            {
-                bool editPrice = _AdminBLL.editMoviePrice(movie.id, movie.price);
+                if (movie.title != null)
+                {
+                    bool editName = _AdminBLL.editMovieName(movie.id, movie.title);
+                }
+                if (movie.summary != null)
+                {
+                    bool editSummary = _AdminBLL.editMovieSummary(movie.id, movie.summary);
 
-            }
-            if (movie.imageURL != null)
-            {
-                bool editImageUrl = _AdminBLL.editMovieImageUrl(movie.id, movie.imageURL);
+                }
+                if (!movie.price.Equals(0))
+                {
+                    bool editPrice = _AdminBLL.editMoviePrice(movie.id, movie.price);
 
+                }
+                if (movie.imageURL != null)
+                {
+                    bool editImageUrl = _AdminBLL.editMovieImageUrl(movie.id, movie.imageURL);
+
+                }
+                if (movie.genre != "" || movie.genre2 != "")
+                {
+                    bool editGenre = _AdminBLL.editMovieGenre(movie.id, movie.genre, movie.genre2);
+                }
+                result = true;
             }
-            if (movie.genre != "" || movie.genre2 !="")
-            {
-                bool editGenre = _AdminBLL.editMovieGenre(movie.id, movie.genre, movie.genre2);
-            }
-            string json = jsonSerializer.Serialize("true");
+            
+            string json = jsonSerializer.Serialize(result);
             return json;
         }
         public string searchMovie(string title)

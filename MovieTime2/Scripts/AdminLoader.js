@@ -3,9 +3,17 @@
     getMovieList();
     getMovieAddHeaders();
     getMovieAddBody();
+    $("#addTable").show();
     addMovieSearchClass();
     addMoviePlaceHolder();
+    addMovieActive();
 }
+function addMovieActive() {
+    $("#customerPage").removeClass("active");
+    $("#orderPage").removeClass("active");
+    $("#moviePage").addClass("active");
+}
+
 function getMovieAddHeaders() {
     var print = "<tr><td>Title</td><td>Summary</td><td>Price</td><td>Url</td><td>Genre 1</td><td>Genre 2</td></tr>";
     $("#addHead").html(print);
@@ -16,6 +24,7 @@ function getMovieAddBody() {
     $("#addBody").html(print);
 }
 function addMovieSearchClass() {
+    $("#searchBtn").removeClass("customerSearchBtn");
     $("#searchBtn").addClass("movieSearchBtn");
 }
 function addMoviePlaceHolder() {

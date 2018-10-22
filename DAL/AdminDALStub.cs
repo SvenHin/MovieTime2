@@ -37,11 +37,11 @@ namespace MovieTime2.DAL
 
         public List<movie> getAllMovies()
         {
-            return new List<movie>();
+            return new List<movie>(); //unfinished
         }
         public List<string> getAllMovieHeaders()
         {
-            return new List<string>();
+            return new List<string>(); //unfinished
         }
 
 
@@ -59,15 +59,18 @@ namespace MovieTime2.DAL
 
         public bool removeMovie(int id)
         {
-            return true; //unfinished
+            if (id == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
         public bool addMovie(movie movie)
         {
-            return true; //unfinished
-        }
-        public bool editMovieName(int id, string changedDetail)
-        {
-            if(movie.title == "")
+            if (movie.title == "")
             {
                 return false;
             }
@@ -80,32 +83,27 @@ namespace MovieTime2.DAL
                 return false;
             }
         }
+        public bool editMovieName(int id, string changedDetail)
+        {
+            return true; //unfinished
+        }
         public bool editMovieGenre(int id, string genre1, string genre2)
         {
-            if (id == 0)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            return true; //unfinished
+        }
+
+        public bool editMovieSummary(int id, string changedDetail)
+        {
+            return true; //unfinished
+        }
+        public bool editMoviePrice(int id, int changedDetail)
+        {
+            return true; //unfinished
+        }
+        public bool editMovieImageUrl(int id, string changedDetail)
+        {
+            return true; //unfinished
         }
     }
-    public bool editMovieName(int id, string changedDetail)
-    {
-        return true; //unfinished
-    }
-    public bool editMovieSummary(int id, string changedDetail)
-    {
-        return true; //unfinished
-    }
-    public bool editMoviePrice(int id, int changedDetail)
-    {
-        return true; //unfinished
-    }
-    public bool editMovieImageUrl(int id, string changedDetail)
-    {
-        return true; //unfinished
-    }
+    
 }

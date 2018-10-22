@@ -109,25 +109,6 @@ namespace MovieTime2.DAL
             
         }
 
-      /*  public bool editMovies(int id, movie newDetails)
-        {
-            DatabaseContext db = new DatabaseContext();
-            Movie changedMovie = db.Movie.Find(id);
-            changedMovie.Title = newDetails.title;
-            changedMovie.Summary = newDetails.summary;
-            changedMovie.Price = newDetails.price;
-            changedMovie.ImageURL = newDetails.imageURL;
-            List<Genre> genreList = new List<Genre>();
-            Genre genre = db.Genre.Where(k => k.Title == newDetails.genre).FirstOrDefault();
-            Genre genre2 = db.Genre.Where(k => k.Title == newDetails.genre2).FirstOrDefault();
-            if (genre != null) genreList.Add(genre);
-            if (genre2 != null) genreList.Add(genre2);
-            changedMovie.Genre = genreList;
-            
-   
-
-        }*/
-
         public bool editMovieName(int id, string newDetail)
         {
             DatabaseContext db = new DatabaseContext();
@@ -203,10 +184,9 @@ namespace MovieTime2.DAL
             Genre foundGenre2 = db.Genre.Where(k => k.Title == genre2).FirstOrDefault();
             if (foundGenre1 != null) genreList.Add(foundGenre1);
             if (foundGenre2 != null) genreList.Add(foundGenre2);
-                changedMovie.Genre = genreList;
                 try
                 {
-                    db.Movie.Add(changedMovie);
+                    changedMovie.Genre = genreList;
                     db.SaveChanges();
                     return true;
                 }

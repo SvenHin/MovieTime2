@@ -57,6 +57,12 @@ $(function () {
     });
 });
 $(function () {
+    $(document).on("click", ".searchBtn", function () {
+        var movie = $("#searchMovieField").val();
+        searchMovie(movie);
+    });
+});
+$(function () {
     $("#Add").click(function () {
 
         // bygg et js objekt fra input feltene

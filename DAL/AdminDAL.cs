@@ -206,7 +206,6 @@ namespace MovieTime2.DAL
                 changedMovie.Genre = genreList;
                 try
                 {
-                    db.Movie.Add(changedMovie);
                     db.SaveChanges();
                     return true;
                 }

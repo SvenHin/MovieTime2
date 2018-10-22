@@ -25,9 +25,20 @@ namespace MovieTime2.Controllers
             _AdminBLL = stub;
         }
 
-
-        public ActionResult Index()
+        public ActionResult Login()
         {
+            if (Session["LoggedIn"] == null)
+            {
+                Session["LoggedIn"] = "false";
+            }
+            else if (Session["LoggedIn"].ToString().Equals("true"))
+            {
+                return View("AdminInterface");
+            }
+            else
+            {
+                return View("Admin");
+            }
             return View("Admin");
         }
 
@@ -56,7 +67,7 @@ namespace MovieTime2.Controllers
                 }
             }
             // Check to see if Login Credentials are OK
-            return View();
+            return View("Admin");
         }
 
         public string getAllMovies()

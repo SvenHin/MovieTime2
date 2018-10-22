@@ -19,6 +19,8 @@ namespace MovieTime2.DAL
         bool editMoviePrice(int id, int changedDetail);
         bool editMovieImageUrl(int id, string changedDetail);
         bool editMovieGenre(int id, string genre1, string genre2);
+        List<movie> searchMovie(string title);
+
 
 
 

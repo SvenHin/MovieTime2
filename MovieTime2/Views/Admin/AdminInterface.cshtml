@@ -8,9 +8,7 @@
     @Scripts.Render("~/bundles/adminjquery")
     <script type="text/javascript">
         $(function () {
-            getMovieHeaderList();
-            // getMovieList();
-            getCustomerList();
+            buildMoviePage();
         })
     </script>
 </head>
@@ -25,32 +23,17 @@
     </div>
     <div id="MainContent" class="col-xl-11 col-lg-10 col-md-10 col-sm-10 padding-0 bgblack height100 overflow ">
     <form class="form-inline my-2 my-lg-0">
-      <input id="searchMovieField"class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button id="searchBtn" class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+      <input type="text" id="searchField" class="form-control mr-sm-2">
+      <button id="searchBtn" type="button" class="btn btn-success">Search</button>
     </form>
-        <table id="addTable" class="table-dark" style="background-color: transparent">
-                <tr>
-                    <td>Title</td>
-                    <td>Summary</td>
-                    <td>Price</td>
-                    <td>Url</td>
-                    <td>Genre 1</td>
-                    <td>Genre 2</td>
-                </tr>
-                <tr>
-                    <td><input type="text" id="Title" class="borderStyle"/></td>
-                    <td><input type="text" id="Summary" class="borderStyle" /></td>
-                    <td><input type="text" id="Price" class="borderStyle"/></td>
-                    <td><input type="text" id="Url" class="borderStyle"/></td>
-                    <td><input type="text" id="Genre1" class="borderStyle"/></td>
-                    <td><input type="text" id="Genre2" class="borderStyle"/></td>
-                    <td><button id="Add" class="btn btn-outline-success">Add Movie</button></td>
-                </tr>
-        </table>
-        <table id="contentTable" class="table table-dark">
-            <thead id="contentHead"></thead>
-            <tbody id="contentBody"></tbody>
-        </table>
+    <table id="addTable" class="table-dark" style="background-color: transparent">
+        <thead id="addHead"></thead>
+        <tbody id="addBody"></tbody>
+    </table>
+    <table id="contentTable" class="table table-dark">
+        <thead id="contentHead"></thead>
+        <tbody id="contentBody"></tbody>
+    </table>
 
 
     </div>

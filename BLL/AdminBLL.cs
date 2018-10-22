@@ -70,6 +70,12 @@ namespace MovieTime2.BLL
             bool editGenre = _adminDAL.editMovieGenre(id, genre1, genre2);
             return editGenre;
         }
+        public List<movie> searchMovie(string title)
+        {
+            List<movie> foundMovies = _adminDAL.searchMovie(title);
+            return foundMovies;
+        }
+
 
     }
 }

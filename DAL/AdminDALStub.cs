@@ -65,5 +65,25 @@ namespace MovieTime2.DAL
         {
             return true; //unfinished
         }
+        public bool editMovieName(int id, string changedDetail)
+        {
+            return true; //unfinished
+        }
+        public bool editMovieSummary(int id, string changedDetail)
+        {
+            return true; //unfinished
+        }
+        public bool editMoviePrice(int id, int changedDetail)
+        {
+            return true; //unfinished
+        }
+        public bool editMovieImageUrl(int id, string changedDetail)
+        {
+            return true; //unfinished
+        }
+        public bool editMovieGenre(int id, string genre1, string genre2)
+        {
+            return true; //unfinished
+        }
     }
 }

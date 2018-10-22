@@ -186,6 +186,7 @@ namespace MovieTime2.DAL
             if (foundGenre2 != null) genreList.Add(foundGenre2);
             try
             {
+                changedMovie.Genre.Clear();
                 changedMovie.Genre = genreList;
                 db.SaveChanges();
                 return true;

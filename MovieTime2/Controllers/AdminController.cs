@@ -128,7 +128,7 @@ namespace MovieTime2.Controllers
                 bool editImageUrl = _AdminBLL.editMovieImageUrl(movie.id, movie.imageURL);
 
             }
-            if (movie.genre != "" || movie.genre2 !="")
+            if (movie.genre != "" || movie.genre2 != "")
             {
                 bool editGenre = _AdminBLL.editMovieGenre(movie.id, movie.genre, movie.genre2);
             }

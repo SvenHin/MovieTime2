@@ -115,6 +115,40 @@ namespace MovieTime2.DAL
             }
         }
 
+        public bool editPhoneNumber(int id, string newDetail)
+        {
+            DatabaseContext db = new DatabaseContext();
+            DBCustomer changedCustomer = db.DBCustomer.Find(id);
+
+            try
+            {
+                changedCustomer.PhoneNumber = newDetail;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool editEmail(int id, string newDetail)
+        {
+            DatabaseContext db = new DatabaseContext();
+            DBCustomer changedCustomer = db.DBCustomer.Find(id);
+
+            try
+            {
+                changedCustomer.Email = newDetail;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
 
     }
 }

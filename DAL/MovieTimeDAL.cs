@@ -59,7 +59,7 @@ namespace MovieTime2.DAL
 
             var newOrder = new Order()
             {
-                Dato = currentDateString,
+                Date = currentDateString,
                 LineItem = newLineItems,
             };
             

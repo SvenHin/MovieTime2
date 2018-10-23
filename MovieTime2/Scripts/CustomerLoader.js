@@ -40,11 +40,11 @@ function getCustomerList() {
         type: 'GET',
         dataType: 'json',
         success: function (customers) {
-            var utStreng = "";
+            var string = "";
             for (var i in customers) {
-                utStreng += "<tr id='" + customers[i].Id + "'><th scope='row'>" + customers[i].Id + "</th><td>" + customers[i].Username + "</td><td>" + customers[i].FirstName + "</td><td>" + customers[i].LastName + "</td><td>" + customers[i].Address + "</td><td>" + customers[i].Location + "</td><td>" + customers[i].ZipCode + "</td><td>" + customers[i].PhoneNumber + "</td><td>" + customers[i].Email + "</td><td><button data-type='" + customers[i].Id + "' type='button' class='editBtnCustomer btn btn-warning'>Edit</button></td><td><button data-type='" + customers[i].Id + "' type='button' class='removeBtnCustomer btn btn-danger'>Remove</button></td></tr>"
+                string += "<tr id='" + customers[i].Id + "'><th scope='row'>" + customers[i].Id + "</th><td>" + customers[i].Username + "</td><td>" + customers[i].FirstName + "</td><td>" + customers[i].LastName + "</td><td>" + customers[i].Address + "</td><td>" + customers[i].Location + "</td><td>" + customers[i].ZipCode + "</td><td>" + customers[i].PhoneNumber + "</td><td>" + customers[i].Email + "</td><td><button data-type='" + customers[i].Id + "' type='button' class='editBtnCustomer btn btn-warning'>Edit</button></td><td><button data-type='" + customers[i].Id + "' type='button' class='removeBtnCustomer btn btn-danger'>Remove</button></td></tr>"
             }
-            $("#contentBody").html(utStreng);
+            $("#contentBody").html(string);
         },
         error: function (x, y, z) {
             alert(x + '\n' + y + '\n' + z);

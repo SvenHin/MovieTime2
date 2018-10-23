@@ -71,7 +71,7 @@ namespace MovieTime2.DAL
     {
         [Key]
         public int Id { get; set; }
-        public string Dato { get; set; }
+        public string Date { get; set; }
         public virtual DBCustomer Customer { get; set; }
         public virtual List<LineItem> LineItem { get; set; }
     }
@@ -91,7 +91,7 @@ namespace MovieTime2.DAL
         {
             Database.CreateIfNotExists();
 
-            Database.SetInitializer(new DBInit());
+         //   Database.SetInitializer(new DBInit());
         }
 
         public DbSet<DBCustomer> DBCustomer { get; set; }

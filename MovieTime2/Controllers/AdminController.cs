@@ -28,8 +28,11 @@ namespace MovieTime2.Controllers
         {
             _AdminBLL = stub;
         }
+        public AdminController(ICustomerLogic stub)
+        {
+            _CustomerBLL = stub;
+        }
 
-     
 
         public ActionResult Login()
         {

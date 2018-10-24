@@ -336,6 +336,213 @@ namespace MovieTime2.UnitTest
             Assert.AreEqual(result, testResult);
 
         }
+
+        public void test_removeCustomerF(int id) {
+
+            var controller = new AdminController(new CustomerLogic(new CustomerDALStub()));
+
+            string result = controller.removeCustomer(0);
+
+            Assert.AreEqual(result, "false");
+        }
+
+        public void test_removeCustomerT(int id)
+        {
+            var controller = new AdminController(new CustomerLogic(new CustomerDALStub()));
+
+            string result = controller.removeCustomer(1);
+
+            Assert.AreEqual(result, "true");
+        }
+
+        public void test_editFirstNameF(int id, string newDetail) {
+
+            var controller = new AdminController(new CustomerLogic(new CustomerDALStub()));
+
+            var customer = new ListCustomer()
+            {
+                Id = 1,
+                FirstName = ""
+            };
+
+            string result = controller.editCustomer(customer);
+
+            Assert.AreEqual(result, "false");
+
+
+        }
+
+        public void test_editFirstNameT(int id, string newDetail)
+        {
+            var controller = new AdminController(new CustomerLogic(new CustomerDALStub()));
+
+            var customer = new ListCustomer()
+            {
+                Id = 1,
+                FirstName = "Firstname"
+            };
+
+            string result = controller.editCustomer(customer);
+
+            Assert.AreEqual(result, "true");
+
+
+        }
+
+        public void test_editLastNameF(int id, string newDetail) {
+
+            var controller = new AdminController(new CustomerLogic(new CustomerDALStub()));
+
+            var customer = new ListCustomer()
+            {
+                Id = 1,
+                LastName = ""
+            };
+
+            string result = controller.editCustomer(customer);
+
+            Assert.AreEqual(result, "false");
+        }
+
+        public void test_editLastNameT(int id, string newDetail) {
+
+            var controller = new AdminController(new CustomerLogic(new CustomerDALStub()));
+
+            var customer = new ListCustomer()
+            {
+                Id = 1,
+                LastName = "Lastname"
+            };
+
+            string result = controller.editCustomer(customer);
+
+            Assert.AreEqual(result, "true");
+        }
+
+        public void test_editUsernameF(int id, string newDetail) {
+
+            var controller = new AdminController(new CustomerLogic(new CustomerDALStub()));
+
+            var customer = new ListCustomer()
+            {
+                Id = 1,
+                Username = ""
+            };
+
+            string result = controller.editCustomer(customer);
+
+            Assert.AreEqual(result, "false");
+        }
+
+        public void test_editUsernameT(int id, string newDetail) {
+
+            var controller = new AdminController(new CustomerLogic(new CustomerDALStub()));
+
+            var customer = new ListCustomer()
+            {
+                Id = 1,
+                Username = "Username123"
+            };
+
+            string result = controller.editCustomer(customer);
+
+            Assert.AreEqual(result, "true");
+        }
+
+        public void test_editAddressF(int id, string newDetail) {
+
+            var controller = new AdminController(new CustomerLogic(new CustomerDALStub()));
+
+            var customer = new ListCustomer()
+            {
+                Id = 1,
+                Address = ""
+            };
+
+            string result = controller.editCustomer(customer);
+
+            Assert.AreEqual(result, "false");
+        }
+
+        public void test_editAddressT(int id, string newDetail) {
+
+            var controller = new AdminController(new CustomerLogic(new CustomerDALStub()));
+
+            var customer = new ListCustomer()
+            {
+                Id = 1,
+                Address = "Testveien 43"
+
+            };
+
+            string result = controller.editCustomer(customer);
+
+            Assert.AreEqual(result, "true");
+        }
+
+        public void test_editPhoneNumberF(int id, string newDetail) {
+
+            var controller = new AdminController(new CustomerLogic(new CustomerDALStub()));
+
+            var customer = new ListCustomer()
+            {
+                Id = 1,
+                PhoneNumber = ""
+            };
+
+            string result = controller.editCustomer(customer);
+
+            Assert.AreEqual(result, "false");
+        }
+
+        public void test_editPhoneNumberT(int id, string newDetail) {
+
+            var controller = new AdminController(new CustomerLogic(new CustomerDALStub()));
+
+            var customer = new ListCustomer()
+            {
+                Id = 1,
+                PhoneNumber = "11223344"
+            };
+
+            string result = controller.editCustomer(customer);
+
+            Assert.AreEqual(result, "true");
+        }
+
+        public void test_editEmailF(int id, string newDetail) {
+
+            var controller = new AdminController(new CustomerLogic(new CustomerDALStub()));
+
+            var customer = new ListCustomer()
+            {
+                Id = 1,
+                Email = ""
+            };
+
+            string result = controller.editCustomer(customer);
+
+            Assert.AreEqual(result, "false");
+        }
+
+        public void test_editEmailT(int id, string newDetail) {
+
+            var controller = new AdminController(new CustomerLogic(new CustomerDALStub()));
+
+            var customer = new ListCustomer()
+            {
+                Id = 1,
+                Email = "test@test.com"
+            };
+
+            string result = controller.editCustomer(customer);
+
+            Assert.AreEqual(result, "true");
+        }
+
+        List<ListCustomer> searchCustomer(string username) { }
+        List<ListCustomer> searchCustomer(string username) { }
+
         /*public List<ListCustomer> getAllCustomers() {
 
             var customerList = new List<ListCustomer>();

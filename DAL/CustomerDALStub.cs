@@ -84,5 +84,8 @@ namespace MovieTime2.DAL
         }
        
 
+        bool editZipCodeAndLocation(int id, string newZip, string Location) {
+            return true; //TODO
+        }
     }
 }

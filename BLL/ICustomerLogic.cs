@@ -18,6 +18,7 @@ namespace MovieTime2.BLL
         bool editPhoneNumber(int id, string newDetail);
         bool editEmail(int id, string newDetail);
         List<ListCustomer> searchCustomer(string username);
+        bool editZipCodeAndLocation(int id, string newZip, string Location);
 
 
     }

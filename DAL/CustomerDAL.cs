@@ -148,7 +148,37 @@ namespace MovieTime2.DAL
                 return false;
             }
         }
+        public bool editZipCodeAndLocation(int id, string newZip, string Location)
+        {
+            DatabaseContext db = new DatabaseContext();
+            DBCustomer changedCustomer = db.DBCustomer.Find(id);
 
+            PostalCode foundPost = db.PostalCodes.Find(newZip);
+            if (foundPost == null)
+            {
+                // Create PostLocation
+                var newPost = new PostalCode
+                {
+                    ZipCode = newZip,
+                    Location = Location
+                };
+                changedCustomer.PostalCode = newPost;
+            }
+            else
+            {
+                changedCustomer.PostalCode = foundPost;
+            }
+
+            try
+            {
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
         public List<ListCustomer> searchCustomer(string username)
         {
             DatabaseContext db = new DatabaseContext();

@@ -60,7 +60,11 @@ namespace MovieTime2.DAL
         public bool editEmail(int id, string newDetail) {
             return true;
         }
-       public  List<ListCustomer> searchCustomer(string username) {
+        public bool editZipCodeAndLocation(int id, string newZip, string Location)
+        {
+            return true;
+        }
+        public  List<ListCustomer> searchCustomer(string username) {
             var customerList = new List<ListCustomer>();
             var customer = new ListCustomer()
             {
@@ -78,10 +82,7 @@ namespace MovieTime2.DAL
             customerList.Add(customer);
             return customerList;
         }
-       public bool editZipCodeAndLocation(int id, string newZip, string Location)
-        {
-            return true; //TODO
-        }
+       
 
     }
 }

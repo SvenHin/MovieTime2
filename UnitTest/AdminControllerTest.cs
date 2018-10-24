@@ -11,12 +11,40 @@ using MovieTime2.DAL;
 using MovieTime2.Controllers;
 using MovieTime2.Models;
 using System.Web.Script.Serialization;
+using MvcContrib.TestHelper;
 
 namespace MovieTime2.UnitTest
 {
     [TestClass]
     public class AdminControllerTest
     {
+
+        [TestMethod]
+        public void test_adminLogin()
+        {
+            var SessionMock = new TestControllerBuilder();
+            var controller = new AdminController();
+            SessionMock.InitializeController(controller);
+            controller.Session["AdminLoggedIn"] = null;
+        
+            var result = (ViewResult)controller.Login();
+
+            Assert.AreEqual(result.ViewName,"Admin");
+        }
+        [TestMethod]
+        public void test_adminLogin2()
+        {
+            var SessionMock = new TestControllerBuilder();
+            var controller = new AdminController();
+            SessionMock.InitializeController(controller);
+            controller.Session["AdminLoggedIn"] = "true";
+
+            var result = (ViewResult)controller.Login();
+
+            Assert.AreEqual(result.ViewName, "AdminInterface");
+        }
+
+
         [TestMethod]
         public void test_getAllMovies()
         {
@@ -469,6 +497,26 @@ namespace MovieTime2.UnitTest
 
             Assert.AreEqual(result, "false");
         }
+        [TestMethod]
+        public void test_editZipCodeAndLocation()
+        {
+
+            var controller = new AdminController(new CustomerLogic(new CustomerDALStub()));
+
+            var customer = new ListCustomer()
+            {
+                Id = 1,
+                ZipCode = "1234",
+                Location = "Oslo"
+
+
+            };
+
+            string result = controller.editCustomer(customer);
+
+            Assert.AreEqual(result, "true");
+        }
+
         [TestMethod]
         public void test_searchCustomer()
         {

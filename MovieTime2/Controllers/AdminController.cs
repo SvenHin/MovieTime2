@@ -46,7 +46,7 @@ namespace MovieTime2.Controllers
             }
             else
             {
-                return View("Admin");
+                return View("Admin"); //Trengs denne?
             }
             return View("Admin");
         }

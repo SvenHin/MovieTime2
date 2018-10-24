@@ -17,33 +17,6 @@ namespace MovieTime2.UnitTest
     [TestClass]
     public class AdminControllerTest
     {
-     /*   [TestMethod]
-        public void List_Show_view()
-        {
-            var controller = new AdminController(new AdminLogic(new AdminDALStub()));
-
-            var expectedResult = new List<Customer>();
-            var customer = new Customer()
-            {
-                FirstName = "Gunnar",
-                LastName = "Raggsson",
-                Address = "Kjellandgata",
-                Location = "Oslo",
-                ZipCode = "1234",
-                PhoneNumber = "46765643",
-                Email = "Gunnar_Raggsson@gmail.com",
-                Username = "Gusson",
-                Password = "Password123",
-
-            };
-            expectedResult.Add(customer);
-            expectedResult.Add(customer);
-            expectedResult.Add(customer);
-
-            var actionResult = (ViewResult)controller.getAllCustomers();
-            var 
-        }*/
-
         [TestMethod]
         public void test_getAllMovies()
         {
@@ -52,6 +25,7 @@ namespace MovieTime2.UnitTest
             var movieList = new List<movie>();
             var movie = new movie()
             {
+                id = 1,
                 title = "Totoro",
                 summary = "A weird looking bear that lives in the woods",
                 price = 100,
@@ -362,8 +336,8 @@ namespace MovieTime2.UnitTest
             Assert.AreEqual(result, testResult);
 
         }
-
-        public void test_removeCustomerF(int id) {
+        [TestMethod]
+        public void test_removeCustomerF() {
 
             var controller = new AdminController(new CustomerLogic(new CustomerDALStub()));
 
@@ -371,8 +345,8 @@ namespace MovieTime2.UnitTest
 
             Assert.AreEqual(result, "false");
         }
-
-        public void test_removeCustomerT(int id)
+        [TestMethod]
+        public void test_removeCustomerT()
         {
             var controller = new AdminController(new CustomerLogic(new CustomerDALStub()));
 
@@ -380,25 +354,9 @@ namespace MovieTime2.UnitTest
 
             Assert.AreEqual(result, "true");
         }
-
-        public void test_editFirstNameF(int id, string newDetail) {
-
-            var controller = new AdminController(new CustomerLogic(new CustomerDALStub()));
-
-            var customer = new ListCustomer()
-            {
-                Id = 1,
-                FirstName = ""
-            };
-
-            string result = controller.editCustomer(customer);
-
-            Assert.AreEqual(result, "false");
-
-
-        }
-
-        public void test_editFirstNameT(int id, string newDetail)
+        
+        [TestMethod]
+        public void test_editFirstNameT()
         {
             var controller = new AdminController(new CustomerLogic(new CustomerDALStub()));
 
@@ -414,23 +372,9 @@ namespace MovieTime2.UnitTest
 
 
         }
-
-        public void test_editLastNameF(int id, string newDetail) {
-
-            var controller = new AdminController(new CustomerLogic(new CustomerDALStub()));
-
-            var customer = new ListCustomer()
-            {
-                Id = 1,
-                LastName = ""
-            };
-
-            string result = controller.editCustomer(customer);
-
-            Assert.AreEqual(result, "false");
-        }
-
-        public void test_editLastNameT(int id, string newDetail) {
+        
+        [TestMethod]
+        public void test_editLastNameT() {
 
             var controller = new AdminController(new CustomerLogic(new CustomerDALStub()));
 
@@ -444,23 +388,9 @@ namespace MovieTime2.UnitTest
 
             Assert.AreEqual(result, "true");
         }
-
-        public void test_editUsernameF(int id, string newDetail) {
-
-            var controller = new AdminController(new CustomerLogic(new CustomerDALStub()));
-
-            var customer = new ListCustomer()
-            {
-                Id = 1,
-                Username = ""
-            };
-
-            string result = controller.editCustomer(customer);
-
-            Assert.AreEqual(result, "false");
-        }
-
-        public void test_editUsernameT(int id, string newDetail) {
+        
+        [TestMethod]
+        public void test_editUsernameT() {
 
             var controller = new AdminController(new CustomerLogic(new CustomerDALStub()));
 
@@ -474,23 +404,9 @@ namespace MovieTime2.UnitTest
 
             Assert.AreEqual(result, "true");
         }
-
-        public void test_editAddressF(int id, string newDetail) {
-
-            var controller = new AdminController(new CustomerLogic(new CustomerDALStub()));
-
-            var customer = new ListCustomer()
-            {
-                Id = 1,
-                Address = ""
-            };
-
-            string result = controller.editCustomer(customer);
-
-            Assert.AreEqual(result, "false");
-        }
-
-        public void test_editAddressT(int id, string newDetail) {
+        
+        [TestMethod]
+        public void test_editAddressT() {
 
             var controller = new AdminController(new CustomerLogic(new CustomerDALStub()));
 
@@ -505,23 +421,9 @@ namespace MovieTime2.UnitTest
 
             Assert.AreEqual(result, "true");
         }
-
-        public void test_editPhoneNumberF(int id, string newDetail) {
-
-            var controller = new AdminController(new CustomerLogic(new CustomerDALStub()));
-
-            var customer = new ListCustomer()
-            {
-                Id = 1,
-                PhoneNumber = ""
-            };
-
-            string result = controller.editCustomer(customer);
-
-            Assert.AreEqual(result, "false");
-        }
-
-        public void test_editPhoneNumberT(int id, string newDetail) {
+        
+        [TestMethod]
+        public void test_editPhoneNumberT() {
 
             var controller = new AdminController(new CustomerLogic(new CustomerDALStub()));
 
@@ -535,23 +437,9 @@ namespace MovieTime2.UnitTest
 
             Assert.AreEqual(result, "true");
         }
-
-        public void test_editEmailF(int id, string newDetail) {
-
-            var controller = new AdminController(new CustomerLogic(new CustomerDALStub()));
-
-            var customer = new ListCustomer()
-            {
-                Id = 1,
-                Email = ""
-            };
-
-            string result = controller.editCustomer(customer);
-
-            Assert.AreEqual(result, "false");
-        }
-
-        public void test_editEmailT(int id, string newDetail) {
+        
+        [TestMethod]
+        public void test_editEmailT() {
 
             var controller = new AdminController(new CustomerLogic(new CustomerDALStub()));
 
@@ -564,6 +452,49 @@ namespace MovieTime2.UnitTest
             string result = controller.editCustomer(customer);
 
             Assert.AreEqual(result, "true");
+        }
+        [TestMethod]
+        public void test_CustomerF()
+        {
+
+            var controller = new AdminController(new CustomerLogic(new CustomerDALStub()));
+
+            var customer = new ListCustomer()
+            {
+                Id = 0,
+                
+            };
+
+            string result = controller.editCustomer(customer);
+
+            Assert.AreEqual(result, "false");
+        }
+        [TestMethod]
+        public void test_searchCustomer()
+        {
+            var controller = new AdminController(new CustomerLogic(new CustomerDALStub()));
+            var customerList = new List<ListCustomer>();
+            var customer = new ListCustomer()
+            {
+                Id = 1,
+                FirstName = "Gunnar",
+                LastName = "Raggsson",
+                Address = "Kjellandgata",
+                Location = "Oslo",
+                ZipCode = "1234",
+                PhoneNumber = "46765643",
+                Email = "Gunnar_Raggsson@gmail.com",
+                Username = "Gusson"
+
+            };
+            customerList.Add(customer);
+
+            string result = controller.searchCustomer("Gunnar");
+            var jsonSerializer = new JavaScriptSerializer();
+            string testResult = jsonSerializer.Serialize(customerList);
+
+            Assert.AreEqual(result, testResult);
+
         }
 
         public void List<ListCustomer> test_searchCustomer()

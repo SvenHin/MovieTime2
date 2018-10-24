@@ -60,8 +60,27 @@ namespace MovieTime2.DAL
         public bool editEmail(int id, string newDetail) {
             return true;
         }
-        public List<ListCustomer> searchCustomer(string username) {
-            return new List<ListCustomer>(); //TODO
+       public  List<ListCustomer> searchCustomer(string username) {
+            var customerList = new List<ListCustomer>();
+            var customer = new ListCustomer()
+            {
+                Id = 1,
+                FirstName = "Gunnar",
+                LastName = "Raggsson",
+                Address = "Kjellandgata",
+                Location = "Oslo",
+                ZipCode = "1234",
+                PhoneNumber = "46765643",
+                Email = "Gunnar_Raggsson@gmail.com",
+                Username = "Gusson"
+
+            };
+            customerList.Add(customer);
+            return customerList;
+        }
+       public bool editZipCodeAndLocation(int id, string newZip, string Location)
+        {
+            return true; //TODO
         }
 
         bool editZipCodeAndLocation(int id, string newZip, string Location) {

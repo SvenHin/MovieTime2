@@ -140,4 +140,12 @@ namespace MovieTime2.Models
         public string Username { get; set; }
 
     }
+
+    public class ListOrder
+    {
+        public int Id { get; set; }
+        public string Date { get; set; }
+        public string Customer { get; set; }
+
+    }
 }

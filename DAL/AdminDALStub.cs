@@ -9,27 +9,7 @@ namespace MovieTime2.DAL
 {
     public class AdminDALStub : DAL.IAdminDAL
     {
-        public List<Customer> getAllCustomers()
-        {
-            var customerList = new List<Customer>();
-            var customer = new Customer()
-            {
-                FirstName = "Gunnar",
-                LastName = "Raggsson",
-                Address = "Kjellandgata",
-                Location = "Oslo",
-                ZipCode = "1234",
-                PhoneNumber = "46765643",
-                Email = "Gunnar_Raggsson@gmail.com",
-                Username = "Gusson",
-                Password = "Password123",
-
-            };
-            customerList.Add(customer);
-            customerList.Add(customer);
-            customerList.Add(customer);
-            return customerList;
-        }
+        
         public bool Admin_in_DB(Admin admin)
         {
             return true;
@@ -40,12 +20,13 @@ namespace MovieTime2.DAL
             var movieList = new List<movie>();
             var movie = new movie()
             {
+                id = 1,
                 title = "Totoro",
                 summary = "A weird looking bear that lives in the woods",
                 price = 100,
                 imageURL = "place/place.jpg",
                 genre = "Action",
-                genre2 = "Comedy",
+                genre2 = "Comedy"
 
             };
             movieList.Add(movie);

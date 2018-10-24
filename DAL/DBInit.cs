@@ -66,8 +66,50 @@ namespace MovieTime2.DAL
                 Password = SecurityDAL.CreateHash("Admin123", Admin1Salt),
                 Salt = Admin1Salt
 
+
             };
             context.DBAdmin.Add(Admin1);
+
+
+            var User1Salt = SecurityDAL.CreateSalt();
+            var User1 = new DBCustomer
+            {
+                FirstName = "Trond",
+                LastName = "Giske",
+                Address = "Politikkveien 42",
+                PhoneNumber = "12345678",
+                Username = "Trogis",
+                Email = "trond.giske@giske.com",
+                Salt = User1Salt,
+                Password = SecurityDAL.CreateHash("User12345", User1Salt)
+            };
+            var newPost = new PostalCode
+            {
+                ZipCode = "1234",
+                Location = "Stortinget"
+            };
+            User1.PostalCode = newPost;
+            context.DBCustomer.Add(User1);
+
+            var User2Salt = SecurityDAL.CreateSalt();
+            var User2 = new DBCustomer
+            {
+                FirstName = "Trondi",
+                LastName = "Giski",
+                Address = "Politik22kveien 42",
+                PhoneNumber = "12345672",
+                Username = "The Tro",
+                Email = "trond.giske@giskeee.com",
+                Salt = User2Salt,
+                Password = SecurityDAL.CreateHash("Tondi12345", User1Salt)
+            };
+            var newPost2 = new PostalCode
+            {
+                ZipCode = "1231",
+                Location = "Oslo"
+            };
+            User2.PostalCode = newPost2;
+            context.DBCustomer.Add(User2);
 
 
 

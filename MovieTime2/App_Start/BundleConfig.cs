@@ -26,7 +26,8 @@ namespace MovieTime2
             
             bundles.Add(new ScriptBundle("~/bundles/adminjquery").Include(
                         "~/Scripts/AdminLoader.js",
-                        "~/Scripts/CustomerLoader.js"));
+                        "~/Scripts/CustomerLoader.js",
+                        "~/Scripts/OrderLoader.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryandajax").Include(
                         "~/Scripts/jquery-3.3.1.js",

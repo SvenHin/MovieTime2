@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MovieTime2.Models;
 
-namespace DAL
+namespace MovieTime2.BLL
 {
-    public class Class1
+    public interface IOrderLogic
     {
+        List<ListOrder> getAllOrders();
+
     }
 }

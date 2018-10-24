@@ -45,7 +45,9 @@
     <Compile Include="CustomerBLL.cs" />
     <Compile Include="IAdminLogic.cs" />
     <Compile Include="ICustomerLogic.cs" />
+    <Compile Include="IOrderLogic.cs" />
     <Compile Include="MovieTimeBLL.cs" />
+    <Compile Include="OrderBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SecurityBLL.cs" />
   </ItemGroup>

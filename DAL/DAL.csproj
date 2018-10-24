@@ -50,13 +50,16 @@
   <ItemGroup>
     <Compile Include="AdminDALStub.cs" />
     <Compile Include="AdminDAL.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="CustomerDAL.cs" />
+    <Compile Include="CustomerDALStub.cs" />
     <Compile Include="DBInit.cs" />
     <Compile Include="DbModel.cs" />
     <Compile Include="IAdminDAL.cs" />
     <Compile Include="ICustomerDAL.cs" />
+    <Compile Include="IOrderDAL.cs" />
     <Compile Include="MovieTimeDAL.cs" />
+    <Compile Include="OrderDAL.cs" />
+    <Compile Include="OrderDALStub.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SecurityDAL.cs" />
   </ItemGroup>

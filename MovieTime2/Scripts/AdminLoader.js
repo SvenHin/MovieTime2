@@ -119,7 +119,7 @@ $(function () {
         var key = e.which;
         if (key == 13)
         {
-            $('.movieSearchBtn').click();
+            $('#searchBtn').click();
             return false;
         }
     });

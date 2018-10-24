@@ -57,7 +57,7 @@ namespace MovieTime2.UnitTest
                 price = 100,
                 imageURL = "place/place.jpg",
                 genre = "Action",
-                genre2 = "Comedy",
+                genre2 = "Comedy"
 
 
             };
@@ -119,7 +119,7 @@ namespace MovieTime2.UnitTest
                 price = 100,
                 imageURL = "place/place.jpg",
                 genre = "Action",
-                genre2 = "Comedy",
+                genre2 = "Comedy"
 
 
             };
@@ -170,7 +170,7 @@ namespace MovieTime2.UnitTest
 
             var movie = new movie()
             {
-                id = 0,
+                id = 0
 
             };
 
@@ -328,8 +328,56 @@ namespace MovieTime2.UnitTest
             Assert.AreEqual(result, testResult);
 
         }
+        //Customer Methods Below
+
+        [TestMethod]
+        public void test_getAllCustomers()
+        {
+            var controller = new AdminController(new CustomerLogic(new CustomerDALStub()));
+
+            var customerList = new List<ListCustomer>();
+            var customer = new ListCustomer()
+            {
+                Id = 1,
+                FirstName = "Gunnar",
+                LastName = "Raggsson",
+                Address = "Kjellandgata",
+                Location = "Oslo",
+                ZipCode = "1234",
+                PhoneNumber = "46765643",
+                Email = "Gunnar_Raggsson@gmail.com",
+                Username = "Gusson"
 
 
+            };
+            customerList.Add(customer);
+            customerList.Add(customer);
+            customerList.Add(customer);
+
+
+            string result = controller.getAllCustomers();
+            var jsonSerializer = new JavaScriptSerializer();
+            string testResult = jsonSerializer.Serialize(customerList);
+
+            Assert.AreEqual(result, testResult);
+
+        }
+        /*public List<ListCustomer> getAllCustomers() {
+
+            var customerList = new List<ListCustomer>();
+            var customer = new ListCustomer()
+            {
+                Id = 1,
+                FirstName = "Gunnar",
+                LastName = "Raggsson",
+                Address = "Kjellandgata",
+                Location = "Oslo",
+                ZipCode = "1234",
+                PhoneNumber = "46765643",
+                Email = "Gunnar_Raggsson@gmail.com",
+                Username = "Gusson"
+
+            };*/
     }
 
 }

@@ -119,6 +119,7 @@ namespace MovieTime2.Controllers
             {
                 if (movie.title != null)
                 {
+                    
                     bool editName = _AdminBLL.editMovieName(movie.id, movie.title);
                 }
                 if (movie.summary != null)

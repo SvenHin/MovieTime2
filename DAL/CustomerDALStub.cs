@@ -60,5 +60,13 @@ namespace MovieTime2.DAL
         public bool editEmail(int id, string newDetail) {
             return true;
         }
+        public List<ListCustomer> searchCustomer(string newDetail)
+        {
+            return new List<ListCustomer>();//unfinished
+        }
+        public bool editZipCodeAndLocation(int id, string zipCode, string Location)
+        {
+            return true; //unfinished
+        }
     }
 }

@@ -17,6 +17,8 @@ namespace MovieTime2.DAL
          bool editAddress(int id, string newDetail);
          bool editPhoneNumber(int id, string newDetail);
          bool editEmail(int id, string newDetail);
+        List<ListCustomer> searchCustomer(string username);
+
 
 
 

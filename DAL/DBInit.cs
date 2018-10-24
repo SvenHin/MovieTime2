@@ -91,6 +91,26 @@ namespace MovieTime2.DAL
             User1.PostalCode = newPost;
             context.DBCustomer.Add(User1);
 
+            var User2Salt = SecurityDAL.CreateSalt();
+            var User2 = new DBCustomer
+            {
+                FirstName = "Trondi",
+                LastName = "Giski",
+                Address = "Politik22kveien 42",
+                PhoneNumber = "12345672",
+                Username = "The Tro",
+                Email = "trond.giske@giskeee.com",
+                Salt = User2Salt,
+                Password = SecurityDAL.CreateHash("Tondi12345", User1Salt)
+            };
+            var newPost2 = new PostalCode
+            {
+                ZipCode = "1231",
+                Location = "Oslo"
+            };
+            User2.PostalCode = newPost2;
+            context.DBCustomer.Add(User2);
+
 
 
 

@@ -148,4 +148,11 @@ namespace MovieTime2.Models
         public string Customer { get; set; }
 
     }
+    public class ListLineItem
+    {
+        public int Id { get; set; }
+        public int OrderId { get; set; }
+        public string MovieTitle { get; set; }
+
+    }
 }

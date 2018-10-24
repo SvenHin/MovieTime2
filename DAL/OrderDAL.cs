@@ -23,5 +23,17 @@ namespace MovieTime2.DAL
             }).ToList();
             return allOrders;
         }
+        public List<ListLineItem> getLineItemsFromId(int OrderId)
+        {
+            DatabaseContext db = new DatabaseContext();
+            List<ListLineItem> allLineitems = db.LineItem.Where(e => e.Order.Id == OrderId).Select(k => new ListLineItem()
+            {
+                Id = k.Id,
+                OrderId = k.Order.Id,
+                MovieTitle = k.Movie.Title
+
+            }).ToList();
+            return allLineitems;
+        }
     }
 }

@@ -24,5 +24,9 @@ namespace MovieTime2.DAL
             orderList.Add(order);
             return orderList;
         }
+        public List<ListLineItem> getLineItemsFromId(int OrderId)
+        {
+            return new List<ListLineItem>(); //unfinished
+        }
     }
 }

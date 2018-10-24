@@ -89,7 +89,6 @@ namespace MovieTime2.DAL
                 Location = "Stortinget"
             };
             User1.PostalCode = newPost;
-            context.DBCustomer.Add(User1);
 
             var User2Salt = SecurityDAL.CreateSalt();
             var User2 = new DBCustomer
@@ -109,7 +108,8 @@ namespace MovieTime2.DAL
                 Location = "Oslo"
             };
             User2.PostalCode = newPost2;
-            context.DBCustomer.Add(User2);
+
+
 
 
 
@@ -558,8 +558,52 @@ namespace MovieTime2.DAL
             Dook.Genre = DramaList8;
             context.Movie.Add(Dook);
 
+            var newLineItems = new List<LineItem>();
+            var newLineItems2 = new List<LineItem>();
 
+            var lineItem = new LineItem()
+            {
+               Movie = Dook
+            };
+            var lineItem2 = new LineItem()
+            {
+                Movie = Vert
+            };
+            var lineItem3 = new LineItem()
+            {
+                Movie = Creed
+            };
+            var lineItem4 = new LineItem()
+            {
+                Movie = lala
+            };
+            newLineItems.Add(lineItem);
+            newLineItems.Add(lineItem2);
+            newLineItems2.Add(lineItem3);
+            newLineItems2.Add(lineItem4);
 
+            DateTime currentDate = DateTime.Today;
+            var currentDateString = currentDate.ToShortDateString();
+
+            var newOrder = new Order()
+            {
+                Date = currentDateString,
+                LineItem = newLineItems,
+            };
+            var newOrder2 = new Order()
+            {
+                Date = currentDateString,
+                LineItem = newLineItems2,
+            };
+            var newOrderList = new List<Order>();
+            var newOrderList2 = new List<Order>();
+            newOrderList.Add(newOrder);
+            newOrderList2.Add(newOrder2);
+            User1.Order = newOrderList;
+            User2.Order = newOrderList2;
+
+            context.DBCustomer.Add(User1);
+            context.DBCustomer.Add(User2);
             base.Seed(context);
         }
     }

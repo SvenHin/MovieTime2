@@ -1,3 +1,10 @@
 ﻿#contentTable {
     background-color: transparent;
 }
+.slidedown {
+    display: none;
+    background-color: #111111;
+}
+.table tbody + tbody{
+    border-top: 0;
+}

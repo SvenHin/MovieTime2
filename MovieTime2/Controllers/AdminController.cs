@@ -228,7 +228,13 @@ namespace MovieTime2.Controllers
             string json = jsonSerializer.Serialize(orderList);
             return json;
         }
-
+        public string getAllLineItems(int id)
+        {
+            List<ListLineItem> lineitems = _OrderBLL.getLineItemsFromId(id);
+            var jsonSerializer = new JavaScriptSerializer();
+            string json = jsonSerializer.Serialize(lineitems);
+            return json;
+        }
 
     }
 }

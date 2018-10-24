@@ -10,6 +10,7 @@ namespace MovieTime2.BLL
     public interface IOrderLogic
     {
         List<ListOrder> getAllOrders();
+        List<ListLineItem> getLineItemsFromId(int OrderId);
 
     }
 }

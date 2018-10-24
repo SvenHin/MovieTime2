@@ -22,6 +22,11 @@ namespace MovieTime2.BLL
             List<ListOrder> allOrders = _orderDAL.getAllOrders();
             return allOrders;
         }
+        public List<ListLineItem> getLineItemsFromId(int OrderId)
+        {
+            List<ListLineItem> allLineItems = _orderDAL.getLineItemsFromId(OrderId);
+            return allLineItems;
+        }
 
 
     }

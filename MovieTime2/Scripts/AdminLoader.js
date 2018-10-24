@@ -7,6 +7,11 @@
     addMovieSearchClass();
     addMoviePlaceHolder();
     addMovieActive();
+    scrollToTop();
+}
+function scrollToTop() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
 }
 function addMovieActive() {
     $("#customerPage").removeClass("active");
@@ -37,13 +42,15 @@ function getMovieHeaderList() {
         type: 'GET',
         dataType: 'json',
         success: function (headers) {
-            var utStreng = "<tr>";
+            var print = "<thead><tr>";
             for (var i in headers) {
-                utStreng += "<th scope='col'>" + headers[i] + "</th>"
+                print += "<th scope='col'>" + headers[i] + "</th>"
             }
 
-            utStreng += "<th schope='col'></th><th schope='col'></th></tr>";
-            $("#contentHead").html(utStreng);
+            print += "<th schope='col'></th><th schope='col'></th></tr></thead>";
+            print += "<tbody id='contentBody'></tbody>";
+
+            $("#contentTable").html(print);
         },
         error: function (x, y, z) {
             alert(x + '\n' + y + '\n' + z);
@@ -61,7 +68,9 @@ function getMovieList() {
             for (var i in movies) {
                 utStreng += "<tr id='" + movies[i].id + "'><th scope='row'>" + movies[i].id + "</th><td>" + movies[i].title + "</td><td>" + movies[i].summary + "</td><td>" + movies[i].price + "</td><td>" + movies[i].imageURL + "</td><td><button data-type='" + movies[i].id + "' type='button' class='editBtn btn btn-warning'>Edit</button></td><td><button data-type='" + movies[i].id + "' type='button' class='removeBtn btn btn-danger'>Remove</button></td></tr>"
             }
-            $("#contentBody").html(utStreng);
+            $("#contentBody").append(utStreng);
+            scrollToTop();
+
         },
         error: function (x, y, z) {
             alert(x + '\n' + y + '\n' + z);

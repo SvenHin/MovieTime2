@@ -84,14 +84,17 @@ $(function () {
     $(document).on("click", ".showMoreBtnOrder", function () {
         
         var id = $(this).attr('data-type');
-        $(".slidedown." + id).toggle();
         if ($(".slidedown." + id).is(":hidden")) {
-            $(this).html("Show more");
-            $(".selected." + id).css("background-color", "");
-        }
-        else {
+            $(".slidedown." + id).fadeIn(200);
             $(this).html("Show less");
             $(".selected." + id).css("background-color", "#070707");
+
+        }
+        else {
+            $(".slidedown." + id).fadeOut(200);
+            $(this).html("Show more");
+            $(".selected." + id).css("background-color", "");
+
         }
 
 

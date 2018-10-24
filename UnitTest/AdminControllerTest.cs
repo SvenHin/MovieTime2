@@ -566,8 +566,31 @@ namespace MovieTime2.UnitTest
             Assert.AreEqual(result, "true");
         }
 
-        List<ListCustomer> searchCustomer(string username) { }
-        List<ListCustomer> searchCustomer(string username) { }
+        public void List<ListCustomer> test_searchCustomer()
+            {
+
+            var controller = new AdminController(new AdminLogic(new AdminDALStub()));
+
+            var customerList = new List<ListCustomer>();
+            var customer = new Customer()
+            {
+                title = "Totoro",
+                summary = "A weird looking bear that lives in the woods",
+                price = 100,
+                imageURL = "place/place.jpg",
+                genre = "Action",
+                genre2 = "Comedy",
+
+
+            };
+            customerList.Add(customer);
+
+            string result = controller.searchCustomer("Totoro");
+            var jsonSerializer = new JavaScriptSerializer();
+            string testResult = jsonSerializer.Serialize(customerList);
+
+            Assert.AreEqual(result, testResult);
+        }
 
         /*public List<ListCustomer> getAllCustomers() {
 

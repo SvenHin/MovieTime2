@@ -86,6 +86,8 @@ namespace MovieTime2.Controllers
             string json = jsonSerializer.Serialize(movieList);
             return json;
         }
+
+        //Might get removed:
         public string getAllMovieHeaders()
         {
             List<string> headerList = _AdminBLL.getAllMovieHeaders();
@@ -120,8 +122,6 @@ namespace MovieTime2.Controllers
             }
             else
             {
-
-
                 if (movie.title != null)
                 {
                     
@@ -130,7 +130,6 @@ namespace MovieTime2.Controllers
                 if (movie.summary != null)
                 {
                     bool editSummary = _AdminBLL.editMovieSummary(movie.id, movie.summary);
-
                 }
                 if (!movie.price.Equals(0))
                 {
@@ -175,8 +174,6 @@ namespace MovieTime2.Controllers
             }
             else
             {
-
-
                 if (customer.Username != null)
                 {
                     bool editName = _CustomerBLL.editUsername(customer.Id, customer.Username);
@@ -201,9 +198,9 @@ namespace MovieTime2.Controllers
                 {
                     bool editEmail = _CustomerBLL.editEmail(customer.Id, customer.Email);
                 }
-                if (customer.ZipCode != null)
+                if (customer.ZipCode != null && customer.Location != null)
                 {
-
+                    bool editZipLocation = _CustomerBLL.editZipCodeAndLocation(customer.Id, customer.ZipCode, customer.Location);
                 }
                 result = true;
             }

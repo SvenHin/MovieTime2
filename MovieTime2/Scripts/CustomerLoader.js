@@ -30,7 +30,7 @@ function addCustomerPlaceHolder() {
 }
 
 function getCustomerHeaders() {
-    var print = "<tr><td>Id</td><td>Username</td><td>First Name</td><td>Last Name</td><td>Address</td><td>City</td><td>Zip Code</td><td>Phone Number</td><td>Email</td></tr>";
+    var print = "<tr><td>Id</td><td>Username</td><td>First Name</td><td>Last Name</td><td>Address</td><td>City</td><td>Zip Code</td><td>Phone Number</td><td>Email</td><td></td><td></td></tr>";
     $("#contentHead").html(print);
 }
 
@@ -109,9 +109,43 @@ $(function () {
     });
 });
 
+function saveEditedCustomer(id) {
+
+    var jsIn = {
+        Id: id,
+        Username: $("#editUsername").val(),
+        FirstName: $("#editFirstName").val(),
+        LastName: $("#editLastName").val(),
+        Address: $("#editAddress").val(),
+        Location: $("#editLocation").val(),
+        ZipCode: $("#editZipCode").val(),
+        PhoneNumber: $("#editPhoneNumber").val(),
+        Email: $("#editEmail").val(),
+
+    }
+
+    $.ajax({
+        url: '/Admin/editCustomer',
+        type: 'POST',
+        data: JSON.stringify(jsIn),
+        contentType: "application/json;charset=utf-8",
+        success: function (ok) {
+            if (ok == "false") {
+                alert("Could not save edited customer");
+            }
+            else {
+                window.location.reload();
+            }
+        },
+        error: function (x, y, z) {
+            alert(x + '\n' + y + '\n' + z);
+        }
+    });
+
+}
 
 function editCustomerRow(id) {
     var editRow = $('#' + id);
-    var dynamicRow = "<th scope='row'>" + id + "</th><td><input type='text' id='editUsername' style='width: 100%;' class='borderStyle' /></td><td><input type='text' id='editFirstName' style='width: 100%;' class='borderStyle' /></td><td><input type='text' id='editLastName' style='width: 100%;' class='borderStyle' /></td><td><input type='text' id='editAddress' style='width: 100%;' class='borderStyle' /></td><td><input type='text' id='editLocation' style='width: 100%;' class='borderStyle' /></td><td><input type='text' id='editZipCode' style='width: 100%;' class='borderStyle'/></td><td><input type='text' id='editPhoneNumber' style='width: 100%;' class='borderStyle'/></td><td><input type='text' id='editEmail' style='width: 100%;' class='borderStyle'/></td><td><button data-type='" + id + "' type='button' class='saveBtn btn btn-success'>Save</button></td>";
+    var dynamicRow = "<th scope='row'>" + id + "</th><td><input type='text' id='editUsername' style='width: 100%;' class='borderStyle' /></td><td><input type='text' id='editFirstName' style='width: 100%;' class='borderStyle' /></td><td><input type='text' id='editLastName' style='width: 100%;' class='borderStyle' /></td><td><input type='text' id='editAddress' style='width: 100%;' class='borderStyle' /></td><td><input type='text' id='editLocation' style='width: 100%;' class='borderStyle' /></td><td><input type='text' id='editZipCode' style='width: 100%;' class='borderStyle'/></td><td><input type='text' id='editPhoneNumber' style='width: 100%;' class='borderStyle'/></td><td><input type='text' id='editEmail' style='width: 100%;' class='borderStyle'/></td><td><button data-type='" + id + "' type='button' class='saveBtnCustomer btn btn-success'>Save</button></td>";
     $(editRow).html(dynamicRow);
 }

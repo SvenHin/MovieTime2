@@ -69,6 +69,12 @@ namespace MovieTime2.BLL
             List<ListCustomer> customerList = _customerDAL.searchCustomer(username);
             return customerList;
         }
+        public bool editZipCodeAndLocation(int id, string newZip, string Location)
+        {
+            bool result = _customerDAL.editZipCodeAndLocation(id, newZip, Location);
+            return result;
+        }
+
 
     }
 }

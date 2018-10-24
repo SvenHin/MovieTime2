@@ -24,7 +24,7 @@ function addOrderPlaceHolder() {
 }
 
 function getOrderHeaders() {
-    var print = "<thead><tr><td>Order</td><td>Id</td><td>Date</td><td>Username</td><td></td><td></td><td></td></tr></thead>";
+    var print = "<thead><tr><td>Id</td><td>Date</td><td>Username</td><td></td><td></td><td></td></tr></thead>";
     $("#contentTable").html(print);
 }
 
@@ -40,7 +40,7 @@ function buildOrderList(orders) {
     $("#contentBody").html("");
 
     for (var i in orders) {
-        var string = "<tbody id='" + orders[i].Id + "'> <tr><td></td><th scope='row'>" + orders[i].Id + "</th><td>" + orders[i].Date + "</td><td>" + orders[i].Customer + "</td><td><button data-type='" + orders[i].Id + "' type='button' class='editBtnOrder btn btn-warning'>Edit</button></td><td><button data-type='" + orders[i].Id + "' type='button' class='removeBtnOrder btn btn-danger'>Remove</button></td><td><button data-type='" + orders[i].Id + "' type='button' class='showMoreBtnOrder btn btn-info'>Show more</button></td></tr></tbody> ";
+        var string = "<tbody id='" + orders[i].Id + "'> <tr class='selected " + orders[i].Id + "'><th scope='row'>" + orders[i].Id + "</th><td>" + orders[i].Date + "</td><td>" + orders[i].Customer + "</td><td><button data-type='" + orders[i].Id + "' type='button' class='editBtnOrder btn btn-warning'>Edit</button></td><td><button data-type='" + orders[i].Id + "' type='button' class='removeBtnOrder btn btn-danger'>Remove</button></td><td><button data-type='" + orders[i].Id + "' type='button' class='showMoreBtnOrder btn btn-info'>Show more</button></td></tr></tbody> ";
         $("#contentTable").append(string);
         getLineItems(orders[i].Id);
     }
@@ -50,11 +50,11 @@ function getLineItems(id) {
     $.getJSON("/Admin/getAllLineItems/", {id: id},
         function (lineitems) {
             var targetBody = $('#' + id);
-            var titles = "<tr class='slidedown " + id + "'><td>Line items</td><td>OrderId</td><td>LineItem Id</td><td>Movie Title</td><td></td><td></td><td></td></tr>";
+            var titles = "<tr class='slidedown " + id + "'><td></td><td>OrderId</td><td>LineItem Id</td><td>Movie Title</td><td></td><td></td></tr>";
             $(targetBody).append(titles);
 
             for (var e in lineitems) {
-                var newString = "<tr class='slidedown " + id + "'><td></td><th scope='row'>" + lineitems[e].OrderId + "</th><td>" + lineitems[e].Id + "</td > <td>" + lineitems[e].MovieTitle + "</td> <td></td> <td><button data-type='" + lineitems[e].Id + "' type='button' class='removeBtnLineItem btn btn-danger'>Remove</button></td> <td></td></tr > ";
+                var newString = "<tr class='slidedown " + id + "'><td>Line item</td><th scope='row'>" + lineitems[e].OrderId + "</th><td>" + lineitems[e].Id + "</td > <td>" + lineitems[e].MovieTitle + "</td>  <td><button data-type='" + lineitems[e].Id + "' type='button' class='removeBtnLineItem btn btn-danger'>Remove</button></td> <td></td></tr > ";
                 $(targetBody).append(newString);
             }
 
@@ -83,15 +83,15 @@ $(function () {
 $(function () {
     $(document).on("click", ".showMoreBtnOrder", function () {
         
-
         var id = $(this).attr('data-type');
         $(".slidedown." + id).toggle();
         if ($(".slidedown." + id).is(":hidden")) {
             $(this).html("Show more");
-
+            $(".selected." + id).css("background-color", "");
         }
         else {
             $(this).html("Show less");
+            $(".selected." + id).css("background-color", "#070707");
         }
 
 

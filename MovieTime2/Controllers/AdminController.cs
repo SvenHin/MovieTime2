@@ -28,8 +28,11 @@ namespace MovieTime2.Controllers
         {
             _AdminBLL = stub;
         }
+        public AdminController(ICustomerLogic stub)
+        {
+            _CustomerBLL = stub;
+        }
 
-     
 
         public ActionResult Login()
         {
@@ -43,7 +46,7 @@ namespace MovieTime2.Controllers
             }
             else
             {
-                return View("Admin");
+                return View("Admin"); //Trengs denne?
             }
             return View("Admin");
         }
@@ -83,6 +86,8 @@ namespace MovieTime2.Controllers
             string json = jsonSerializer.Serialize(movieList);
             return json;
         }
+
+        //Might get removed:
         public string getAllMovieHeaders()
         {
             List<string> headerList = _AdminBLL.getAllMovieHeaders();

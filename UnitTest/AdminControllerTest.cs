@@ -17,33 +17,6 @@ namespace MovieTime2.UnitTest
     [TestClass]
     public class AdminControllerTest
     {
-     /*   [TestMethod]
-        public void List_Show_view()
-        {
-            var controller = new AdminController(new AdminLogic(new AdminDALStub()));
-
-            var expectedResult = new List<Customer>();
-            var customer = new Customer()
-            {
-                FirstName = "Gunnar",
-                LastName = "Raggsson",
-                Address = "Kjellandgata",
-                Location = "Oslo",
-                ZipCode = "1234",
-                PhoneNumber = "46765643",
-                Email = "Gunnar_Raggsson@gmail.com",
-                Username = "Gusson",
-                Password = "Password123",
-
-            };
-            expectedResult.Add(customer);
-            expectedResult.Add(customer);
-            expectedResult.Add(customer);
-
-            var actionResult = (ViewResult)controller.getAllCustomers();
-            var 
-        }*/
-
         [TestMethod]
         public void test_getAllMovies()
         {

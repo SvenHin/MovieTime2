@@ -81,6 +81,8 @@ namespace MovieTime2.Controllers
             string json = jsonSerializer.Serialize(movieList);
             return json;
         }
+
+        //Might get removed:
         public string getAllMovieHeaders()
         {
             List<string> headerList = _AdminBLL.getAllMovieHeaders();

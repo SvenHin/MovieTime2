@@ -127,7 +127,19 @@ namespace MovieTime2.DAL
         }
         public List<movie> searchMovie(string title)
         {
-            return new List<movie>(); //unfinished
+            var movieList = new List<movie>();
+            var movie = new movie()
+            {
+                title = "Totoro",
+                summary = "A weird looking bear that lives in the woods",
+                price = 100,
+                imageURL = "place/place.jpg",
+                genre = "Action",
+                genre2 = "Comedy",
+
+            };
+            movieList.Add(movie);
+            return movieList;
         }
     }
     

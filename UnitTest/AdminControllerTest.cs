@@ -302,6 +302,32 @@ namespace MovieTime2.UnitTest
             Assert.AreEqual(result, "true");
 
         }
+        [TestMethod]
+        public void test_searchMovie()
+        {
+            var controller = new AdminController(new AdminLogic(new AdminDALStub()));
+
+            var movieList = new List<movie>();
+            var movie = new movie()
+            {
+                title = "Totoro",
+                summary = "A weird looking bear that lives in the woods",
+                price = 100,
+                imageURL = "place/place.jpg",
+                genre = "Action",
+                genre2 = "Comedy",
+
+
+            };
+            movieList.Add(movie);
+
+            string result = controller.searchMovie("Totoro");
+            var jsonSerializer = new JavaScriptSerializer();
+            string testResult = jsonSerializer.Serialize(movieList);
+
+            Assert.AreEqual(result, testResult);
+
+        }
 
 
     }

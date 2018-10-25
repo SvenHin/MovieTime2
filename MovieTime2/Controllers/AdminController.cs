@@ -44,10 +44,6 @@ namespace MovieTime2.Controllers
             {
                 return View("AdminInterface");
             }
-            else
-            {
-                return View("Admin"); //Trengs denne?
-            }
             return View("Admin");
         }
 

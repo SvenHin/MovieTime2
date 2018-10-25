@@ -43,6 +43,50 @@ namespace MovieTime2.UnitTest
 
             Assert.AreEqual(result.ViewName, "AdminInterface");
         }
+        [TestMethod]
+        public void test_adminLogin3()
+        {
+            var controller = new AdminController(new AdminLogic(new AdminDALStub()));
+
+            var admin = new Admin()
+            {
+                Username = "Admin",
+                Password = "Admin123"
+            };
+
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["AdminLoggedIn"] = "true";
+            controller.Session["Username"] = admin.Username;
+
+            var result = (ViewResult)controller.Login(admin);
+
+            Assert.AreEqual(result.ViewName, "AdminInterface");
+            
+
+
+        }
+        [TestMethod]
+        public void test_adminLogin4()
+        {
+            var controller = new AdminController(new AdminLogic(new AdminDALStub()));
+
+            var admin = new Admin()
+            {
+ 
+            };
+
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["AdminLoggedIn"] = "false";
+
+            var result = (ViewResult)controller.Login(admin);
+
+            Assert.AreEqual(result.ViewName, "LoginFailed");
+            
+
+
+        }
 
 
         [TestMethod]
@@ -543,32 +587,6 @@ namespace MovieTime2.UnitTest
 
             Assert.AreEqual(result, testResult);
 
-        }
-
-        public void List<ListCustomer> test_searchCustomer()
-            {
-
-            var controller = new AdminController(new AdminLogic(new AdminDALStub()));
-
-            var customerList = new List<ListCustomer>();
-            var customer = new Customer()
-            {
-                title = "Totoro",
-                summary = "A weird looking bear that lives in the woods",
-                price = 100,
-                imageURL = "place/place.jpg",
-                genre = "Action",
-                genre2 = "Comedy",
-
-
-            };
-            customerList.Add(customer);
-
-            string result = controller.searchCustomer("Totoro");
-            var jsonSerializer = new JavaScriptSerializer();
-            string testResult = jsonSerializer.Serialize(customerList);
-
-            Assert.AreEqual(result, testResult);
         }
 
         /*public List<ListCustomer> getAllCustomers() {

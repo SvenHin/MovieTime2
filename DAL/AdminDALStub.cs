@@ -9,10 +9,19 @@ namespace MovieTime2.DAL
 {
     public class AdminDALStub : DAL.IAdminDAL
     {
-        
+
         public bool Admin_in_DB(Admin admin)
         {
-            return true;
+
+                if (admin.Username == "Admin" && admin.Password == "Admin123")
+                {
+
+                return true;
+                }
+                else
+                {
+                    return false;
+                }
         }
 
         public List<movie> getAllMovies()

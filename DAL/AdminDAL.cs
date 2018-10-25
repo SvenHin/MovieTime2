@@ -261,11 +261,16 @@ namespace MovieTime2.DAL
 
         public void LogError (Exception ex)
         {
-            string filePath = @"C:\Users\Muneeb\source\repos\logfile.txt";
+            string temp = Path.Combine(Path.GetTempPath(), "CinemaCityLogs");
 
-            using (StreamWriter writer = new StreamWriter(filePath, true))
+            //TODO Check if directory exists before creating
+            Directory.CreateDirectory(temp);
+            string path = Path.Combine(temp, "logfile.txt");
+
+            using (StreamWriter writer = new StreamWriter(path, true))
             {
-                writer.WriteLine(ex.Message + "<br/>" + Environment.NewLine + "StackTrace: " + ex.StackTrace);
+                writer.WriteLine("Date: " + DateTime.Now.ToString() + Environment.NewLine + ex.ToString());
+                writer.WriteLine(Environment.NewLine + "____________________________________________________________________" + Environment.NewLine);
             }
         }
 

@@ -39,6 +39,17 @@ namespace MovieTime2.BLL
             bool remove = _orderDAL.removeLineItem(id);
             return remove;
         }
+        public List<ListOrder> searchOrder(int id)
+        {
+            List<ListOrder> search = _orderDAL.searchOrder(id);
+            return search;
+        }
+        public bool deleteOrdersFromCustomer(int id)
+        {
+            bool remove = _orderDAL.deleteOrdersFromCustomer(id);
+            return remove;
+        }
+
 
     }
 }

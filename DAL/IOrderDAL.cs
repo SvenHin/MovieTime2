@@ -13,6 +13,9 @@ namespace MovieTime2.DAL
         List<ListLineItem> getLineItemsFromId(int OrderId);
         bool removeOrder(int id);
         bool removeLineItem(int id);
+        List<ListOrder> searchOrder(int id);
+        bool deleteOrdersFromCustomer(int id);
+
 
 
     }

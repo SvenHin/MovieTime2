@@ -31,18 +31,24 @@ namespace MovieTime2.DAL
             return allCustomers;
         }
 
+
         public bool removeCustomer(int id)
         {
+            var orderdal = new OrderDAL();
+
             DatabaseContext db = new DatabaseContext();
             try
             {
+
                 DBCustomer remove = db.DBCustomer.Find(id);
+                
                 db.DBCustomer.Remove(remove);
                 db.SaveChanges();
                 return true;
             }
-            catch (Exception fail)
+            catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine("In removecustomer " + ex);
                 return false;
             }
         }
@@ -60,6 +66,7 @@ namespace MovieTime2.DAL
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine(ex);
                 return false;
             }
         }
@@ -77,6 +84,7 @@ namespace MovieTime2.DAL
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine(ex);
                 return false;
             }
         }
@@ -94,6 +102,7 @@ namespace MovieTime2.DAL
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine(ex);
                 return false;
             }
         }
@@ -111,6 +120,7 @@ namespace MovieTime2.DAL
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine(ex);
                 return false;
             }
         }
@@ -128,6 +138,7 @@ namespace MovieTime2.DAL
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine(ex);
                 return false;
             }
         }
@@ -145,6 +156,7 @@ namespace MovieTime2.DAL
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine(ex);
                 return false;
             }
         }
@@ -176,6 +188,7 @@ namespace MovieTime2.DAL
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine(ex);
                 return false;
             }
         }
@@ -207,7 +220,7 @@ namespace MovieTime2.DAL
             }
             catch (Exception ex)
             {
-
+                System.Diagnostics.Debug.WriteLine(ex);
             }
             return foundCustomers;
 

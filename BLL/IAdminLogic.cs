@@ -11,7 +11,6 @@ namespace MovieTime2.BLL
     {
         bool Admin_in_DB(Admin admin);
         List<movie> getAllMovies();
-        List<string> getAllMovieHeaders();
         bool removeMovie(int id);
         bool addMovie(movie movie);
         bool editMovieName(int id, string changedDetail);

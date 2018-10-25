@@ -83,14 +83,6 @@ namespace MovieTime2.Controllers
             return json;
         }
 
-        //Might get removed:
-        public string getAllMovieHeaders()
-        {
-            List<string> headerList = _AdminBLL.getAllMovieHeaders();
-            var jsonSerializer = new JavaScriptSerializer();
-            string json = jsonSerializer.Serialize(headerList);
-            return json;
-        }
         public string removeMovie(int id)
         {
             bool remove = _AdminBLL.removeMovie(id);
@@ -214,6 +206,7 @@ namespace MovieTime2.Controllers
 
         public string removeCustomer(int id)
         {
+            bool removeOrder = _OrderBLL.deleteOrdersFromCustomer(id);
             bool remove = _CustomerBLL.removeCustomer(id);
             var jsonSerializer = new JavaScriptSerializer();
             string json = jsonSerializer.Serialize(remove);
@@ -252,6 +245,13 @@ namespace MovieTime2.Controllers
             bool remove = _OrderBLL.removeLineItem(id);
             var jsonSerializer = new JavaScriptSerializer();
             string json = jsonSerializer.Serialize(remove);
+            return json;
+        }
+        public string searchOrder(int id)
+        {
+            List<ListOrder> search = _OrderBLL.searchOrder(id);
+            var jsonSerializer = new JavaScriptSerializer();
+            string json = jsonSerializer.Serialize(search);
             return json;
         }
     }

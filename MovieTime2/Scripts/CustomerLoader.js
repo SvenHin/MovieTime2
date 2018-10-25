@@ -45,7 +45,7 @@ function getCustomerList() {
             for (var i in customers) {
                 string += "<tr id='" + customers[i].Id + "'><th scope='row'>" + customers[i].Id + "</th><td>" + customers[i].Username + "</td><td>" + customers[i].FirstName + "</td><td>" + customers[i].LastName + "</td><td>" + customers[i].Address + "</td><td>" + customers[i].Location + "</td><td>" + customers[i].ZipCode + "</td><td>" + customers[i].PhoneNumber + "</td><td>" + customers[i].Email + "</td><td><button data-type='" + customers[i].Id + "' type='button' class='editBtnCustomer btn btn-warning'>Edit</button></td><td><button data-type='" + customers[i].Id + "' type='button' class='removeBtnCustomer btn btn-danger'>Remove</button></td></tr>"
             }
-            $("#contentBody").append(string);
+            $("#contentBody").html(string);
         },
         error: function (x, y, z) {
             alert(x + '\n' + y + '\n' + z);
@@ -137,7 +137,7 @@ function saveEditedCustomer(id) {
                 alert("Could not save edited customer");
             }
             else {
-                window.location.reload();
+                getCustomerList();
             }
         },
         error: function (x, y, z) {

@@ -240,6 +240,12 @@ namespace MovieTime2.Controllers
             string json = jsonSerializer.Serialize(lineitems);
             return json;
         }
-
+        public string removeLineItem(int id)
+        {
+            bool remove = _OrderBLL.removeLineItem(id);
+            var jsonSerializer = new JavaScriptSerializer();
+            string json = jsonSerializer.Serialize(remove);
+            return json;
+        }
     }
 }

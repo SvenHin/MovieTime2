@@ -60,8 +60,29 @@ function getLineItems(id) {
 
         }
     );
-}
 
+}
+function removeLineItem(id) {
+    $.getJSON("/Admin/removeLineItem/" + id,
+        function (string) {
+            getOrderHeaders();
+            getOrderList();
+        }
+    );
+}
+function removeOrder(id) {
+    $.getJSON("/Admin/removeOrder/" + id,
+        function (string) {
+            getOrderList();
+        }
+    );
+}
+$(function () {
+    $(document).on("click", ".removeBtnLineItem", function () {
+        var id = $(this).attr('data-type');
+        removeLineItem(id);
+    });
+});
 $(function () {
     $(document).on("click", ".removeBtnOrder", function () {
         var id = $(this).attr('data-type');
@@ -80,6 +101,13 @@ $(function () {
         saveOrderMovie(id);
     });
 });
+$(function () {
+    $(document).on("click", ".orderSearchBtn", function () {
+        var title = $("#searchField").val();
+        searchOrder(title);
+    });
+});
+
 $(function () {
     $(document).on("click", ".showMoreBtnOrder", function () {
         
@@ -100,12 +128,8 @@ $(function () {
 
     });
 });
-$(function () {
-    $(document).on("click", ".orderSearchBtn", function () {
-        var title = $("#searchField").val();
-        searchOrder(title);
-    });
-});
+
+
 /* Animation, doesnt work like planned
  * 
  * $(function () {

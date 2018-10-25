@@ -35,5 +35,51 @@ namespace MovieTime2.DAL
             }).ToList();
             return allLineitems;
         }
+        public bool removeLineItem(int id)
+        {
+            DatabaseContext db = new DatabaseContext();
+            try
+            {
+                LineItem remove = db.LineItem.Find(id);
+                db.LineItem.Remove(remove);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception fail)
+            {
+                return false;
+            }
+        }
+        public ListOrder searchOrder(int id)
+        {
+            DatabaseContext db = new DatabaseContext();
+            Order foundOrder = db.Order.Find(id);
+
+            try
+            {
+                if (foundOrder != null)
+                {
+                    ListOrder returnOrder = new ListOrder()
+                    {
+                        Id = foundOrder.Id,
+                        Date = foundOrder.Date,
+                        Customer = foundOrder.Customer.Username,
+                    };
+                    return returnOrder;
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex);
+                return null;
+            }
+            
+        }
+
     }
 }

@@ -28,5 +28,10 @@ namespace MovieTime2.DAL
         {
             return new List<ListLineItem>(); //unfinished
         }
+        public bool removeLineItem(int id)
+        {
+            return true; //unfinished
+        }
+
     }
 }

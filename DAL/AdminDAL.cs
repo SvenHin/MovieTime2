@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
 using System.Data;
+using System.IO;
 
 namespace MovieTime2.DAL
 {
@@ -162,13 +163,15 @@ namespace MovieTime2.DAL
 
             try
             {
-                changedMovie.ImageURL = newDetail;
-                db.SaveChanges();
-                LogMovieDB(id, "editMovieSummary", "ImageUrl", url, newDetail);
-                return true;
+                /* changedMovie.ImageURL = newDetail;
+                 db.SaveChanges();
+                 LogMovieDB(id, "editMovieSummary", "ImageUrl", url, newDetail);
+                 return true;*/
+                throw new DivideByZeroException();
             }
             catch (Exception ex)
             {
+                LogError(ex);
                 return false;
             }
         }
@@ -232,7 +235,7 @@ namespace MovieTime2.DAL
             }
             catch(Exception ex)
             {
-
+                
             }
             return foundMovies;
         }
@@ -254,6 +257,16 @@ namespace MovieTime2.DAL
             };
             db.MovieLog.Add(log);
             db.SaveChanges();
+        }
+
+        public void LogError (Exception ex)
+        {
+            string filePath = @"C:\Users\Muneeb\source\repos\logfile.txt";
+
+            using (StreamWriter writer = new StreamWriter(filePath, true))
+            {
+                writer.WriteLine(ex.Message + "<br/>" + Environment.NewLine + "StackTrace: " + ex.StackTrace);
+            }
         }
 
 

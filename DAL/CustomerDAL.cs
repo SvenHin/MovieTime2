@@ -60,15 +60,16 @@ namespace MovieTime2.DAL
             string firstName = changedCustomer.FirstName;
             try
             {
-                changedCustomer.FirstName = newDetail;
-                db.SaveChanges();
-                LogCustomerDB(id, "editFirstName", "FirstName", firstName, newDetail);
+                  changedCustomer.FirstName = newDetail;
+                  db.SaveChanges();
+                  LogCustomerDB(id, "editFirstName", "FirstName", firstName, newDetail);
 
-                return true;
+                  return true;
+
+                
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(ex);
                 return false;
             }
         }

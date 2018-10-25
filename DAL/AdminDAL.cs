@@ -104,6 +104,7 @@ namespace MovieTime2.DAL
             {
                 changedMovie.Title = newDetail;
                 db.SaveChanges();
+                LogMovieDB(id,"editMovieName", "Changed title to: " + newDetail);
                 return true;
             }
             catch (Exception ex)
@@ -212,6 +213,23 @@ namespace MovieTime2.DAL
             }
             return foundMovies;
             
+        }
+        public void LogMovieDB(int movieid, string method, string changes)
+        {
+            DatabaseContext db = new DatabaseContext();
+            string currentDate = DateTime.Today.ToShortDateString();
+            string currentTime = DateTime.Now.ToShortTimeString();
+            MovieLog log = new MovieLog()
+            {
+                Date = currentDate,
+                Time = currentTime,
+                DAL = "AdminDAL",
+                MovieId = movieid,
+                Method = method,
+                Changes = changes
+            };
+            db.MovieLog.Add(log);
+            db.SaveChanges();
         }
 
 

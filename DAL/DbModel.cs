@@ -83,6 +83,40 @@ namespace MovieTime2.DAL
         public virtual Movie Movie { get; set; }
         public virtual Order Order { get; set; }
     }
+    public class CustomerLog
+    {
+        [Key]
+        public int Id { get; set; }
+        public int CustomerId { get; set; }
+        public string Date { get; set; }
+        public string Time { get; set; }
+        public string DAL {get; set;}
+        public string Method { get; set; }
+        public string Changes { get; set; }
+    }
+    public class MovieLog
+    {
+        [Key]
+        public int Id { get; set; }
+        public int MovieId { get; set; }
+        public string Date { get; set; }
+        public string Time { get; set; }
+        public string DAL { get; set; }
+        public string Method { get; set; }
+        public string Changes { get; set; }
+
+    }
+    public class OrderLog
+    {
+        [Key]
+        public int Id { get; set; }
+        public int OrderId { get; set; }
+        public string Date { get; set; }
+        public string Time { get; set; }
+        public string DAL { get; set; }
+        public string Method { get; set; }
+        public string Changes { get; set; }
+    }
 
     public class DatabaseContext : DbContext
     {
@@ -101,6 +135,9 @@ namespace MovieTime2.DAL
         public DbSet<Order> Order { get; set; }
         public DbSet<LineItem> LineItem { get; set; }
         public DbSet<DBAdmin> DBAdmin { get; set; }
+        public DbSet<CustomerLog> CustomerLog { get; set; }
+        public DbSet<MovieLog> MovieLog { get; set; }
+        public DbSet<OrderLog> OrderLog { get; set; }
 
     }
 

@@ -10,6 +10,7 @@ namespace MovieTime2.DAL
     public interface IOrderDAL
     {
         List<ListOrder> getAllOrders();
+        List<ListLineItem> getLineItemsFromId(int OrderId);
         bool removeOrder(int id);
 
 

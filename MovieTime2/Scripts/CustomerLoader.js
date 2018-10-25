@@ -30,8 +30,9 @@ function addCustomerPlaceHolder() {
 }
 
 function getCustomerHeaders() {
-    var print = "<tr><td>Id</td><td>Username</td><td>First Name</td><td>Last Name</td><td>Address</td><td>City</td><td>Zip Code</td><td>Phone Number</td><td>Email</td></tr>";
-    $("#contentHead").html(print);
+    var print = "<thead><tr><td>Id</td><td>Username</td><td>First Name</td><td>Last Name</td><td>Address</td><td>City</td><td>Zip Code</td><td>Phone Number</td><td>Email</td><td></td><td></td></tr></thead>";
+    print += "<tbody id='contentBody'></tbody>";
+    $("#contentTable").html(print);
 }
 
 function getCustomerList() {
@@ -44,7 +45,7 @@ function getCustomerList() {
             for (var i in customers) {
                 string += "<tr id='" + customers[i].Id + "'><th scope='row'>" + customers[i].Id + "</th><td>" + customers[i].Username + "</td><td>" + customers[i].FirstName + "</td><td>" + customers[i].LastName + "</td><td>" + customers[i].Address + "</td><td>" + customers[i].Location + "</td><td>" + customers[i].ZipCode + "</td><td>" + customers[i].PhoneNumber + "</td><td>" + customers[i].Email + "</td><td><button data-type='" + customers[i].Id + "' type='button' class='editBtnCustomer btn btn-warning'>Edit</button></td><td><button data-type='" + customers[i].Id + "' type='button' class='removeBtnCustomer btn btn-danger'>Remove</button></td></tr>"
             }
-            $("#contentBody").html(string);
+            $("#contentBody").append(string);
         },
         error: function (x, y, z) {
             alert(x + '\n' + y + '\n' + z);
@@ -66,6 +67,7 @@ function searchCustomer(username) {
                 utStreng += "<tr id='" + customers[i].Id + "'><th scope='row'>" + customers[i].Id + "</th><td>" + customers[i].Username + "</td><td>" + customers[i].FirstName + "</td><td>" + customers[i].LastName + "</td><td>" + customers[i].Address + "</td><td>" + customers[i].Location + "</td><td>" + customers[i].ZipCode + "</td><td>" + customers[i].PhoneNumber + "</td><td>" + customers[i].Email + "</td><td><button data-type='" + customers[i].Id + "' type='button' class='editBtn btn btn-warning'>Edit</button></td><td><button data-type='" + customers[i].Id + "' type='button' class='removeBtnCustomer btn btn-danger'>Remove</button></td></tr>"
             }
             $("#contentBody").html(utStreng);
+            scrollToTop();
         },
         error: function (x, y, z) {
             alert(x + '\n' + y + '\n' + z);
@@ -109,9 +111,43 @@ $(function () {
     });
 });
 
+function saveEditedCustomer(id) {
+
+    var jsIn = {
+        Id: id,
+        Username: $("#editUsername").val(),
+        FirstName: $("#editFirstName").val(),
+        LastName: $("#editLastName").val(),
+        Address: $("#editAddress").val(),
+        Location: $("#editLocation").val(),
+        ZipCode: $("#editZipCode").val(),
+        PhoneNumber: $("#editPhoneNumber").val(),
+        Email: $("#editEmail").val(),
+
+    }
+
+    $.ajax({
+        url: '/Admin/editCustomer',
+        type: 'POST',
+        data: JSON.stringify(jsIn),
+        contentType: "application/json;charset=utf-8",
+        success: function (ok) {
+            if (ok == "false") {
+                alert("Could not save edited customer");
+            }
+            else {
+                window.location.reload();
+            }
+        },
+        error: function (x, y, z) {
+            alert(x + '\n' + y + '\n' + z);
+        }
+    });
+
+}
 
 function editCustomerRow(id) {
     var editRow = $('#' + id);
-    var dynamicRow = "<th scope='row'>" + id + "</th><td><input type='text' id='editUsername' style='width: 100%;' class='borderStyle' /></td><td><input type='text' id='editFirstName' style='width: 100%;' class='borderStyle' /></td><td><input type='text' id='editLastName' style='width: 100%;' class='borderStyle' /></td><td><input type='text' id='editAddress' style='width: 100%;' class='borderStyle' /></td><td><input type='text' id='editLocation' style='width: 100%;' class='borderStyle' /></td><td><input type='text' id='editZipCode' style='width: 100%;' class='borderStyle'/></td><td><input type='text' id='editPhoneNumber' style='width: 100%;' class='borderStyle'/></td><td><input type='text' id='editEmail' style='width: 100%;' class='borderStyle'/></td><td><button data-type='" + id + "' type='button' class='saveBtn btn btn-success'>Save</button></td>";
+    var dynamicRow = "<th scope='row'>" + id + "</th><td><input type='text' id='editUsername' style='width: 100%;' class='borderStyle' /></td><td><input type='text' id='editFirstName' style='width: 100%;' class='borderStyle' /></td><td><input type='text' id='editLastName' style='width: 100%;' class='borderStyle' /></td><td><input type='text' id='editAddress' style='width: 100%;' class='borderStyle' /></td><td><input type='text' id='editLocation' style='width: 100%;' class='borderStyle' /></td><td><input type='text' id='editZipCode' style='width: 100%;' class='borderStyle'/></td><td><input type='text' id='editPhoneNumber' style='width: 100%;' class='borderStyle'/></td><td><input type='text' id='editEmail' style='width: 100%;' class='borderStyle'/></td><td><button data-type='" + id + "' type='button' class='saveBtnCustomer btn btn-success'>Save</button></td>";
     $(editRow).html(dynamicRow);
 }

@@ -64,6 +64,17 @@ namespace MovieTime2.BLL
             bool editPhoneNumber = _customerDAL.editPhoneNumber(id, newDetail);
             return editPhoneNumber;
         }
+        public List<ListCustomer> searchCustomer(string username)
+        {
+            List<ListCustomer> customerList = _customerDAL.searchCustomer(username);
+            return customerList;
+        }
+        public bool editZipCodeAndLocation(int id, string newZip, string Location)
+        {
+            bool result = _customerDAL.editZipCodeAndLocation(id, newZip, Location);
+            return result;
+        }
+
 
     }
 }

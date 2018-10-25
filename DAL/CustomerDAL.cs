@@ -148,6 +148,70 @@ namespace MovieTime2.DAL
                 return false;
             }
         }
+        public bool editZipCodeAndLocation(int id, string newZip, string Location)
+        {
+            DatabaseContext db = new DatabaseContext();
+            DBCustomer changedCustomer = db.DBCustomer.Find(id);
+
+            PostalCode foundPost = db.PostalCodes.Find(newZip);
+            if (foundPost == null)
+            {
+                // Create PostLocation
+                var newPost = new PostalCode
+                {
+                    ZipCode = newZip,
+                    Location = Location
+                };
+                changedCustomer.PostalCode = newPost;
+            }
+            else
+            {
+                changedCustomer.PostalCode = foundPost;
+            }
+
+            try
+            {
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public List<ListCustomer> searchCustomer(string username)
+        {
+            DatabaseContext db = new DatabaseContext();
+            DBCustomer foundCustomer = db.DBCustomer.Where(k => k.Username == username).FirstOrDefault();
+            List<ListCustomer> foundCustomers = new List<ListCustomer>();
+
+            try
+            {
+                if (foundCustomer != null)
+                {
+                    ListCustomer returnCustomer = new ListCustomer()
+                    {
+                        Id = foundCustomer.Id,
+                        FirstName = foundCustomer.FirstName,
+                        LastName = foundCustomer.LastName,
+                        Address = foundCustomer.Address,
+                        PhoneNumber = foundCustomer.PhoneNumber,
+                        Email = foundCustomer.Email,
+                        Username = foundCustomer.Username,
+                        Location = foundCustomer.PostalCode.Location,
+                        ZipCode = foundCustomer.ZipCode,
+                    };
+                    foundCustomers.Add(returnCustomer);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return foundCustomers;
+
+        }
 
 
     }

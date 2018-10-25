@@ -23,6 +23,25 @@ namespace MovieTime2.DAL
             }).ToList();
             return allOrders;
         }
+        public bool deleteOrdersFromCustomer(int id)
+        {
+            DatabaseContext db = new DatabaseContext();
+            try
+            {
+                DBCustomer customer = db.DBCustomer.Find(id);
+                foreach (var i in customer.Order)
+                {
+                    removeOrder(i.Id);
+                }
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("In deleteordersfromcustomer "+ex);
+                return false;
+            }
+        }
         public bool removeOrder(int id)
         {
             DatabaseContext db = new DatabaseContext();
@@ -41,7 +60,7 @@ namespace MovieTime2.DAL
             }
             catch (Exception fail)
             {
-                System.Diagnostics.Debug.WriteLine(fail);
+                System.Diagnostics.Debug.WriteLine("In removeorder " + fail);
                 return false;
             }
         }
@@ -69,14 +88,15 @@ namespace MovieTime2.DAL
             }
             catch (Exception fail)
             {
+                System.Diagnostics.Debug.WriteLine(fail);
                 return false;
             }
         }
-        public ListOrder searchOrder(int id)
+        public List<ListOrder> searchOrder(int id)
         {
             DatabaseContext db = new DatabaseContext();
             Order foundOrder = db.Order.Find(id);
-
+            List<ListOrder> returnOrders = new List<ListOrder>();
             try
             {
                 if (foundOrder != null)
@@ -87,11 +107,7 @@ namespace MovieTime2.DAL
                         Date = foundOrder.Date,
                         Customer = foundOrder.Customer.Username,
                     };
-                    return returnOrder;
-                }
-                else
-                {
-                    return null;
+                    returnOrders.Add(returnOrder);
                 }
 
             }
@@ -100,7 +116,7 @@ namespace MovieTime2.DAL
                 System.Diagnostics.Debug.WriteLine(ex);
                 return null;
             }
-            
+            return returnOrders;
         }
 
     }

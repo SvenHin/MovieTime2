@@ -36,5 +36,14 @@ namespace MovieTime2.DAL
         {
             return true; //unfinished
         }
+        public List<ListOrder> searchOrder(int id)
+        {
+            return new List<ListOrder>(); //unfinished
+        }
+        public bool deleteOrdersFromCustomer(int id)
+        {
+            return true; //unfinished
+        }
+
     }
 }

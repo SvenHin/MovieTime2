@@ -46,20 +46,6 @@ namespace MovieTime2.DAL
             return allMovies;
         }
 
-        public List<string> getAllMovieHeaders()
-        {
-            DatabaseContext db = new DatabaseContext();
-            /*List<string> columnNames = db.Movie.Cast<DataColumn>()
-                                 .Select(x => x.ColumnName)
-                                 .ToList();*/
-            List<string> columns = new List<string>();
-            columns.Add("Id");
-            columns.Add("Title");
-            columns.Add("Summary");
-            columns.Add("Price");
-            columns.Add("ImageURL");
-            return columns;
-        }
         public bool removeMovie(int id)
         {
             DatabaseContext db = new DatabaseContext();

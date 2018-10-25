@@ -21,11 +21,7 @@ namespace MovieTime2.BLL
         {
             _adminDAL = stub;
         }
-        public List<string> getAllMovieHeaders()
-        {
-            List<string> columnNames = _adminDAL.getAllMovieHeaders();
-            return columnNames;
-        }
+        
         public bool Admin_in_DB(Admin admin)
         {
             return _adminDAL.Admin_in_DB(admin);

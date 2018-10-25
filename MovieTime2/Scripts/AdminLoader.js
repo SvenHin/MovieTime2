@@ -37,25 +37,9 @@ function addMoviePlaceHolder() {
 }
 
 function getMovieHeaderList() {
-    $.ajax({
-        url: '/Admin/getAllMovieHeaders',
-        type: 'GET',
-        dataType: 'json',
-        success: function (headers) {
-            var print = "<thead><tr>";
-            for (var i in headers) {
-                print += "<th scope='col'>" + headers[i] + "</th>"
-            }
-
-            print += "<th schope='col'></th><th schope='col'></th></tr></thead>";
-            print += "<tbody id='contentBody'></tbody>";
-
-            $("#contentTable").html(print);
-        },
-        error: function (x, y, z) {
-            alert(x + '\n' + y + '\n' + z);
-        }
-    });
+    var print = "<thead><tr><td>Id</td><td>Title</td><td>Summary</td><td>Price</td><td>ImageURL</td><td></td><td></td></tr></thead>";
+    print += "<tbody id='contentBody'></tbody>";
+    $("#contentTable").html(print);
 }
 
 function getMovieList() {
@@ -68,7 +52,7 @@ function getMovieList() {
             for (var i in movies) {
                 utStreng += "<tr id='" + movies[i].id + "'><th scope='row'>" + movies[i].id + "</th><td>" + movies[i].title + "</td><td>" + movies[i].summary + "</td><td>" + movies[i].price + "</td><td>" + movies[i].imageURL + "</td><td><button data-type='" + movies[i].id + "' type='button' class='editBtn btn btn-warning'>Edit</button></td><td><button data-type='" + movies[i].id + "' type='button' class='removeBtn btn btn-danger'>Remove</button></td></tr>"
             }
-            $("#contentBody").append(utStreng);
+            $("#contentBody").html(utStreng);
             scrollToTop();
 
         },
@@ -196,7 +180,7 @@ function saveEditedMovie(id) {
                     alert("Could not save edited movie");
                 }
                 else {
-                    window.location.reload();
+                    getMovieList();
                 }
             },
             error: function (x, y, z) {

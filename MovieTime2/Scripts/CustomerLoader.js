@@ -81,6 +81,7 @@ function searchCustomer(username) {
 function removeCustomer(id) {
     $.getJSON("/Admin/removeCustomer/" + id,
         function (string) {
+            getCustomerHeaders();
             getCustomerList();
         }
     );

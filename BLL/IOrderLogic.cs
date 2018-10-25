@@ -12,6 +12,8 @@ namespace MovieTime2.BLL
         List<ListOrder> getAllOrders();
         List<ListLineItem> getLineItemsFromId(int OrderId);
         bool removeOrder(int id);
+        bool removeLineItem(int id);
+
 
 
     }

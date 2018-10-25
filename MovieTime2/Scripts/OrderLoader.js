@@ -73,6 +73,7 @@ function removeLineItem(id) {
 function removeOrder(id) {
     $.getJSON("/Admin/removeOrder/" + id,
         function (string) {
+            getOrderHeaders();
             getOrderList();
         }
     );

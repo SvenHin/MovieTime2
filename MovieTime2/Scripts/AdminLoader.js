@@ -167,7 +167,7 @@ $(function () {
 function removeMovie(id) {
     $.getJSON("/Admin/removeMovie/" + id,
         function (string) {
-            alert(string);
+            getMovieHeaderList();
             getMovieList();
         }
     );

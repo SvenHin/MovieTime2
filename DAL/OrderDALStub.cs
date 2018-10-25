@@ -32,6 +32,9 @@ namespace MovieTime2.DAL
         {
             return true; //unfinished
         }
-
+        public bool removeOrder(int id)
+        {
+            return true; //unfinished
+        }
     }
 }

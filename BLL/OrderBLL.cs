@@ -27,6 +27,13 @@ namespace MovieTime2.BLL
             List<ListLineItem> allLineItems = _orderDAL.getLineItemsFromId(OrderId);
             return allLineItems;
         }
+
+        public bool removeOrder(int id)
+        {
+            bool remove = _orderDAL.removeOrder(id);
+            return remove;
+        }
+
         public bool removeLineItem(int id)
         {
             bool remove = _orderDAL.removeLineItem(id);

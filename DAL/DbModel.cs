@@ -92,7 +92,9 @@ namespace MovieTime2.DAL
         public string Time { get; set; }
         public string DAL {get; set;}
         public string Method { get; set; }
-        public string Changes { get; set; }
+        public string PropertyName { get; set; }
+        public string OldValue { get; set; }
+        public string NewValue { get; set; }
     }
     public class MovieLog
     {
@@ -103,19 +105,23 @@ namespace MovieTime2.DAL
         public string Time { get; set; }
         public string DAL { get; set; }
         public string Method { get; set; }
-        public string Changes { get; set; }
+        public string PropertyName { get; set; }
+        public string OldValue { get; set; }
+        public string NewValue { get; set; }
 
     }
     public class OrderLog
     {
         [Key]
         public int Id { get; set; }
-        public int OrderId { get; set; }
         public string Date { get; set; }
         public string Time { get; set; }
         public string DAL { get; set; }
         public string Method { get; set; }
-        public string Changes { get; set; }
+        public string Action { get; set; }
+        public int OrderId { get; set; }
+        public string LineItemId { get; set; }
+
     }
 
     public class DatabaseContext : DbContext

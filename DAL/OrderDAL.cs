@@ -34,6 +34,8 @@ namespace MovieTime2.DAL
                     removeOrder(i.Id);
                 }
                 db.SaveChanges();
+                //does not need log since method removeOrder is used in this method
+
                 return true;
             }
             catch (Exception ex)
@@ -52,10 +54,14 @@ namespace MovieTime2.DAL
                 foreach (var i in removeLineItems)
                 {
                     db.LineItem.Remove(i);
+                    LogOrderDB("removeOrder", "Remove", id, i.Id.ToString());
+
                 }
                 remove.LineItem.Clear();
                 db.Order.Remove(remove);
                 db.SaveChanges();
+                LogOrderDB( "removeOrder", "Remove", id, " -- ");
+
                 return true;
             }
             catch (Exception fail)
@@ -84,6 +90,7 @@ namespace MovieTime2.DAL
                 LineItem remove = db.LineItem.Find(id);
                 db.LineItem.Remove(remove);
                 db.SaveChanges();
+                LogOrderDB("removeOrder", "Remove", remove.Order.Id, id.ToString());
                 return true;
             }
             catch (Exception fail)
@@ -117,6 +124,25 @@ namespace MovieTime2.DAL
                 return null;
             }
             return returnOrders;
+        }
+
+        public void LogOrderDB(string method, string action, int orderid, string lineItemid)
+        {
+            DatabaseContext db = new DatabaseContext();
+            string currentDate = DateTime.Today.ToShortDateString();
+            string currentTime = DateTime.Now.ToShortTimeString();
+            OrderLog log = new OrderLog()
+            {
+                Date = currentDate,
+                Time = currentTime,
+                DAL = "OrderDAL",
+                Method = method,
+                Action = action,
+                OrderId = orderid,
+                LineItemId = lineItemid
+            };
+            db.OrderLog.Add(log);
+            db.SaveChanges();
         }
 
     }

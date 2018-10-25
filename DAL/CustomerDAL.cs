@@ -39,11 +39,11 @@ namespace MovieTime2.DAL
             DatabaseContext db = new DatabaseContext();
             try
             {
-
                 DBCustomer remove = db.DBCustomer.Find(id);
-                
+                var removedCustomer = remove.Username;
                 db.DBCustomer.Remove(remove);
                 db.SaveChanges();
+                LogCustomerDB(id, "removeCustomer", "Remove", removedCustomer, "-- Removed User --");
                 return true;
             }
             catch (Exception ex)
@@ -57,11 +57,13 @@ namespace MovieTime2.DAL
         {
             DatabaseContext db = new DatabaseContext();
             DBCustomer changedCustomer = db.DBCustomer.Find(id);
-
+            string firstName = changedCustomer.FirstName;
             try
             {
                 changedCustomer.FirstName = newDetail;
                 db.SaveChanges();
+                LogCustomerDB(id, "editFirstName", "FirstName", firstName, newDetail);
+
                 return true;
             }
             catch (Exception ex)
@@ -75,11 +77,15 @@ namespace MovieTime2.DAL
         {
             DatabaseContext db = new DatabaseContext();
             DBCustomer changedCustomer = db.DBCustomer.Find(id);
+            string lastName = changedCustomer.LastName;
+
 
             try
             {
                 changedCustomer.LastName = newDetail;
                 db.SaveChanges();
+                LogCustomerDB(id, "editLasttName", "LastName", lastName, newDetail);
+
                 return true;
             }
             catch (Exception ex)
@@ -93,11 +99,15 @@ namespace MovieTime2.DAL
         {
             DatabaseContext db = new DatabaseContext();
             DBCustomer changedCustomer = db.DBCustomer.Find(id);
+            string username = changedCustomer.Username;
+
 
             try
             {
                 changedCustomer.Username = newDetail;
                 db.SaveChanges();
+                LogCustomerDB(id, "editUsername", "Username", username, newDetail);
+
                 return true;
             }
             catch (Exception ex)
@@ -111,11 +121,14 @@ namespace MovieTime2.DAL
         {
             DatabaseContext db = new DatabaseContext();
             DBCustomer changedCustomer = db.DBCustomer.Find(id);
+            string address = changedCustomer.Address;
 
             try
             {
                 changedCustomer.Address = newDetail;
                 db.SaveChanges();
+                LogCustomerDB(id, "editAddress", "Address", address, newDetail);
+
                 return true;
             }
             catch (Exception ex)
@@ -129,11 +142,14 @@ namespace MovieTime2.DAL
         {
             DatabaseContext db = new DatabaseContext();
             DBCustomer changedCustomer = db.DBCustomer.Find(id);
+            string phonenumber = changedCustomer.PhoneNumber;
 
             try
             {
                 changedCustomer.PhoneNumber = newDetail;
                 db.SaveChanges();
+                LogCustomerDB(id, "editPhoneNumber", "PhoneNumber", phonenumber, newDetail);
+           
                 return true;
             }
             catch (Exception ex)
@@ -147,11 +163,14 @@ namespace MovieTime2.DAL
         {
             DatabaseContext db = new DatabaseContext();
             DBCustomer changedCustomer = db.DBCustomer.Find(id);
+            string email = changedCustomer.Email;
 
             try
             {
                 changedCustomer.Email = newDetail;
                 db.SaveChanges();
+                LogCustomerDB(id, "editEmail", "Email", email, newDetail);
+
                 return true;
             }
             catch (Exception ex)
@@ -224,6 +243,26 @@ namespace MovieTime2.DAL
             }
             return foundCustomers;
 
+        }
+
+        public void LogCustomerDB(int customerid, string method, string property, string original, string changes)
+        {
+            DatabaseContext db = new DatabaseContext();
+            string currentDate = DateTime.Today.ToShortDateString();
+            string currentTime = DateTime.Now.ToShortTimeString();
+            CustomerLog log = new CustomerLog()
+            {
+                Date = currentDate,
+                Time = currentTime,
+                DAL = "CustomerDAL",
+                CustomerId = customerid,
+                Method = method,
+                PropertyName = property,
+                OldValue = original,
+                NewValue = changes
+            };
+            db.CustomerLog.Add(log);
+            db.SaveChanges();
         }
 
 

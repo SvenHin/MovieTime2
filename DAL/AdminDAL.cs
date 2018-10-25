@@ -49,11 +49,15 @@ namespace MovieTime2.DAL
         public bool removeMovie(int id)
         {
             DatabaseContext db = new DatabaseContext();
+            
             try
             {
                 Movie remove = db.Movie.Find(id);
+                var removedMovie = remove.Title;
                 db.Movie.Remove(remove);
                 db.SaveChanges();
+                LogMovieDB(id, "removeMovie", "Remove", removedMovie, "-- Removed Movie --");
+
                 return true;
             }
             catch (Exception fail)
@@ -99,12 +103,13 @@ namespace MovieTime2.DAL
         {
             DatabaseContext db = new DatabaseContext();
             Movie changedMovie = db.Movie.Find(id);
+            string title = changedMovie.Title;
             
             try
             {
                 changedMovie.Title = newDetail;
                 db.SaveChanges();
-                LogMovieDB(id,"editMovieName", "Changed title to: " + newDetail);
+                LogMovieDB(id,"editMovieName", "Title",title ,newDetail);
                 return true;
             }
             catch (Exception ex)
@@ -116,11 +121,13 @@ namespace MovieTime2.DAL
         {
             DatabaseContext db = new DatabaseContext();
             Movie changedMovie = db.Movie.Find(id);
+            string summmary = changedMovie.Summary;
 
             try
             {
                 changedMovie.Summary = newDetail;
                 db.SaveChanges();
+                LogMovieDB(id, "editMovieSummary", "Summary", summmary, newDetail);
                 return true;
             }
             catch (Exception ex)
@@ -133,11 +140,12 @@ namespace MovieTime2.DAL
         {
             DatabaseContext db = new DatabaseContext();
             Movie changedMovie = db.Movie.Find(id);
-
+            string price = (changedMovie.Price).ToString();
             try
             {
                 changedMovie.Price = newDetail;
                 db.SaveChanges();
+                LogMovieDB(id, "editMovieSummary", "Price", price, newDetail.ToString());
                 return true;
             }
             catch (Exception ex)
@@ -150,11 +158,13 @@ namespace MovieTime2.DAL
         {
             DatabaseContext db = new DatabaseContext();
             Movie changedMovie = db.Movie.Find(id);
+            string url = changedMovie.ImageURL;
 
             try
             {
                 changedMovie.ImageURL = newDetail;
                 db.SaveChanges();
+                LogMovieDB(id, "editMovieSummary", "ImageUrl", url, newDetail);
                 return true;
             }
             catch (Exception ex)
@@ -166,6 +176,19 @@ namespace MovieTime2.DAL
         {
             DatabaseContext db = new DatabaseContext();
             Movie changedMovie = db.Movie.Find(id);
+            var length = changedMovie.Genre.Count();
+            var genretitleold1 = "";
+            var genretitleold2 = "";
+            if (length == 2)
+            {
+                 genretitleold1 = changedMovie.Genre[0].Title;
+                 genretitleold2 = changedMovie.Genre[1].Title;
+            }
+            else
+            {
+                 genretitleold1 = changedMovie.Genre[0].Title;
+
+            }
             List<Genre> genreList = new List<Genre>();
             Genre foundGenre1 = db.Genre.Where(k => k.Title == genre1).FirstOrDefault();
             Genre foundGenre2 = db.Genre.Where(k => k.Title == genre2).FirstOrDefault();
@@ -176,6 +199,8 @@ namespace MovieTime2.DAL
                 changedMovie.Genre.Clear();
                 changedMovie.Genre = genreList;
                 db.SaveChanges();
+                if (foundGenre1 != null) LogMovieDB(id, "editMovieGenre", "Genre", genretitleold1, genre1);
+                if (foundGenre2 != null) LogMovieDB(id, "editMovieGenre", "Genre", genretitleold2, genre2);
                 return true;
             }
             catch (Exception ex)
@@ -189,7 +214,6 @@ namespace MovieTime2.DAL
             DatabaseContext db = new DatabaseContext();
             Movie foundMovie = db.Movie.Where(k => k.Title == title).FirstOrDefault();
             List<movie> foundMovies = new List<movie>();
-
             try
             {
                 if (foundMovie != null)
@@ -203,7 +227,6 @@ namespace MovieTime2.DAL
                         imageURL = foundMovie.ImageURL,
                     };
                     foundMovies.Add(returnMovie);
-
                 }
 
             }
@@ -212,9 +235,8 @@ namespace MovieTime2.DAL
 
             }
             return foundMovies;
-            
         }
-        public void LogMovieDB(int movieid, string method, string changes)
+        public void LogMovieDB(int movieid, string method, string property, string original, string changes)
         {
             DatabaseContext db = new DatabaseContext();
             string currentDate = DateTime.Today.ToShortDateString();
@@ -226,7 +248,9 @@ namespace MovieTime2.DAL
                 DAL = "AdminDAL",
                 MovieId = movieid,
                 Method = method,
-                Changes = changes
+                PropertyName = property,
+                OldValue = original,
+                NewValue = changes
             };
             db.MovieLog.Add(log);
             db.SaveChanges();

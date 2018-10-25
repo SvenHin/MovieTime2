@@ -10,6 +10,8 @@ namespace MovieTime2.BLL
     public interface IOrderLogic
     {
         List<ListOrder> getAllOrders();
+        bool removeOrder(int id);
+
 
     }
 }

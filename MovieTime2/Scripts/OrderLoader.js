@@ -47,5 +47,21 @@ function getOrderList() {
     });
 }
 
+$(function () {
+    $(document).on("click", ".removeBtnOrder", function () {
+        var id = $(this).attr('data-type');
+        removeOrder(id);
+    });
+});
+
+
+function removeOrder(id) {
+    $.getJSON("/Admin/removeOrder/" + id,
+        function (string) {
+            getOrderList();
+        }
+    );
+}
+
 
 

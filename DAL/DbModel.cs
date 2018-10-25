@@ -91,7 +91,7 @@ namespace MovieTime2.DAL
         {
             Database.CreateIfNotExists();
 
-         //   Database.SetInitializer(new DBInit());
+            Database.SetInitializer(new DBInit());
         }
 
         public DbSet<DBCustomer> DBCustomer { get; set; }

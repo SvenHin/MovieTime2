@@ -23,6 +23,12 @@ namespace MovieTime2.BLL
             return allOrders;
         }
 
+        public bool removeOrder(int id)
+        {
+            bool remove = _orderDAL.removeOrder(id);
+            return remove;
+        }
+
 
     }
 }

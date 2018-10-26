@@ -65,8 +65,6 @@ function getLineItems(id) {
 function removeLineItem(id, lineid) {
     $.getJSON("/Admin/removeLineItem/" + id,
         function (string) {
-            //getOrderHeaders();
-            //getOrderList();
             $(".slidedown." + lineid + ".lineitem" + id).remove();
         }
     );
@@ -120,13 +118,13 @@ $(function () {
             $(".slidedown." + id).fadeIn(200);
             $(this).html("Show less");
             $(".selected." + id).css("background-color", "#070707");
-
+            $(".selected." + id).css("border-left", "1px solid #32383e");
         }
         else {
             $(".slidedown." + id).fadeOut(200);
             $(this).html("Show more");
             $(".selected." + id).css("background-color", "");
-
+            $(".selected." + id).css("border-left", "none");
         }
 
 

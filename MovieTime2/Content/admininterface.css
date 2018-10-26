@@ -4,6 +4,7 @@
 .slidedown {
     display: none;
     background-color: #111111;
+    border-left: 1px solid #ffc107;
 }
 .table tbody + tbody{
     border-top: 0;

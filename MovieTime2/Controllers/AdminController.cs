@@ -201,10 +201,16 @@ namespace MovieTime2.Controllers
 
         public string removeCustomer(int id)
         {
-            bool removeOrder = _OrderBLL.deleteOrdersFromCustomer(id);
-            bool remove = _CustomerBLL.removeCustomer(id);
+            int[] boolArr = new int[] { 0, 0 };
+
+            if (_OrderBLL.deleteOrdersFromCustomer(id)) boolArr[0] = 1;
+            else boolArr[0] = -1;
+
+            if (_CustomerBLL.removeCustomer(id)) boolArr[1] = 1;
+            else boolArr[1] = -1;
+
             var jsonSerializer = new JavaScriptSerializer();
-            string json = jsonSerializer.Serialize(remove);
+            string json = jsonSerializer.Serialize(boolArr);
             return json;
         }
 
@@ -227,7 +233,6 @@ namespace MovieTime2.Controllers
 
         public string removeOrder(int id)
         {
-            Console.WriteLine("Id is" + id);
             bool remove = _OrderBLL.removeOrder(id);
             var jsonSerializer = new JavaScriptSerializer();
             string json = jsonSerializer.Serialize(remove);

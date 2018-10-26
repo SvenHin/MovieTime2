@@ -37,7 +37,7 @@ function addMoviePlaceHolder() {
 }
 
 function getMovieHeaderList() {
-    var print = "<thead><tr><td>Id</td><td>Title</td><td>Summary</td><td>Price</td><td>ImageURL</td><td>Genres</td><td><td></td></td></tr></thead>";
+    var print = "<thead><tr><td>Id</td><td>Title</td><td>Summary</td><td></td><td>Price</td><td>ImageURL</td><td>Genres</td><td><td></td></td></tr></thead>";
     print += "<tbody id='contentBody'></tbody>";
     $("#contentTable").html(print);
 }
@@ -51,7 +51,7 @@ function getMovieList() {
             var print = "";
             for (var i in movies) {
                 var genre2 = ((movies[i].genre2 != null) ? movies[i].genre2 : '');
-                print += "<tr id='" + movies[i].id + "'><th scope='row'>" + movies[i].id + "</th><td>" + movies[i].title + "</td><td>" + movies[i].summary + "</td><td>" + movies[i].price + "</td><td>" + movies[i].imageURL + "</td><td>" + movies[i].genre + "<br>" + genre2 + "</td><td><button data-type='" + movies[i].id + "' type='button' class='editBtn btn btn-warning'>Edit</button></td><td><button data-type='" + movies[i].id + "' type='button' class='removeBtn btn btn-danger'>Remove</button></td></tr>"
+                print += "<tr id='" + movies[i].id + "'><th scope='row'>" + movies[i].id + "</th><td>" + movies[i].title + "</td><td colspan='2'>" + movies[i].summary + "</td><td>" + movies[i].price + "</td><td>" + movies[i].imageURL + "</td><td>" + movies[i].genre + "<br>" + genre2 + "</td><td><button data-type='" + movies[i].id + "' type='button' class='editBtn btn btn-warning'>Edit</button></td><td><button data-type='" + movies[i].id + "' type='button' class='removeBtn btn btn-danger'>Remove</button></td></tr>"
             }
             $("#contentBody").html(print);
             scrollToTop();

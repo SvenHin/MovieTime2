@@ -5,8 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MovieTime2.Models;
 using System.Data;
-
-
+using System.IO;
 
 namespace MovieTime2.DAL
 {
@@ -15,20 +14,28 @@ namespace MovieTime2.DAL
         public List<ListCustomer> getAllCustomers()
         {
             DatabaseContext db = new DatabaseContext();
-            List<ListCustomer> allCustomers = db.DBCustomer.Select(k => new ListCustomer()
+            try
             {
-                Id = k.Id,
-                FirstName = k.FirstName,
-                LastName = k.LastName,
-                Address = k.Address,
-                Location = k.PostalCode.Location,
-                ZipCode = k.ZipCode,
-                PhoneNumber = k.PhoneNumber,
-                Email = k.Email,
-                Username = k.Username
-                
-            }).ToList();
-            return allCustomers;
+                List<ListCustomer> allCustomers = db.DBCustomer.Select(k => new ListCustomer()
+                {
+                    Id = k.Id,
+                    FirstName = k.FirstName,
+                    LastName = k.LastName,
+                    Address = k.Address,
+                    Location = k.PostalCode.Location,
+                    ZipCode = k.ZipCode,
+                    PhoneNumber = k.PhoneNumber,
+                    Email = k.Email,
+                    Username = k.Username
+
+                }).ToList();
+                return allCustomers;
+            }
+            catch(Exception ex)
+            {
+                LogError(ex);
+                return null;
+            }
         }
 
 
@@ -48,7 +55,7 @@ namespace MovieTime2.DAL
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine("In removecustomer " + ex)
+                System.Diagnostics.Debug.WriteLine("In removecustomer " + ex);
                 return false;
             }
         }
@@ -265,7 +272,20 @@ namespace MovieTime2.DAL
             db.CustomerLog.Add(log);
             db.SaveChanges();
         }
+        public void LogError(Exception ex)
+        {
+            //TODO all try/catches must be redirected to logError
 
+            //Logfiles created under C:\Users\localuser\AppData\Local\Temp\CinemaCityLogs
+            string temp = Path.Combine(Path.GetTempPath(), "CinemaCityLogs");
+            string path = Path.Combine(temp, "logfile.txt");
+            Directory.CreateDirectory(temp);
+            using (StreamWriter writer = new StreamWriter(path, true))
+            {
+                writer.WriteLine("Date: " + DateTime.Now.ToString() + Environment.NewLine + ex.ToString());
+                writer.WriteLine(Environment.NewLine + "____________________________________________________________________" + Environment.NewLine);
+            }
+        }
 
     }
 }

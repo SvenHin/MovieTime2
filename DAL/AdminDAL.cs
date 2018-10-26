@@ -196,43 +196,74 @@ namespace MovieTime2.DAL
                 return false;
             }
         }
-        public bool editMovieGenre(int id, string genre1, string genre2)
+        public bool editMovieGenre(int id, string newgenre1, string newgenre2)
         {
             DatabaseContext db = new DatabaseContext();
+            List<Genre> genreList = new List<Genre>();
             Movie changedMovie = db.Movie.Find(id);
-            var length = changedMovie.Genre.Count();
-            var genretitleold1 = "";
-            var genretitleold2 = "";
+            Genre foundGenre1 = db.Genre.Where(k => k.Title == newgenre1).FirstOrDefault();
+            Genre foundGenre2 = db.Genre.Where(k => k.Title == newgenre2).FirstOrDefault();
+
+            string genretitleold1 = "";
+            string genretitleold2 = "";
+
             try
             {
-                if (length == 2)
-            {
-                genretitleold1 = changedMovie.Genre[0].Title;
-                genretitleold2 = changedMovie.Genre[1].Title;
-            }
-            else
-            {
-                genretitleold1 = changedMovie.Genre[0].Title;
+                int size = changedMovie.Genre.Count();
+                if(size == 2)
+                {
+                    if (changedMovie.Genre[0] != null) genretitleold1 = changedMovie.Genre[0].Title;
+                    if (changedMovie.Genre[1] != null) genretitleold2 = changedMovie.Genre[1].Title;
+                }
+                else if(size == 1)
+                {
+                    if (changedMovie.Genre[0] != null) genretitleold1 = changedMovie.Genre[0].Title;
 
-            }
-            List<Genre> genreList = new List<Genre>();
-            Genre foundGenre1 = db.Genre.Where(k => k.Title == genre1).FirstOrDefault();
-            Genre foundGenre2 = db.Genre.Where(k => k.Title == genre2).FirstOrDefault();
-            if (foundGenre1 != null) genreList.Add(foundGenre1);
-            if (foundGenre2 != null) genreList.Add(foundGenre2);
-            
-                changedMovie.Genre.Clear();
-                changedMovie.Genre = genreList;
-                db.SaveChanges();
-                if (foundGenre1 != null) LogMovieDB(id, "editMovieGenre", "Genre", genretitleold1, genre1);
-                if (foundGenre2 != null) LogMovieDB(id, "editMovieGenre", "Genre", genretitleold2, genre2);
-                return true;
+                }
+
+                if (foundGenre1 != null && foundGenre2 != null)
+                {
+                    genreList.Add(foundGenre1);
+                    genreList.Add(foundGenre2);
+                    changedMovie.Genre.Clear();
+                    changedMovie.Genre = genreList;
+                    db.SaveChanges();
+                    LogMovieDB(id, "editMovieGenre", "Genre1", genretitleold1, newgenre1);
+                    LogMovieDB(id, "editMovieGenre", "Genre2", genretitleold2, newgenre2);
+                    return true;
+                }
+                else if(foundGenre1 != null && foundGenre2 == null)
+                {
+                    genreList.Add(foundGenre1);
+                    changedMovie.Genre.Clear();
+                    changedMovie.Genre = genreList;
+                    db.SaveChanges();
+                    LogMovieDB(id, "editMovieGenre", "Genre1", genretitleold1, newgenre1);
+                    if(genretitleold2 != "") LogMovieDB(id, "editMovieGenre", "Genre2", genretitleold2, "");
+                    return true;
+
+                }
+                else if (foundGenre1 == null && foundGenre2 != null)
+                {
+                    genreList.Add(foundGenre2);
+                    changedMovie.Genre.Clear();
+                    changedMovie.Genre = genreList;
+                    db.SaveChanges();
+                    LogMovieDB(id, "editMovieGenre", "Genre1", genretitleold2, newgenre2);
+                    if (genretitleold1 != "") LogMovieDB(id, "editMovieGenre", "Genre2", genretitleold1, "");
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             catch (Exception ex)
             {
                 LogError(ex);
                 return false;
             }
+            
         }
 
         public List<movie> searchMovie(string title)
@@ -299,6 +330,7 @@ namespace MovieTime2.DAL
             }
         }
     }
+
 
 }
 

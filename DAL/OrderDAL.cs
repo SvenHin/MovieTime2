@@ -107,9 +107,11 @@ namespace MovieTime2.DAL
 
             try
             {
+                int orderid = remove.Order.Id;
+                string liid = id.ToString();
                 db.LineItem.Remove(remove);
                 db.SaveChanges();
-                LogOrderDB("removeOrder", "Remove", remove.Order.Id, id.ToString());
+                LogOrderDB("removeOrder", "Remove", orderid, liid);
                 return true;
             }
             catch (Exception ex)

@@ -120,35 +120,36 @@ $(function () {
     });
 });
 $(function () {
-    $("#Add").click(function () {
-        var jsIn = {
-            title: $("#Title").val(),
-            summary: $("#Summary").val(),
-            price: $("#Price").val(),
-            imageURL: $("#Url").val(),
-            genre: $("#Genre1").val(),
-            genre2: $("#Genre2").val(),
-        }
-
-        $.ajax({
-            url: '/Admin/addMovie',
-            type: 'POST',
-            data: JSON.stringify(jsIn),
-            contentType: "application/json;charset=utf-8",
-            success: function (ok) {
-                if (ok == "false") {
-                    alert("Could not add movie, needs at least one genre");
-                }
-                else {
-                    window.location.reload();
-                }
-            },
-            error: function (x, y, z) {
-                alert(x + '\n' + y + '\n' + z);
+    $(document).on("click", "#Add", function () {
+        $("#Add").click(function () {
+            var jsIn = {
+                title: $("#Title").val(),
+                summary: $("#Summary").val(),
+                price: $("#Price").val(),
+                imageURL: $("#Url").val(),
+                genre: $("#Genre1").val(),
+                genre2: $("#Genre2").val(),
             }
-        });
-    })
 
+            $.ajax({
+                url: '/Admin/addMovie',
+                type: 'POST',
+                data: JSON.stringify(jsIn),
+                contentType: "application/json;charset=utf-8",
+                success: function (ok) {
+                    if (ok == "false") {
+                        alert("Could not add movie, needs at least one genre");
+                    }
+                    else {
+                        window.location.reload();
+                    }
+                },
+                error: function (x, y, z) {
+                    alert(x + '\n' + y + '\n' + z);
+                }
+            });
+        })
+    });
 });
 function removeMovie(id) {
     $.getJSON("/Admin/removeMovie/" + id,
@@ -178,7 +179,7 @@ function saveEditedMovie(id) {
             data: JSON.stringify(jsIn),
             contentType: "application/json;charset=utf-8",
             success: function (ok) {
-            //Should have errorhandling
+                getMovieList();
 
             },
             error: function (x, y, z) {

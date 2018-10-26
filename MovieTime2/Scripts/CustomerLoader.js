@@ -133,7 +133,7 @@ function saveEditedCustomer(id) {
         data: JSON.stringify(jsIn),
         contentType: "application/json;charset=utf-8",
         success: function (ok) {
-        //Should have errorhandling
+            getCustomerList();
 
         },
         error: function (x, y, z) {

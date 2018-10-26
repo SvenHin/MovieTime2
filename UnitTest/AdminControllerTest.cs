@@ -223,6 +223,47 @@ namespace MovieTime2.UnitTest
             Assert.AreEqual(result, testResult);
 
         }
+        [TestMethod]
+        public void test_addMovieF()
+        {
+            var controller = new AdminController(new AdminLogic(new AdminDALStub()));
+            var movie = new movie()
+            {
+                title = ""
+            };
+            string result = controller.addMovie(movie);
+            Assert.AreEqual(result,"false");
+
+        }
+        [TestMethod]
+        public void test_addMovieT()
+        {
+            var controller = new AdminController(new AdminLogic(new AdminDALStub()));
+            var movie = new movie()
+            {
+                title = "Totoro",
+                genre = "Action",
+                genre2 = "Comedy"
+            };
+            string result = controller.addMovie(movie);
+            Assert.AreEqual(result, "true");
+
+        }
+        [TestMethod]
+        public void test_addMovief2()
+        {
+            var controller = new AdminController(new AdminLogic(new AdminDALStub()));
+            var movie = new movie()
+            {
+                title = "Totoro",
+                genre ="",
+                genre2 =""
+               
+            };
+            string result = controller.addMovie(movie);
+            Assert.AreEqual(result, "false");
+
+        }
         //Customer Methods Below
 
         [TestMethod]
@@ -363,6 +404,135 @@ namespace MovieTime2.UnitTest
             Assert.AreEqual(result, testResult);
 
         }
+        [TestMethod]
+        public void test_getAllOrders()
+        {
+            var controller = new AdminController(new OrderLogic(new OrderDALStub()));
+           
+            
+                var orderList = new List<ListOrder>();
+                var order = new ListOrder()
+                {
+                    Id = 1,
+                    Date = "24.12.2018",
+                    Customer = "Trond"
+                };
+                orderList.Add(order);
+                orderList.Add(order);
+                orderList.Add(order);
+
+            var jsonSerializer = new JavaScriptSerializer();
+            string testresult = jsonSerializer.Serialize(orderList);
+            string result = controller.getAllOrders();
+
+            Assert.AreEqual(result, testresult);
+
+        }
+        [TestMethod]
+        public void test_getAllLineItemsT()
+        {
+            var controller = new AdminController(new OrderLogic(new OrderDALStub()));
+            var lineList = new List<ListLineItem>();
+            var lineItem = new ListLineItem()
+            {
+                Id = 1,
+                OrderId = 1,
+                MovieTitle = "Totoro"
+            };
+            lineList.Add(lineItem);
+            lineList.Add(lineItem);
+            lineList.Add(lineItem);
+
+            string result = controller.getAllLineItems(1);
+            var jsonSerializer = new JavaScriptSerializer();
+            string testresult = jsonSerializer.Serialize(lineList);
+
+            Assert.AreEqual(result, testresult);
+        }
+        [TestMethod]
+        public void test_getAllLineItemsF()
+        {
+            var controller = new AdminController(new OrderLogic(new OrderDALStub()));
+            
+            string result = controller.getAllLineItems(0);
+            
+
+            Assert.AreEqual(result, "null");
+        }
+        [TestMethod]
+        public void test_removeLineItemF()
+        {
+            var controller = new AdminController(new OrderLogic(new OrderDALStub()));
+
+            string result = controller.removeLineItem(0);
+
+
+            Assert.AreEqual(result, "false");
+        }
+        [TestMethod]
+        public void test_removeLineItemT()
+        {
+            var controller = new AdminController(new OrderLogic(new OrderDALStub()));
+
+            string result = controller.removeLineItem(1);
+
+
+            Assert.AreEqual(result, "true");
+        }
+
+        [TestMethod]
+        public void test_removeOrderF()
+        {
+            var controller = new AdminController(new OrderLogic(new OrderDALStub()));
+
+            string result = controller.removeOrder(0);
+
+            Assert.AreEqual(result, "false");
+
+        }
+        [TestMethod]
+        public void test_removeOrderT()
+        {
+            var controller = new AdminController(new OrderLogic(new OrderDALStub()));
+
+            string result = controller.removeOrder(1);
+
+            Assert.AreEqual(result, "true");
+
+        }
+        [TestMethod]
+        public void test_searchOrderT()
+        {
+            var controller = new AdminController(new OrderLogic(new OrderDALStub()));
+
+            string result = controller.searchOrder(1);
+            var orderList = new List<ListOrder>();
+            var order = new ListOrder()
+            {
+                Id = 1,
+                Date = "24.12.2018",
+                Customer = "Trond"
+            };
+            orderList.Add(order);
+            var jsonSerializer = new JavaScriptSerializer();
+            string testresult = jsonSerializer.Serialize(orderList);
+           
+
+            Assert.AreEqual(result, testresult);
+
+        }
+        [TestMethod]
+        public void test_searchOrderF()
+        {
+            var controller = new AdminController(new OrderLogic(new OrderDALStub()));
+
+            string result = controller.searchOrder(0);
+
+            Assert.AreEqual(result, "null");
+
+        }
+
+
 
         /*public List<ListCustomer> getAllCustomers() {
 

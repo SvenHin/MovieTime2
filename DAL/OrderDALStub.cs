@@ -26,20 +26,61 @@ namespace MovieTime2.DAL
         }
         public List<ListLineItem> getLineItemsFromId(int OrderId)
         {
-            return new List<ListLineItem>(); //unfinished
+            if (OrderId == 1)
+            {
+                var lineList = new List<ListLineItem>();
+                var lineItem = new ListLineItem()
+                {
+                    Id = 1,
+                    OrderId = 1,
+                    MovieTitle = "Totoro"
+                };
+                lineList.Add(lineItem);
+                lineList.Add(lineItem);
+                lineList.Add(lineItem);
+                return lineList;
+            }
+            return null;
         }
         public bool removeLineItem(int id)
         {
-            return true; //unfinished
+            if (id == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
         public bool removeOrder(int id)
         {
-            return true; //unfinished
+            if (id == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
         public List<ListOrder> searchOrder(int id)
         {
-            return new List<ListOrder>(); //unfinished
+            if (id == 1) { 
+            var orderList = new List<ListOrder>();
+            var order = new ListOrder()
+            {
+                Id = 1,
+                Date = "24.12.2018",
+                Customer = "Trond"
+
+            };
+            orderList.Add(order);
+            return orderList;
         }
+            return null;
+        }
+
         public bool deleteOrdersFromCustomer(int id)
         {
             return true; //unfinished

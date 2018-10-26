@@ -17,6 +17,10 @@ namespace MovieTime2.BLL
         {
             _orderDAL = new OrderDAL();
         }
+        public OrderLogic(IOrderDAL stub)
+        {
+            _orderDAL = stub;
+        }
         public List<ListOrder> getAllOrders()
         {
             List<ListOrder> allOrders = _orderDAL.getAllOrders();

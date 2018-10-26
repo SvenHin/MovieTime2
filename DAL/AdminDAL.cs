@@ -55,6 +55,20 @@ namespace MovieTime2.DAL
                     price = k.Price,
                     imageURL = k.ImageURL,
                 }).ToList();
+                foreach(var movie in allMovies)
+                {
+                    var list = db.Movie.Find(movie.id).Genre;
+                    if(list.Count() == 2)
+                    {
+                        movie.genre = list[0].Title;
+                        movie.genre2 = list[1].Title;
+                    }
+                    else if (list.Count() == 1)
+                    {
+                        movie.genre = list[0].Title;
+                    }
+                }
+
                 return allMovies;
             }
             catch(Exception ex)
@@ -283,6 +297,16 @@ namespace MovieTime2.DAL
                         price = foundMovie.Price,
                         imageURL = foundMovie.ImageURL,
                     };
+                    var list = foundMovie.Genre;
+                    if (list.Count() == 2)
+                    {
+                        returnMovie.genre = list[0].Title;
+                        returnMovie.genre2 = list[1].Title;
+                    }
+                    else if (list.Count() == 1)
+                    {
+                        returnMovie.genre = list[0].Title;
+                    }
                     foundMovies.Add(returnMovie);
 
                 }

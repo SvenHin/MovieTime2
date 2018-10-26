@@ -133,12 +133,8 @@ function saveEditedCustomer(id) {
         data: JSON.stringify(jsIn),
         contentType: "application/json;charset=utf-8",
         success: function (ok) {
-            if (ok == "false") {
-                alert("Could not save edited customer");
-            }
-            else {
-                getCustomerList();
-            }
+        //Should have errorhandling
+
         },
         error: function (x, y, z) {
             alert(x + '\n' + y + '\n' + z);

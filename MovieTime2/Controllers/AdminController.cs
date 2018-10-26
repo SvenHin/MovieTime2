@@ -32,6 +32,10 @@ namespace MovieTime2.Controllers
         {
             _CustomerBLL = stub;
         }
+        public AdminController(IOrderLogic stub)
+        {
+            _OrderBLL = stub;
+        }
 
 
         public ActionResult Login()

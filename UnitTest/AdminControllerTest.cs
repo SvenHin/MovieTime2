@@ -139,145 +139,21 @@ namespace MovieTime2.UnitTest
             Assert.AreEqual(result, "true");
         }
         [TestMethod]
-        public void test_addMovieF()
+        public void test_editMovieNoid()
         {
             var controller = new AdminController(new AdminLogic(new AdminDALStub()));
-
             var movie = new movie()
             {
-                title = ""
-            };
-            
-            string result = controller.addMovie(movie);
-
-            Assert.AreEqual(result,"false");
-
-        }
-        [TestMethod]
-        public void test_addMovieT()
-        {
-            var controller = new AdminController(new AdminLogic(new AdminDALStub()));
-
-            var movie = new movie()
-            {
+                id = 0,
                 title = "Totoro",
-                summary = "A weird looking bear that lives in the woods",
-                price = 100,
-                imageURL = "place/place.jpg",
+                summary = "eowkgnåweg",
+                price = 123,
+                imageURL = "sdfghjklø",
                 genre = "Action",
                 genre2 = "Comedy"
-
-
-            };
-
-            string result = controller.addMovie(movie);
-
-            Assert.AreEqual(result,"true");
-
-        }
-        [TestMethod]
-        public void test_addMovieF2()
-        {
-            var controller = new AdminController(new AdminLogic(new AdminDALStub()));
-
-            var movie = new movie()
-            {
-                genre = "",
-                genre2 = "",
-            };
-
-            string result = controller.addMovie(movie);
-
-            Assert.AreEqual(result,"false");
-
-        }
-        [TestMethod]
-        public void test_editMovieT()
-        {
-            var controller = new AdminController(new AdminLogic(new AdminDALStub()));
-
-            var movie = new movie()
-            {
-                id = 1,
-               genre = "",
-               genre2= ""
             };
             
-
-            string result = controller.editMovie(movie);
-
-            Assert.AreEqual(result, "true");
-
-        }
-        [TestMethod]
-        public void test_editMovieF()
-        {
-            var controller = new AdminController(new AdminLogic(new AdminDALStub()));
-
-            var movie = new movie()
-            {
-                id = 0
-
-            };
-
-
-            string result = controller.editMovie(movie);
-
-            Assert.AreEqual(result, "false");
-
-        }
-        [TestMethod]
-        public void test_editMovieTgenre()
-        {
-            var controller = new AdminController(new AdminLogic(new AdminDALStub()));
-
-            var movie = new movie()
-            {
-                id = 1,
-                genre = "Action",
-                genre2 = "Comedy"
-            };
-
-
-            string result = controller.editMovie(movie);
-
-            Assert.AreEqual(result, "true");
-
-        }
-        [TestMethod]
-        public void test_editMovieTgenre2()
-        {
-            var controller = new AdminController(new AdminLogic(new AdminDALStub()));
-
-            var movie = new movie()
-            {
-                id = 1,
-                genre = "Action",
-                genre2 = ""
-            };
-
-
-            string result = controller.editMovie(movie);
-
-            Assert.AreEqual(result, "true");
-
-        }
-        [TestMethod]
-        public void test_editMovieTgenre3()
-        {
-            var controller = new AdminController(new AdminLogic(new AdminDALStub()));
-
-            var movie = new movie()
-            {
-                id = 1,
-                genre = "",
-                genre2 = "Comedy"
-            };
-
-
-            string result = controller.editMovie(movie);
-
-            Assert.AreEqual(result, "true");
+             result = 
 
         }
         [TestMethod]

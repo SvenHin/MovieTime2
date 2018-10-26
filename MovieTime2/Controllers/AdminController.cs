@@ -102,39 +102,35 @@ namespace MovieTime2.Controllers
        
         public string editMovie(movie movie)
         {
-            bool result;
             var jsonSerializer = new JavaScriptSerializer();
-            if (movie.id.Equals(0))
+            int[] boolArr = new int[]{ 0, 0, 0, 0, 0};
+
+            if (movie.title != null)
             {
-                result = false;
+                if (_AdminBLL.editMovieName(movie.id, movie.title)) boolArr[0] = 1;
+                else boolArr[0] = -1;
             }
-            else
+            if (movie.summary != null)
             {
-                if (movie.title != null)
-                {
-                    
-                    bool editName = _AdminBLL.editMovieName(movie.id, movie.title);
-                }
-                if (movie.summary != null)
-                {
-                    bool editSummary = _AdminBLL.editMovieSummary(movie.id, movie.summary);
-                }
-                if (!movie.price.Equals(0))
-                {
-                    bool editPrice = _AdminBLL.editMoviePrice(movie.id, movie.price);
-                }
-                if (movie.imageURL != null)
-                {
-                    bool editImageUrl = _AdminBLL.editMovieImageUrl(movie.id, movie.imageURL);
-                }
-                if (movie.genre != "" || movie.genre2 != "")
-                {
-                    bool editGenre = _AdminBLL.editMovieGenre(movie.id, movie.genre, movie.genre2);
-                }
-                result = true;
+                if(_AdminBLL.editMovieSummary(movie.id, movie.summary)) boolArr[1] = 1;
+                else boolArr[1] = -1;
             }
-            
-            string json = jsonSerializer.Serialize(result);
+            if (!movie.price.Equals(0))
+            {
+                if (_AdminBLL.editMoviePrice(movie.id, movie.price)) boolArr[2] = 1;
+                else boolArr[2] = -1;
+            }
+            if (movie.imageURL != null)
+            {
+                if (_AdminBLL.editMovieImageUrl(movie.id, movie.imageURL)) boolArr[3] = 1;
+                else boolArr[3] = -1;
+            }
+            if (movie.genre != null || movie.genre2 != null)
+            {
+                if (_AdminBLL.editMovieGenre(movie.id, movie.genre, movie.genre2)) boolArr[4] = 1;
+                else boolArr[4] = -1;
+            }
+            string json = jsonSerializer.Serialize(boolArr);
             return json;
         }
         public string searchMovie(string title)

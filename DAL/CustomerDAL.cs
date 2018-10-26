@@ -48,7 +48,7 @@ namespace MovieTime2.DAL
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine("In removecustomer " + ex);
+                System.Diagnostics.Debug.WriteLine("In removecustomer " + ex)
                 return false;
             }
         }

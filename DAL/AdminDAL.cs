@@ -10,7 +10,7 @@ using System.IO;
 
 namespace MovieTime2.DAL
 {
-    public class AdminDAL : DAL.IAdminDAL 
+    public class AdminDAL : DAL.IAdminDAL
     {
         //To check whether the admin exists, and if so, if the credentials are correct
         public bool Admin_in_DB(Admin admin)
@@ -50,7 +50,7 @@ namespace MovieTime2.DAL
         public bool removeMovie(int id)
         {
             DatabaseContext db = new DatabaseContext();
-            
+
             try
             {
                 Movie remove = db.Movie.Find(id);
@@ -61,8 +61,9 @@ namespace MovieTime2.DAL
 
                 return true;
             }
-            catch (Exception fail)
+            catch (Exception ex)
             {
+                LogError(ex);
                 return false;
             }
         }
@@ -80,8 +81,8 @@ namespace MovieTime2.DAL
             List<Genre> genreList = new List<Genre>();
             Genre genre = db.Genre.Where(k => k.Title == movie.genre).FirstOrDefault();
             Genre genre2 = db.Genre.Where(k => k.Title == movie.genre2).FirstOrDefault();
-            if (genre != null)genreList.Add(genre);
-            if (genre2 != null)genreList.Add(genre2);
+            if (genre != null) genreList.Add(genre);
+            if (genre2 != null) genreList.Add(genre2);
             if (genre != null || genre2 != null)
             {
                 newMovie.Genre = genreList;
@@ -93,11 +94,12 @@ namespace MovieTime2.DAL
                 }
                 catch (Exception ex)
                 {
+                    LogError(ex);
                     return false;
                 }
             }
             return false;
-            
+
         }
 
         public bool editMovieName(int id, string newDetail)
@@ -105,16 +107,17 @@ namespace MovieTime2.DAL
             DatabaseContext db = new DatabaseContext();
             Movie changedMovie = db.Movie.Find(id);
             string title = changedMovie.Title;
-            
+
             try
             {
                 changedMovie.Title = newDetail;
                 db.SaveChanges();
-                LogMovieDB(id,"editMovieName", "Title",title ,newDetail);
+                LogMovieDB(id, "editMovieName", "Title", title, newDetail);
                 return true;
             }
             catch (Exception ex)
             {
+                LogError(ex);
                 return false;
             }
         }
@@ -132,7 +135,9 @@ namespace MovieTime2.DAL
                 return true;
             }
             catch (Exception ex)
+
             {
+                LogError(ex);
                 return false;
             }
         }
@@ -151,6 +156,7 @@ namespace MovieTime2.DAL
             }
             catch (Exception ex)
             {
+                LogError(ex);
                 return false;
             }
         }
@@ -184,12 +190,12 @@ namespace MovieTime2.DAL
             var genretitleold2 = "";
             if (length == 2)
             {
-                 genretitleold1 = changedMovie.Genre[0].Title;
-                 genretitleold2 = changedMovie.Genre[1].Title;
+                genretitleold1 = changedMovie.Genre[0].Title;
+                genretitleold2 = changedMovie.Genre[1].Title;
             }
             else
             {
-                 genretitleold1 = changedMovie.Genre[0].Title;
+                genretitleold1 = changedMovie.Genre[0].Title;
 
             }
             List<Genre> genreList = new List<Genre>();
@@ -208,6 +214,7 @@ namespace MovieTime2.DAL
             }
             catch (Exception ex)
             {
+                LogError(ex);
                 return false;
             }
         }
@@ -230,12 +237,14 @@ namespace MovieTime2.DAL
                         imageURL = foundMovie.ImageURL,
                     };
                     foundMovies.Add(returnMovie);
+
                 }
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                
+                LogError(ex);
+
             }
             return foundMovies;
         }
@@ -259,22 +268,22 @@ namespace MovieTime2.DAL
             db.SaveChanges();
         }
 
-        public void LogError (Exception ex)
+        public void LogError(Exception ex)
         {
+            //TODO all try/catches must be redirected to logError
+
+            //Logfiles created under C:\Users\localuser\AppData\Local\Temp\CinemaCityLogs
             string temp = Path.Combine(Path.GetTempPath(), "CinemaCityLogs");
-
-            //TODO Check if directory exists before creating
-            Directory.CreateDirectory(temp);
             string path = Path.Combine(temp, "logfile.txt");
-
+            Directory.CreateDirectory(temp);
             using (StreamWriter writer = new StreamWriter(path, true))
             {
                 writer.WriteLine("Date: " + DateTime.Now.ToString() + Environment.NewLine + ex.ToString());
                 writer.WriteLine(Environment.NewLine + "____________________________________________________________________" + Environment.NewLine);
             }
         }
-
-
     }
 
 }
+
+

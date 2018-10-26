@@ -150,46 +150,45 @@ namespace MovieTime2.Controllers
         }
         public string editCustomer(ListCustomer customer)
         {
-            bool result;
             var jsonSerializer = new JavaScriptSerializer();
-            if (customer.Id.Equals(0))
+            int[] boolArr = new int[] { 0, 0, 0, 0, 0, 0, 0};
+            if (customer.Username != null)
             {
-                result = false;
+                if (_CustomerBLL.editUsername(customer.Id, customer.Username)) boolArr[0] = 1;
+                else boolArr[0] = -1;
             }
-            else
+            if (customer.FirstName != null)
             {
-                if (customer.Username != null)
-                {
-                    bool editName = _CustomerBLL.editUsername(customer.Id, customer.Username);
-                }
-                if (customer.FirstName != null)
-                {
-                    bool editFirstName = _CustomerBLL.editFirstName(customer.Id, customer.FirstName);
-                }
-                if (customer.LastName != null)
-                {
-                    bool editLastName = _CustomerBLL.editLastName(customer.Id, customer.LastName);
-                }
-                if (customer.Address != null)
-                {
-                    bool editAddress = _CustomerBLL.editAddress(customer.Id, customer.Address);
-                }
-                if (customer.PhoneNumber != null)
-                {
-                    bool editPhoneNumber = _CustomerBLL.editPhoneNumber(customer.Id, customer.PhoneNumber);
-                }
-                if (customer.Email != null)
-                {
-                    bool editEmail = _CustomerBLL.editEmail(customer.Id, customer.Email);
-                }
-                if (customer.ZipCode != null && customer.Location != null)
-                {
-                    bool editZipLocation = _CustomerBLL.editZipCodeAndLocation(customer.Id, customer.ZipCode, customer.Location);
-                }
-                result = true;
+                if (_CustomerBLL.editFirstName(customer.Id, customer.FirstName)) boolArr[1] = 1;
+                else boolArr[1] = -1;
+            }
+            if (customer.LastName != null)
+            {
+                if(_CustomerBLL.editLastName(customer.Id, customer.LastName)) boolArr[2] = 1;
+                else boolArr[2] = -1;
+            }
+            if (customer.Address != null)
+            {
+                if(_CustomerBLL.editAddress(customer.Id, customer.Address)) boolArr[3] = 1;
+                else boolArr[3] = -1;
+            }
+            if (customer.PhoneNumber != null)
+            {
+                if(_CustomerBLL.editPhoneNumber(customer.Id, customer.PhoneNumber)) boolArr[4] = 1;
+                else boolArr[4] = -1;
+            }
+            if (customer.Email != null)
+            {
+                if(_CustomerBLL.editEmail(customer.Id, customer.Email)) boolArr[5] = 1;
+                else boolArr[5] = -1;
+            }
+            if (customer.ZipCode != null && customer.Location != null)
+            {
+                if( _CustomerBLL.editZipCodeAndLocation(customer.Id, customer.ZipCode, customer.Location)) boolArr[6] = 1;
+                else boolArr[6] = -1;
             }
 
-            string json = jsonSerializer.Serialize(result);
+            string json = jsonSerializer.Serialize(boolArr);
             return json;
         }
         public string searchCustomer(string username)

@@ -182,7 +182,6 @@ namespace MovieTime2.DAL
         {
             DatabaseContext db = new DatabaseContext();
             Movie changedMovie = db.Movie.Find(id);
-
             try
             {
                 string url = changedMovie.ImageURL;

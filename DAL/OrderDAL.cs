@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MovieTime2.Models;
 using System.Data;
-
+using System.IO;
 
 namespace MovieTime2.DAL
 {
@@ -14,21 +14,30 @@ namespace MovieTime2.DAL
         public List<ListOrder> getAllOrders()
         {
             DatabaseContext db = new DatabaseContext();
-            List<ListOrder> allOrders = db.Order.Select(k => new ListOrder()
+            try
             {
-                Id = k.Id,
-                Date = k.Date,
-                Customer = k.Customer.Username
+                List<ListOrder> allOrders = db.Order.Select(k => new ListOrder()
+                {
+                    Id = k.Id,
+                    Date = k.Date,
+                    Customer = k.Customer.Username
 
-            }).ToList();
-            return allOrders;
+                }).ToList();
+                return allOrders;
+            }
+            catch(Exception ex)
+            {
+                LogError(ex);
+                return null;
+            }
         }
         public bool deleteOrdersFromCustomer(int id)
         {
             DatabaseContext db = new DatabaseContext();
+            DBCustomer customer = db.DBCustomer.Find(id);
+
             try
             {
-                DBCustomer customer = db.DBCustomer.Find(id);
                 foreach (var i in customer.Order)
                 {
                     removeOrder(i.Id);
@@ -40,22 +49,22 @@ namespace MovieTime2.DAL
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine("In deleteordersfromcustomer "+ex);
+                LogError(ex);
                 return false;
             }
         }
         public bool removeOrder(int id)
         {
             DatabaseContext db = new DatabaseContext();
+            Order remove = db.Order.Find(id);
+
             try
             {
-                Order remove = db.Order.Find(id);
                 var removeLineItems = db.LineItem.Where(k => k.Order.Id == id);
                 foreach (var i in removeLineItems)
                 {
                     db.LineItem.Remove(i);
                     LogOrderDB("removeOrder", "Remove", id, i.Id.ToString());
-
                 }
                 remove.LineItem.Clear();
                 db.Order.Remove(remove);
@@ -64,38 +73,48 @@ namespace MovieTime2.DAL
 
                 return true;
             }
-            catch (Exception fail)
+            catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine("In removeorder " + fail);
+                LogError(ex);
                 return false;
             }
         }
         public List<ListLineItem> getLineItemsFromId(int OrderId)
         {
             DatabaseContext db = new DatabaseContext();
-            List<ListLineItem> allLineitems = db.LineItem.Where(e => e.Order.Id == OrderId).Select(k => new ListLineItem()
-            {
-                Id = k.Id,
-                OrderId = k.Order.Id,
-                MovieTitle = k.Movie.Title
 
-            }).ToList();
-            return allLineitems;
+            try
+            {
+                List<ListLineItem> allLineitems = db.LineItem.Where(e => e.Order.Id == OrderId).Select(k => new ListLineItem()
+                {
+                    Id = k.Id,
+                    OrderId = k.Order.Id,
+                    MovieTitle = k.Movie.Title
+
+                }).ToList();
+                return allLineitems;
+            }
+            catch(Exception ex)
+            {
+                LogError(ex);
+                return null;
+            }
         }
         public bool removeLineItem(int id)
         {
             DatabaseContext db = new DatabaseContext();
+            LineItem remove = db.LineItem.Find(id);
+
             try
             {
-                LineItem remove = db.LineItem.Find(id);
                 db.LineItem.Remove(remove);
                 db.SaveChanges();
                 LogOrderDB("removeOrder", "Remove", remove.Order.Id, id.ToString());
                 return true;
             }
-            catch (Exception fail)
+            catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(fail);
+                LogError(ex);
                 return false;
             }
         }
@@ -120,13 +139,13 @@ namespace MovieTime2.DAL
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(ex);
+                LogError(ex);
                 return null;
             }
             return returnOrders;
         }
 
-        public void LogOrderDB(string method, string action, int orderid, string lineItemid)
+        private void LogOrderDB(string method, string action, int orderid, string lineItemid)
         {
             DatabaseContext db = new DatabaseContext();
             string currentDate = DateTime.Today.ToShortDateString();
@@ -143,6 +162,18 @@ namespace MovieTime2.DAL
             };
             db.OrderLog.Add(log);
             db.SaveChanges();
+        }
+        private void LogError(Exception ex)
+        {
+            //Logfiles created under C:\Users\localuser\AppData\Local\Temp\CinemaCityLogs
+            string temp = Path.Combine(Path.GetTempPath(), "CinemaCityLogs");
+            string path = Path.Combine(temp, "logfile.txt");
+            Directory.CreateDirectory(temp);
+            using (StreamWriter writer = new StreamWriter(path, true))
+            {
+                writer.WriteLine("Date: " + DateTime.Now.ToString() + Environment.NewLine + ex.ToString());
+                writer.WriteLine(Environment.NewLine + "____________________________________________________________________" + Environment.NewLine);
+            }
         }
 
     }

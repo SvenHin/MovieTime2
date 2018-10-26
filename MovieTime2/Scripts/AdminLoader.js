@@ -192,7 +192,7 @@ function saveEditedMovie(id) {
 
 function editMovieRow(id) {
     var editRow = $('#' + id);
-    var dynamicRow = "<th scope='row'>" + id + "</th><td><input type='text' id='editTitle' style='width: 100%;' class='borderStyle' /></td><td><input type='text' id='editSummary' style='width: 100%;' class='borderStyle' /></td><td><input type='text' id='editPrice' style='width: 100%;' class='borderStyle' /></td><td><input type='text' id='editUrl' style='width: 100%;' class='borderStyle' /></td><td><input type='text' id='editGenre1' style='width: 100%;' class='borderStyle' /><input type='text' id='editGenre2' style='width: 100%;' class='borderStyle'/></td><td><button data-type='" + id + "' type='button' class='saveBtn btn btn-success'>Save</button></td>";
+    var dynamicRow = "<th scope='row'>" + id + "</th><td><input type='text' id='editTitle' style='width: 100%;' class='borderStyle' placeholder='Title' /></td><td><input type='text' id='editSummary' style='width: 100%;' class='borderStyle' /></td><td><input type='text' id='editPrice' style='width: 100%;' class='borderStyle' /></td><td><input type='text' id='editUrl' style='width: 100%;' class='borderStyle' /></td><td><input type='text' id='editGenre1' style='width: 100%;' class='borderStyle' /><input type='text' id='editGenre2' style='width: 100%;' class='borderStyle'/></td><td><button data-type='" + id + "' type='button' class='saveBtn btn btn-success'>Save</button></td>";
     $(editRow).html(dynamicRow);
 }
 

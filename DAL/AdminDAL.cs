@@ -295,7 +295,7 @@ namespace MovieTime2.DAL
             }
             return foundMovies;
         }
-        public void LogMovieDB(int movieid, string method, string property, string original, string changes)
+        private void LogMovieDB(int movieid, string method, string property, string original, string changes)
         {
             DatabaseContext db = new DatabaseContext();
             string currentDate = DateTime.Today.ToShortDateString();
@@ -315,7 +315,7 @@ namespace MovieTime2.DAL
             db.SaveChanges();
         }
 
-        public void LogError(Exception ex)
+        private void LogError(Exception ex)
         {
             //TODO all try/catches must be redirected to logError
 

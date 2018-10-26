@@ -55,7 +55,7 @@ namespace MovieTime2.DAL
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine("In removecustomer " + ex);
+                LogError(ex);
                 return false;
             }
         }
@@ -64,10 +64,10 @@ namespace MovieTime2.DAL
         {
             DatabaseContext db = new DatabaseContext();
             DBCustomer changedCustomer = db.DBCustomer.Find(id);
-            string firstName = changedCustomer.FirstName;
             try
             {
-                  changedCustomer.FirstName = newDetail;
+                string firstName = changedCustomer.FirstName;
+                changedCustomer.FirstName = newDetail;
                   db.SaveChanges();
                   LogCustomerDB(id, "editFirstName", "FirstName", firstName, newDetail);
 
@@ -77,6 +77,7 @@ namespace MovieTime2.DAL
             }
             catch (Exception ex)
             {
+                LogError(ex);
                 return false;
             }
         }
@@ -85,11 +86,10 @@ namespace MovieTime2.DAL
         {
             DatabaseContext db = new DatabaseContext();
             DBCustomer changedCustomer = db.DBCustomer.Find(id);
-            string lastName = changedCustomer.LastName;
-
 
             try
             {
+                string lastName = changedCustomer.LastName;
                 changedCustomer.LastName = newDetail;
                 db.SaveChanges();
                 LogCustomerDB(id, "editLasttName", "LastName", lastName, newDetail);
@@ -98,7 +98,7 @@ namespace MovieTime2.DAL
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(ex);
+                LogError(ex);
                 return false;
             }
         }
@@ -107,11 +107,10 @@ namespace MovieTime2.DAL
         {
             DatabaseContext db = new DatabaseContext();
             DBCustomer changedCustomer = db.DBCustomer.Find(id);
-            string username = changedCustomer.Username;
-
 
             try
             {
+                string username = changedCustomer.Username;
                 changedCustomer.Username = newDetail;
                 db.SaveChanges();
                 LogCustomerDB(id, "editUsername", "Username", username, newDetail);
@@ -120,7 +119,7 @@ namespace MovieTime2.DAL
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(ex);
+                LogError(ex);
                 return false;
             }
         }
@@ -129,10 +128,10 @@ namespace MovieTime2.DAL
         {
             DatabaseContext db = new DatabaseContext();
             DBCustomer changedCustomer = db.DBCustomer.Find(id);
-            string address = changedCustomer.Address;
 
             try
             {
+                string address = changedCustomer.Address;
                 changedCustomer.Address = newDetail;
                 db.SaveChanges();
                 LogCustomerDB(id, "editAddress", "Address", address, newDetail);
@@ -141,7 +140,7 @@ namespace MovieTime2.DAL
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(ex);
+                LogError(ex);
                 return false;
             }
         }
@@ -150,10 +149,10 @@ namespace MovieTime2.DAL
         {
             DatabaseContext db = new DatabaseContext();
             DBCustomer changedCustomer = db.DBCustomer.Find(id);
-            string phonenumber = changedCustomer.PhoneNumber;
 
             try
             {
+                string phonenumber = changedCustomer.PhoneNumber;
                 changedCustomer.PhoneNumber = newDetail;
                 db.SaveChanges();
                 LogCustomerDB(id, "editPhoneNumber", "PhoneNumber", phonenumber, newDetail);
@@ -162,7 +161,7 @@ namespace MovieTime2.DAL
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(ex);
+                LogError(ex);
                 return false;
             }
         }
@@ -171,10 +170,10 @@ namespace MovieTime2.DAL
         {
             DatabaseContext db = new DatabaseContext();
             DBCustomer changedCustomer = db.DBCustomer.Find(id);
-            string email = changedCustomer.Email;
 
             try
             {
+                string email = changedCustomer.Email;
                 changedCustomer.Email = newDetail;
                 db.SaveChanges();
                 LogCustomerDB(id, "editEmail", "Email", email, newDetail);
@@ -183,7 +182,7 @@ namespace MovieTime2.DAL
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(ex);
+                LogError(ex);
                 return false;
             }
         }
@@ -193,29 +192,29 @@ namespace MovieTime2.DAL
             DBCustomer changedCustomer = db.DBCustomer.Find(id);
 
             PostalCode foundPost = db.PostalCodes.Find(newZip);
-            if (foundPost == null)
-            {
-                // Create PostLocation
-                var newPost = new PostalCode
-                {
-                    ZipCode = newZip,
-                    Location = Location
-                };
-                changedCustomer.PostalCode = newPost;
-            }
-            else
-            {
-                changedCustomer.PostalCode = foundPost;
-            }
+            
 
             try
             {
+                if (foundPost == null)
+                {
+                    var newPost = new PostalCode
+                    {
+                        ZipCode = newZip,
+                        Location = Location
+                    };
+                    changedCustomer.PostalCode = newPost;
+                }
+                else
+                {
+                    changedCustomer.PostalCode = foundPost;
+                }
                 db.SaveChanges();
                 return true;
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(ex);
+                LogError(ex);
                 return false;
             }
         }
@@ -247,13 +246,13 @@ namespace MovieTime2.DAL
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(ex);
+                LogError(ex);
             }
             return foundCustomers;
 
         }
 
-        public void LogCustomerDB(int customerid, string method, string property, string original, string changes)
+        private void LogCustomerDB(int customerid, string method, string property, string original, string changes)
         {
             DatabaseContext db = new DatabaseContext();
             string currentDate = DateTime.Today.ToShortDateString();
@@ -272,10 +271,8 @@ namespace MovieTime2.DAL
             db.CustomerLog.Add(log);
             db.SaveChanges();
         }
-        public void LogError(Exception ex)
+        private void LogError(Exception ex)
         {
-            //TODO all try/catches must be redirected to logError
-
             //Logfiles created under C:\Users\localuser\AppData\Local\Temp\CinemaCityLogs
             string temp = Path.Combine(Path.GetTempPath(), "CinemaCityLogs");
             string path = Path.Combine(temp, "logfile.txt");

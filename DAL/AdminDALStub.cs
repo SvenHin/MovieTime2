@@ -150,6 +150,8 @@ namespace MovieTime2.DAL
                 return true;
             }
         }
+
+
         public List<movie> searchMovie(string title)
         {
             var movieList = new List<movie>();

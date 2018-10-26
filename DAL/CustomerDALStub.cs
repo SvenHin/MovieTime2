@@ -43,22 +43,75 @@ namespace MovieTime2.DAL
             }
         }
         public bool editFirstName(int id, string newDetail) {
-            return true;
+            if (id == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
         public bool editLastName(int id, string newDetail) {
-            return true;
+            if (id == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
         public bool editUsername(int id, string newDetail) {
-            return true;
+            if (id == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
         public bool editAddress(int id, string newDetail) {
-            return true;
+            if (id == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
         public bool editPhoneNumber(int id, string newDetail) {
-            return true;
+            if (id == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
         public bool editEmail(int id, string newDetail) {
-            return true;
+            if (id == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        public bool editZipCodeAndLocation(int id, string newZip, string Location)
+        {
+            if (id == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
         public  List<ListCustomer> searchCustomer(string username) {
             var customerList = new List<ListCustomer>();
@@ -80,8 +133,6 @@ namespace MovieTime2.DAL
         }
        
 
-        public bool editZipCodeAndLocation(int id, string newZip, string Location) {
-            return true; //TODO
-        }
+        
     }
 }

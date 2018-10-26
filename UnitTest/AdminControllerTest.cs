@@ -26,10 +26,10 @@ namespace MovieTime2.UnitTest
             var controller = new AdminController();
             SessionMock.InitializeController(controller);
             controller.Session["AdminLoggedIn"] = null;
-        
+
             var result = (ViewResult)controller.Login();
 
-            Assert.AreEqual(result.ViewName,"Admin");
+            Assert.AreEqual(result.ViewName, "Admin");
         }
         [TestMethod]
         public void test_adminLogin2()
@@ -62,7 +62,7 @@ namespace MovieTime2.UnitTest
             var result = (ViewResult)controller.Login(admin);
 
             Assert.AreEqual(result.ViewName, "AdminInterface");
-            
+
 
 
         }
@@ -73,7 +73,7 @@ namespace MovieTime2.UnitTest
 
             var admin = new Admin()
             {
- 
+
             };
 
             var SessionMock = new TestControllerBuilder();
@@ -83,7 +83,7 @@ namespace MovieTime2.UnitTest
             var result = (ViewResult)controller.Login(admin);
 
             Assert.AreEqual(result.ViewName, "LoginFailed");
-            
+
 
 
         }
@@ -117,7 +117,7 @@ namespace MovieTime2.UnitTest
             string testResult = jsonSerializer.Serialize(movieList);
 
             Assert.AreEqual(result, testResult);
-            
+
         }
 
         [TestMethod]
@@ -153,7 +153,7 @@ namespace MovieTime2.UnitTest
                 genre2 = "Comedy"
             };
 
-          string result = controller.editMovie(movie);
+            string result = controller.editMovie(movie);
 
             Assert.AreEqual(result, "[-1,-1,-1,-1,-1]");
 
@@ -187,7 +187,7 @@ namespace MovieTime2.UnitTest
             var movie = new movie()
             {
                 id = 1,
-                
+
             };
 
             string result = controller.editMovie(movie);
@@ -246,6 +246,41 @@ namespace MovieTime2.UnitTest
             Assert.AreEqual(result, "[-1,-1,-1,-1,-1,-1,-1]");
 
         }
+        [TestMethod]
+        public void test_editCustomerWithiID()
+        {
+            var controller = new AdminController(new CustomerLogic(new CustomerDALStub()));
+            var customer = new ListCustomer()
+            {
+                Id = 1,
+                FirstName = "Gunnar",
+                LastName = "Raggsson",
+                Address = "Kjellandgata",
+                Location = "Oslo",
+                ZipCode = "1234",
+                PhoneNumber = "46765643",
+                Email = "Gunnar_Raggsson@gmail.com",
+                Username = "Gusson"
+            };
+            string result = controller.editCustomer(customer);
+
+            Assert.AreEqual(result, "[1,1,1,1,1,1,1]");
+
+        }
+        [TestMethod]
+        public void test_editCustomerWithIDINoInput()
+        {
+            var controller = new AdminController(new CustomerLogic(new CustomerDALStub()));
+            var customer = new ListCustomer()
+            {
+                Id = 1,
+               
+            };
+            string result = controller.editCustomer(customer);
+
+            Assert.AreEqual(result, "[0,0,0,0,0,0,0]");
+
+        }
 
         [TestMethod]
         public void test_getAllCustomers()
@@ -280,7 +315,8 @@ namespace MovieTime2.UnitTest
 
         }
         [TestMethod]
-        public void test_removeCustomerF() {
+        public void test_removeCustomerF()
+        {
 
             var controller = new AdminController(new CustomerLogic(new CustomerDALStub()));
 
@@ -297,8 +333,8 @@ namespace MovieTime2.UnitTest
 
             Assert.AreEqual(result, "true");
         }
-        
-        }
+
+
 
         [TestMethod]
         public void test_searchCustomer()
@@ -345,5 +381,5 @@ namespace MovieTime2.UnitTest
 
             };*/
     }
-
 }
+

@@ -95,25 +95,60 @@ namespace MovieTime2.DAL
         }
         public bool editMovieName(int id, string changedDetail)
         {
-            return true;
+            if (id == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
         public bool editMovieGenre(int id, string genre1, string genre2)
         {
 
-            return true;
+            if (id == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         public bool editMovieSummary(int id, string changedDetail)
         {
-            return true;
+            if (id == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
         public bool editMoviePrice(int id, int changedDetail)
         {
-            return true;
+            if (id == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
         public bool editMovieImageUrl(int id, string changedDetail)
         {
-            return true;
+            if (id == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
         public List<movie> searchMovie(string title)
         {
